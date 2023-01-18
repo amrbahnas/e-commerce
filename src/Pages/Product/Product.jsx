@@ -6,6 +6,8 @@ import { addProduct } from "../../store/cartSlice";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
+import Loading from "../../components/Loading/Loading";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -42,7 +44,7 @@ const Product = () => {
   return error ? (
     "something went wrong"
   ) : loading ? (
-    "loading"
+    <Loading/>
   ) : (
     <div className="product flex h-screen flex-col md:flex-row ">
       <div className="product-left flex-1 flex">

@@ -3,6 +3,7 @@ import Card from "./../Card/Card";
 import styles from "./Items.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/fetchSlice";
+import Loading from "../Loading/Loading";
 
 const Items = ({ subCat, sort, catId, priceRange }) => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
       {error ? (
         "something went error"
       ) : loading ? (
-        "loading"
+        <Loading/>
       ) : data.length > 0 ? (
         data?.map((item) => <Card item={item} key={item.id} />)
       ) : (

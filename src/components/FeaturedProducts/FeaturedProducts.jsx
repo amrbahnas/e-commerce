@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/fetchSlice";
 import Card from "../Card/Card";
+import Loading from "../Loading/Loading";
+
 import "./FeaturedProducts.css";
 const FeaturedProducts = ({ title, type }) => {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const FeaturedProducts = ({ title, type }) => {
           {error ? (
             "something went wrong!"
           ) : loading ? (
-            <span>loading</span>
+            <Loading/>
           ) : (
             data?.map((item) => <Card item={item} key={item.id} />)
           )}
