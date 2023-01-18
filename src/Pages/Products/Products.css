@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.products-left {
+    @apply basis-1/4 p-8 sticky top-14 h-full
+}
+.products-left .left-setion {
+    @apply mb-10
+}
+.products-left .left-setion h2 {
+    @apply capitalize text-lg mb-2
+}
+
+.products-left .left-setion .item {
+    @apply flex gap-1 items-center justify-start
+}
+
+
+.products-right {
+    @apply basis-3/4 flex items-center justify-center flex-wrap
+}

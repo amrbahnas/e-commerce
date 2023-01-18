@@ -1,24 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { store, persistor } from "./store/index";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import Products from "./Pages/Products/Products";
+import Product from "./Pages/Product/Product";
+import Home from "./Pages/Home/Home";
+import "./index.css";
+const Layout = () => {
+  return (
+    <div className="app">
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/Products/:id",
+        element: <Products />,
+      },
+      {
+        path: "/product/:id",
+        element: <Product />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={"l"} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
   );
 }
 

@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.slider{
+    height: calc(100vh - 80px);
+    @apply relative w-full overflow-hidden bg-black 
+}
+
+.images{
+    width: 300vw;
+    transition: all 1s ease;
+    @apply flex bg-red-700 h-full
+}
+
+.images img {
+    @apply w-screen h-full object-cover 
+} 
+
+.icons{
+
+    @apply absolute w-fit m-auto left-0 right-0 bottom-14 flex gap-3
+}
+
+.icons .icon {
+    border: 1px solid #999;
+    @apply w-12 h-12 flex items-center justify-center cursor-pointer
+}

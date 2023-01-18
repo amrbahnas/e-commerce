@@ -1,0 +1,59 @@
+.layout {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 986;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu {
+    position: absolute;
+    /* width: 50%; */
+    height: 100vh;
+    z-index: 99;
+    top: 0;
+    right: 0;
+    transition: all 0.7s ease;
+    opacity: 1;
+    overflow-y: scroll;
+    background: rgba(255, 255, 255, 0.5);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+}
+ 
+
+
+.menuWrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    gap: 20px;
+}
+
+.menuWrapper ul li {
+    width: 100%;
+    border-bottom: 1px solid #888;
+    padding: 15px 5px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search input {
+    flex: 1;
+    padding: 5px;
+    @apply focus:outline-none   rounded
+}

@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.footer {
+    @apply mt-20 px-8
+}
+
+.top {
+    @apply grid grid-cols-4 p-3;
+}
+
+.top .box {
+    @apply col-span-4 text-center md:text-left md:col-span-2 lg:col-span-1 p-3
+}
+
+.title {
+    @apply text-2xl md:text-xl font-medium mb-2
+}
+
+.box ul {
+    color: #555;
+    @apply text-xl md:text-sm
+}
+
+.box ul li {
+    @apply mb-3
+}
+
+.box span {
+    color: #555;
+}
+
+.bottom {
+    @apply flex justify-between items-center  flex-col md:flex-row  p-3 mx-8
+}
+
+
+.left {
+    @apply flex gap-1 items-center flex-col md:flex-row
+}
+
+.left h2 {
+    font-size: 30px;
+    color: deepskyblue;
+    font-weight: 700;
+}
+
+.right {
+    flex-basis: 40%;
+}
