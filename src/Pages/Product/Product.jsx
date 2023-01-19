@@ -26,7 +26,7 @@ const Product = () => {
   }, [dispatch, id]);
 
   const [mainImage, setMainImg] = useState("img");
-
+console.log(item)
   const addToCart = () => {
     dispatch(addProduct({ ...item, itemCount }));
     toast.success("Item Added", {
@@ -44,7 +44,7 @@ const Product = () => {
   return error ? (
     "something went wrong"
   ) : loading ? (
-    <Loading/>
+    <Loading />
   ) : (
     <div className="product flex h-screen flex-col md:flex-row ">
       <div className="product-left flex-1 flex">
@@ -123,9 +123,9 @@ const Product = () => {
         </div>
         <div className="right-footer w-full">
           <div className="moreInfo flex flex-col text-gray-600 mt-5 py-4 border-b-gray-400 border-b w-full">
-            <span>vendor: pole</span>
-            <span>product type:T-shirt</span>
-            <span>tage: t-shirt,woman,top</span>
+            <span>vendor: elbahnsawy</span>
+            <span>product type: {item?.attributes?.sub_categories.data[0].attributes.title}</span>
+            <span>tage: best,trending,top</span>
           </div>
           <div className="links flex flex-col text-gray-600 w-fit">
             <span className=" border-b-gray-400 border-b capitalize py-2">
