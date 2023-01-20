@@ -66,22 +66,22 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
           </div>
           <ul className={styles.topMenu}>
             <li>
-              <Link to="/products/2" className="link">
+              <Link to="/products/men" className="link">
                 Men
               </Link>
             </li>
             <li>
-              <Link to="/products/1" className="link">
+              <Link to="/products/woman" className="link">
                 Woman
               </Link>
             </li>
             <li>
-              <Link to="/products/4" className="link">
+              <Link to="/products/children" className="link">
                 Children
               </Link>
             </li>
             <li>
-              <Link to="/products/5" className="link">
+              <Link to="/products/accessories" className="link">
                 Accessories
               </Link>
             </li>
