@@ -4,11 +4,31 @@
 
 
 .products-left {
-    @apply basis-1/4 p-8 sticky top-14 h-full
+    @apply w-56 p-8 fixed -left-56 z-20 mr-2 bg-white shadow-md md:shadow-none md:sticky top-0 md:top-12 h-full transition-all duration-500
 }
+
+.hidden-products-left {
+    @apply left-0 
+}
+
+.products-left-control {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border: 1px solid #eee;
+    top: 30%;
+    right: -30px;
+    cursor: pointer;
+    @apply md:hidden shadow-md
+}
+
 .products-left .left-setion {
     @apply mb-10
 }
+
 .products-left .left-setion h2 {
     @apply capitalize text-lg mb-2
 }
@@ -19,5 +39,5 @@
 
 
 .products-right {
-    @apply basis-3/4 flex items-center justify-center flex-wrap
+    @apply flex-1 flex items-center justify-center flex-wrap
 }

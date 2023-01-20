@@ -9,6 +9,7 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action) => {
+      
       if (state.data.find((el) => el.id === action.payload.id)) {
         state.data = state.data.map((el) =>
           el.id === action.payload.id

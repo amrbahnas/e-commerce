@@ -17,7 +17,6 @@ const Cart = ({ setCartControl }) => {
       if (!menu.current.contains(e.target)) {
         // change state to false , because the state at the parrent component
         setCartControl(false);
-        console.log(e.target.hasAttribute("amr"));
       }
     };
 
@@ -26,7 +25,7 @@ const Cart = ({ setCartControl }) => {
     // cleanup event listeners
     return () => {
       document.removeEventListener("mousedown", handler);
-    };
+    };  
   });
 
   const deleteHandler = (id, price) => {

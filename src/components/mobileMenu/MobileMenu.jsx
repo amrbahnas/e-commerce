@@ -1,4 +1,4 @@
-import React, {useEffect,useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { Link } from "react-router-dom";
@@ -34,8 +34,10 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
           </div>
           <ul className={styles.topMenu}>
             <li>
-              <PersonOutlineOutlinedIcon className="cursor-pointer" />
-              <span>amr@gmail.com</span>
+              <Link to="/admin">
+                <PersonOutlineOutlinedIcon className="cursor-pointer" />
+                <span>amr@gmail.com</span>
+              </Link>
             </li>
 
             <li>

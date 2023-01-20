@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
@@ -94,7 +94,9 @@ const Navbar = () => {
             <SearchOutlinedIcon className="cursor-pointer" />
           </li>
           <li>
-            <PersonOutlineOutlinedIcon className="cursor-pointer" />
+            <Link to="/admin">
+              <PersonOutlineOutlinedIcon className="cursor-pointer" />
+            </Link>
           </li>
           <li>
             <FavoriteBorderOutlinedIcon className="cursor-pointer" />

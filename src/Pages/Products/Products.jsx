@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import "./Products.css";
 import Items from "./../../components/Items/Items";
 import { useDispatch } from "react-redux";
@@ -7,14 +7,15 @@ import { useParams } from "react-router-dom";
 import { category } from "../../Firebase/index";
 import { onSnapshot, query, orderBy, where } from "firebase/firestore";
 /// end firebase
+import SettingsIcon from "@mui/icons-material/Settings";
 const Products = () => {
+  const productsLeft = useRef()
   const dispatch = useDispatch();
   const { id } = useParams();
   const [priceRange, setPriceRange] = useState(1000);
   const [sort, setSort] = useState("");
   const [selectedSubCat, setSelectedSubCat] = useState([]);
   const [data, setData] = useState([]);
-
 
   useEffect(() => {
     const q = query(category, where("title", "==", id));
@@ -24,6 +25,33 @@ const Products = () => {
       });
     });
   }, []);
+
+//hidden show menu
+  const productsLeftControl = ()=>{
+    productsLeft.current.classList.toggle("hidden-products-left");
+  }
+
+  useEffect(() => {
+    const handler = (e) => {
+      //if the element which clicked not in the menu then
+      if (!productsLeft.current.contains(e.target)) {
+        productsLeft.current.classList.remove("hidden-products-left");
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    // cleanup event listeners
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
+
+
+
+
+
+
+
+
 
 
   const catHandler = (e) => {
@@ -37,7 +65,7 @@ const Products = () => {
   };
   return (
     <div className="products flex px-5 justify-center">
-      <div className="products-left hidden md:block">
+      <div className="products-left" ref={productsLeft}>
         <div className="left-setion ">
           <h2>product categores</h2>
           {data.sub_category?.length > 0
@@ -119,6 +147,9 @@ const Products = () => {
             />
             <label htmlFor="desc">price (Lowest first)</label>
           </div>
+        </div>
+        <div className="products-left-control" onClick={productsLeftControl}>
+          <SettingsIcon />
         </div>
       </div>
       <div className="products-right">

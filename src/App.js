@@ -50,7 +50,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <Provider store={store}>
-      <PersistGate loading={"l"} persistor={persistor}>
+      <PersistGate loading={"loading"} persistor={persistor}>
         <RouterProvider router={router} />
       </PersistGate>
     </Provider>
