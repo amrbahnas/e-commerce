@@ -38,7 +38,9 @@ const Cart = ({ setCartControl }) => {
 
   return (
     <div className={`${styles.cart}`} ref={menu}>
-      <h2 className=" capitalize text-2xl text-center md:text-left ">products in your cart</h2>
+      <h2 className=" capitalize text-2xl text-center md:text-left ">
+        products in your cart
+      </h2>
       {data.length === 0 ? (
         <div className=" text-center">Empty</div>
       ) : (
@@ -49,25 +51,22 @@ const Cart = ({ setCartControl }) => {
               key={item.id}
             >
               <img
-                src={
-                  process.env.REACT_APP_UPLOAD_URL +
-                  item?.attributes?.img?.data.attributes.url
-                }
+                src={item.img}
                 alt=""
                 className=" w-6 basis-1/6"
               />
               <div className="info flex-1">
                 <h3 className="mb-3 capitalize text-gray-700">
-                  {item.attributes.title}
+                  {item.title}
                 </h3>
                 <p className="text-gray-500">{item.des?.substring(0, 100)}</p>
                 <span className="price text-sky-700 text-md">
-                  {item.itemCount} x ${item.attributes.price}
+                  {item.itemCount} x ${item.price}
                 </span>
               </div>
               <div
                 className="delete basis-1/6 text-red-600 text-center cursor-pointer"
-                onClick={(e) => deleteHandler(item.id, item.attributes.price)}
+                onClick={(e) => deleteHandler(item.id, item.price)}
               >
                 <DeleteOutlineIcon />
               </div>
@@ -81,10 +80,9 @@ const Cart = ({ setCartControl }) => {
           <span className=" text-lg">${totalPrice}</span>
         </div>
         <div className="flex justify-center md:justify-start">
-
-        <button className="text-white bg-sky-800 w-4/5  px-8 py-2 uppercase text-sm font-bold">
-          proceed to checkout
-        </button>
+          <button className="text-white bg-sky-800 w-4/5  px-8 py-2 uppercase text-sm font-bold">
+            proceed to checkout
+          </button>
         </div>
         <span
           className=" capitalize text-sm cursor-pointer text-red-600"

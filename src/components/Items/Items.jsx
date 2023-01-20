@@ -1,34 +1,59 @@
 import React, { useState, useEffect } from "react";
 import Card from "./../Card/Card";
 import styles from "./Items.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../store/fetchSlice";
 import Loading from "../Loading/Loading";
-
+//fire base
+import { products } from "../../Firebase/index";
+import { onSnapshot, query, orderBy, where } from "firebase/firestore";
+/// end firebase
 const Items = ({ subCat, sort, catId, priceRange }) => {
-  const dispatch = useDispatch();
   const [data, setData] = useState([]);
-  const { loading, error } = useSelector((store) => store.fetchSlice);
 
   useEffect(() => {
-    const customUrl = `/products?populate=*&[filters][categories][id]=${catId}${subCat?.map(
-      (item) => `&[filters][sub_categories][id][$eq]=${item}`
-    )}&[filters][price][$lte]=${priceRange}${sort && `&sort=price:${sort}`}`;
+    let q = "";
+    if (subCat.length > 0 && sort) {
+      q = query(
+        products,
+        where("category", "==", catId),
+        where("price", "<=", +priceRange),
+        where("sub_category", "in", subCat),
+        orderBy("price", sort)
+      );
+    } else if (sort) {
+      q = query(
+        products,
+        where("category", "==", catId),
+        where("price", "<=", +priceRange),
+        orderBy("price", sort)
+      );
+    } else if (subCat.length > 0) {
+      q = query(
+        products,
+        where("category", "==", catId),
+        where("price", "<=", +priceRange),
+        where("sub_category", "in", subCat)
+      );
+    } else {
+      q = query(
+        products,
+        where("category", "==", catId),
+        where("price", "<=", +priceRange)
+      );
+    }
 
-    dispatch(fetchProducts(customUrl)).then((action) => {
-      setData(action.payload.data);
+    setData([]);
+    onSnapshot(q, (snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        setData((prev) => [...prev, { ...doc.data(), id: doc.id }]);
+      });
     });
-  }, [dispatch, catId, subCat, priceRange, sort]);
+  }, [subCat, sort, catId, priceRange]);
 
   return (
     <div
       className={`${styles.items} flex flex-wrap  items-center  justify-center gap-10`}
     >
-      {error ? (
-        "something went error"
-      ) : loading ? (
-        <Loading/>
-      ) : data.length > 0 ? (
+      {data.length > 0 ? (
         data?.map((item) => <Card item={item} key={item.id} />)
       ) : (
         <div className=" capitalize">no data available</div>

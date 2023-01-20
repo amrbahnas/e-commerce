@@ -2,7 +2,7 @@ import React from "react";
 import { store, persistor } from "./store/index";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-
+import "./Firebase/index";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
@@ -11,6 +11,7 @@ import Products from "./Pages/Products/Products";
 import Product from "./Pages/Product/Product";
 import Home from "./Pages/Home/Home";
 import "./index.css";
+import AddProduct from "./Pages/AddProduct/AddProduct";
 const Layout = () => {
   return (
     <div className="app">
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         element: <Product />,
       },
     ],
+  },
+  {
+    path: "/admin",
+    element: <AddProduct />,
   },
 ]);
 

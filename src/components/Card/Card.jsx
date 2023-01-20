@@ -1,34 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import StarIcon from "@mui/icons-material/Star";
 import "./Card.css";
 const Card = ({ item }) => {
   return (
     <Link to={"/product/" + item.id}>
       <div className="card">
-        {item.attributes.isNew && <span className="newseason">New Season</span>}
+        {item.isNew && <span className="newseason">New Season</span>}
         <div className="image">
-          <img
-            src={
-              process.env.REACT_APP_UPLOAD_URL +
-              item?.attributes.img.data.attributes.url
-            }
-            alt=""
-          />
-          <img
-            src={
-              process.env.REACT_APP_UPLOAD_URL +
-              item?.attributes.img2.data.attributes.url
-            }
-            alt=""
-          />
+          <img src={item?.img} alt="" />
+          <img src={item?.img2} alt="" />
         </div>
         <div className="cardFooter">
-          <p className="title">{item?.attributes.title}</p>
+          <h2 className="title">{item?.title.substr(0, 50)}</h2>
+          <div className="stars">
+            <StarIcon />
+            <StarIcon />
+            <StarIcon />
+            <StarIcon />
+            <StarIcon />
+          </div>
           <div className="price">
-            <span className="old">
-              ${item.attributes.oldPrice || item?.attributes.price + 20}
-            </span>
-            <span className="current">${item?.attributes.price}</span>
+            <span className="old">${item.oldPrice || item?.price + 20}</span>
+            <span className="current">${item?.price}</span>
           </div>
         </div>
       </div>

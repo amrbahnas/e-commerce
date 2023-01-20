@@ -1,24 +1,24 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../store/fetchSlice";
 import Card from "../Card/Card";
-import Loading from "../Loading/Loading";
-
+//fire base
+import { products } from '../../Firebase/index';
+import { onSnapshot, query, orderBy, where } from "firebase/firestore";
+/// end firebase
 import "./FeaturedProducts.css";
 const FeaturedProducts = ({ title, type }) => {
-  const dispatch = useDispatch();
-
-  const { loading, error } = useSelector((store) => store.fetchSlice);
 
   const [data, setData] = useState([]);
-
   useEffect(() => {
-    const customUrl = `/products?populate=*&filters[type][$eq]=${type}`;
-    dispatch(fetchProducts(customUrl)).then((action) =>
-      setData(action.payload.data)
-    );
-  }, [dispatch, type]);
+    const q = query(products, where("type", "==", type), orderBy("price", "asc"));
+     setData([])
+    onSnapshot(q, (snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        setData((prev) => [...prev,{... doc.data(),id: doc.id}]);
+      });
+    });
+  }, [type]);
+
 
   return (
     <div className="FeaturedProducts">
@@ -33,13 +33,9 @@ const FeaturedProducts = ({ title, type }) => {
           </p>
         </div>
         <div className="FeaturedProductsBottom">
-          {error ? (
-            "something went wrong!"
-          ) : loading ? (
-            <Loading/>
-          ) : (
-            data?.map((item) => <Card item={item} key={item.id} />)
-          )}
+          {data?.map((item) => (
+            <Card item={item} key={item.id} />
+          ))}
         </div>
       </div>
       .

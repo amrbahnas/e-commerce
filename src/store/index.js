@@ -1,6 +1,5 @@
 //normal import
-import { combineReducers } from "redux";
-import fetchSlice from "./fetchSlice";
+
 import cartSlice from "./cartSlice";
 
 // import persist things
@@ -26,14 +25,8 @@ const persistConfig = {
   storage,
 };
 
-// add your slices before add to store
-const rootReducer = combineReducers({
-  fetchSlice,
-  cartSlice,
-});
-
-// represent reducer key value , takes config variable and rootReducer
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// represent reducer value , takes config variable and the slice
+const persistedReducer = persistReducer(persistConfig, cartSlice);
 
 // our store
 export const store = configureStore({

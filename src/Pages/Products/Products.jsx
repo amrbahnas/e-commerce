@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./Products.css";
 import Items from "./../../components/Items/Items";
 import { useDispatch } from "react-redux";
-import { fetchProducts } from "../../store/fetchSlice";
 import { useParams } from "react-router-dom";
-
+//fire base
+import { category } from "../../Firebase/index";
+import { onSnapshot, query, orderBy, where } from "firebase/firestore";
+/// end firebase
 const Products = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -13,12 +15,16 @@ const Products = () => {
   const [selectedSubCat, setSelectedSubCat] = useState([]);
   const [data, setData] = useState([]);
 
+
   useEffect(() => {
-    const customUrl = `/sub-categories?[filters][categories][id]=${id}`;
-    dispatch(fetchProducts(customUrl)).then((action) =>
-      setData(action.payload.data)
-    );
-  }, [dispatch, id]);
+    const q = query(category, where("title", "==", id));
+    onSnapshot(q, (snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        setData(doc.data());
+      });
+    });
+  }, []);
+
 
   const catHandler = (e) => {
     const value = e.target.value;
@@ -34,17 +40,17 @@ const Products = () => {
       <div className="products-left hidden md:block">
         <div className="left-setion ">
           <h2>product categores</h2>
-          {data.length > 0
-            ? data?.map((item) => {
+          {data.sub_category?.length > 0
+            ? data?.sub_category?.map((item) => {
                 return (
-                  <div className="item" key={item.id}>
+                  <div className="item" key={item}>
                     <input
                       type="checkbox"
-                      value={item.id}
-                      id={item.id}
+                      value={item}
+                      id={item}
                       onChange={(e) => catHandler(e)}
                     />
-                    <label htmlFor={item.id}>{item.attributes.title}</label>
+                    <label htmlFor={item}>{item}</label>
                   </div>
                 );
               })

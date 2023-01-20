@@ -16,11 +16,11 @@ export const cartSlice = createSlice({
             : el
         );
         state.totalPrice +=
-          action.payload.attributes.price * action.payload.itemCount;
+          action.payload.price * action.payload.itemCount;
       } else {
         state.data.push(action.payload);
         state.totalPrice +=
-          action.payload.attributes.price * action.payload.itemCount;
+          action.payload.price * action.payload.itemCount;
       }
     },
     daleteProduct: (state, action) => {

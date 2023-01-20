@@ -1,3 +1,9 @@
+.wrapper{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .spinner {
     width: 11.2px;
     height: 11.2px;
