@@ -3,7 +3,7 @@ import React from "react";
 import "./Categories.css";
 const Categories = () => {
   return (
-    <div className="categories flex flex-col  md:grid grid-cols-4 grid-rows-2 md:h-screen my-16 mx-2 gap-2">
+    <div className="categories flex flex-col  md:grid grid-cols-4 grid-rows-2 md:h-screen my-8 mx-2 gap-2">
       <div className="sale col-start-1 col-span-1">
         <img
           src="https://images.pexels.com/photos/5872348/pexels-photo-5872348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -41,13 +41,13 @@ const Categories = () => {
           <Link to="/products/men">men</Link>
         </button>
       </div>
-      <div className="accessores col-end-5 col-span-1">
+      <div className="accessories col-end-5 col-span-1">
         <img
           src="https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""
         />
         <button>
-          <Link to="/products/accessores">accessores</Link>
+          <Link to="/products/accessories">accessories</Link>
         </button>
       </div>
       <div className="shoes col-end-5 col-span-2">

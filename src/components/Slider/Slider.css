@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 
-.slider{
+.slider {
     height: calc(100vh - 80px);
-    @apply relative w-full overflow-hidden bg-black 
+    @apply relative w-full overflow-hidden bg-black mt-20
 }
 
-.images{
+.images {
     width: 300vw;
     transition: all 1s ease;
-    @apply flex  h-full
+    @apply flex h-full
 }
 
 .images img {
-    @apply w-screen h-full object-cover 
-} 
+    @apply w-screen h-full object-cover
+}
 
-.icons{
+.icons {
 
     @apply absolute w-fit m-auto left-0 right-0 bottom-14 flex gap-3
 }

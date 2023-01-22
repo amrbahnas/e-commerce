@@ -1,18 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
+import { motion } from "framer-motion"
 import "./Card.css";
 const Card = ({ item }) => {
   return (
     <Link to={"/product/" + item.id}>
-      <div className="card">
+      <motion.div
+        className="card"
+        whileHover={{ y:-12 }}
+      >
         {item.isNew && <span className="newseason">New Season</span>}
         <div className="image">
           <img src={item?.img} alt="" />
           <img src={item?.img2} alt="" />
         </div>
         <div className="cardFooter">
-          <h2 className="title">{item?.title.substr(0, 50)}</h2>
+          <h2 className="title">{item?.title.substr(0, 30)}</h2>
           <div className="stars">
             <StarIcon />
             <StarIcon />
@@ -25,7 +29,7 @@ const Card = ({ item }) => {
             <span className="current">${item?.price}</span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Link>
   );
 };

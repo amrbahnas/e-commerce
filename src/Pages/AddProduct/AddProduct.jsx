@@ -139,6 +139,7 @@ const AddProduct = () => {
                 <option value="men">men</option>
                 <option value="woman">woman</option>
                 <option value="children">children</option>
+                <option value="accessories">accessories</option>
               </select>
             </div>
             <div className={`${styles.col}`}>
@@ -155,7 +156,10 @@ const AddProduct = () => {
                 <option value="">Please choose an option</option>
                 <option value="hat">hat</option>
                 <option value="t-shirt">t-shirt</option>
-                <option value="skirt">skirt</option>
+                <option value="watches">watches</option>
+                <option value="phones">phones</option>
+                <option value="glasses">glasses</option>
+                <option value="headphones">headphones</option>
               </select>
             </div>
           </div>

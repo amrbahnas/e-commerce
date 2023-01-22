@@ -4,7 +4,7 @@
 
 
 .products-left {
-    @apply w-56 p-8 fixed -left-56 z-20 mr-2 bg-white shadow-md md:shadow-none md:sticky top-0 md:top-12 h-full transition-all duration-500
+    @apply w-56 p-4 md:p-2 fixed -left-56 z-50 md:z-10 mr-2 bg-white shadow-md md:shadow-none md:sticky top-0 md:top-24 h-full transition-all duration-500
 }
 
 .hidden-products-left {
@@ -23,6 +23,13 @@
     right: -30px;
     cursor: pointer;
     @apply md:hidden shadow-md
+}
+.products-left-control2 {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    cursor: pointer;
+    @apply md:hidden 
 }
 
 .products-left .left-setion {

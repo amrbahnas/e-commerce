@@ -4,15 +4,15 @@
 
 
 .footer {
-    @apply mt-20 px-8
+    @apply mt-20 
 }
 
 .top {
-    @apply grid grid-cols-4 p-3;
+    @apply grid grid-cols-4 ;
 }
 
 .top .box {
-    @apply col-span-4 text-center md:text-left md:col-span-2 lg:col-span-1 p-3
+    @apply col-span-4 text-center md:text-left md:col-span-2 lg:col-span-1 
 }
 
 .title {

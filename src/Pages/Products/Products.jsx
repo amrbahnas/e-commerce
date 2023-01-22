@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Products.css";
 import Items from "./../../components/Items/Items";
 import { useDispatch } from "react-redux";
@@ -8,8 +8,9 @@ import { category } from "../../Firebase/index";
 import { onSnapshot, query, orderBy, where } from "firebase/firestore";
 /// end firebase
 import SettingsIcon from "@mui/icons-material/Settings";
+import CloseIcon from "@mui/icons-material/Close";
 const Products = () => {
-  const productsLeft = useRef()
+  const productsLeft = useRef();
   const dispatch = useDispatch();
   const { id } = useParams();
   const [priceRange, setPriceRange] = useState(1000);
@@ -26,10 +27,10 @@ const Products = () => {
     });
   }, []);
 
-//hidden show menu
-  const productsLeftControl = ()=>{
+  //hidden show menu
+  const productsLeftControl = () => {
     productsLeft.current.classList.toggle("hidden-products-left");
-  }
+  };
 
   useEffect(() => {
     const handler = (e) => {
@@ -45,15 +46,6 @@ const Products = () => {
     };
   });
 
-
-
-
-
-
-
-
-
-
   const catHandler = (e) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
@@ -64,106 +56,122 @@ const Products = () => {
     );
   };
   return (
-    <div className="products flex px-5 justify-center">
-      <div className="products-left" ref={productsLeft}>
-        <div className="left-setion ">
-          <h2>product categores</h2>
-          {data.sub_category?.length > 0
-            ? data?.sub_category?.map((item) => {
-                return (
-                  <div className="item" key={item}>
-                    <input
-                      type="checkbox"
-                      value={item}
-                      id={item}
-                      onChange={(e) => catHandler(e)}
-                    />
-                    <label htmlFor={item}>{item}</label>
-                  </div>
-                );
-              })
-            : "soon.."}
-        </div>
-        <div className="left-setion ">
-          <h2>filter by price</h2>
-          <div className="flex flex-col items-start justify-start">
-            <div>
-              <span>0</span>
-              <input
-                type="range"
-                name="priceRange"
-                value={priceRange}
-                id="price"
-                onChange={(e) => setPriceRange(e.target.value)}
-                step={1}
-                min={1}
-                max={1000}
-              />
-              <span>{priceRange}</span>
+    <div className="products mt-24">
+      <div className="theContainer">
+        <div className="sectionWrapper flex justify-center bg-white p-4 rounded-md">
+          <div className="products-left" ref={productsLeft}>
+            <div className="left-setion mt-16 md:mt-0">
+              <h2>product categores</h2>
+              {data.sub_category?.length > 0
+                ? data?.sub_category?.map((item) => {
+                    return (
+                      <div className="item" key={item}>
+                        <input
+                          type="checkbox"
+                          value={item}
+                          id={item}
+                          onChange={(e) => catHandler(e)}
+                        />
+                        <label htmlFor={item}>{item}</label>
+                      </div>
+                    );
+                  })
+                : "soon.."}
             </div>
-            <div className="flex items-center justify-center gap-6 mt-2">
-              <button
-                onClick={(e) =>
-                  setPriceRange(
-                    priceRange > 1 ? parseInt(priceRange) - 50 : priceRange
-                  )
-                }
-                className=" w-6 h-6 bg-slate-400 text-center rounded"
-              >
-                -
-              </button>
-              <button
-                onClick={(e) =>
-                  setPriceRange(
-                    priceRange < 1000 ? parseInt(priceRange) + 50 : priceRange
-                  )
-                }
-                className=" w-6 h-6 bg-slate-400 text-center rounded"
-              >
-                +
-              </button>
+            <div className="left-setion ">
+              <h2>filter by price</h2>
+              <div className="flex flex-col items-start justify-start">
+                <div>
+                  <span>0</span>
+                  <input
+                    type="range"
+                    name="priceRange"
+                    value={priceRange}
+                    id="price"
+                    onChange={(e) => setPriceRange(e.target.value)}
+                    step={1}
+                    min={1}
+                    max={1000}
+                  />
+                  <span>{priceRange}</span>
+                </div>
+                <div className="flex items-center justify-center gap-6 mt-2">
+                  <button
+                    onClick={(e) =>
+                      setPriceRange(
+                        priceRange > 1 ? parseInt(priceRange) - 50 : priceRange
+                      )
+                    }
+                    className=" w-6 h-6 bg-slate-400 text-center rounded"
+                  >
+                    -
+                  </button>
+                  <button
+                    onClick={(e) =>
+                      setPriceRange(
+                        priceRange < 1000
+                          ? parseInt(priceRange) + 50
+                          : priceRange
+                      )
+                    }
+                    className=" w-6 h-6 bg-slate-400 text-center rounded"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="left-setion">
+              <h2>sort by</h2>
+              <div className="item">
+                <input
+                  type="radio"
+                  name="price"
+                  id="asc"
+                  value="asc"
+                  onChange={() => setSort("desc")}
+                />
+                <label htmlFor="asc">price (Higher first)</label>
+              </div>
+              <div className="item">
+                <input
+                  type="radio"
+                  name="price"
+                  id="desc"
+                  value="desc"
+                  onChange={() => setSort("asc")}
+                />
+                <label htmlFor="desc">price (Lowest first)</label>
+              </div>
+            </div>
+            <div
+              className="products-left-control"
+              onClick={productsLeftControl}
+            >
+              <SettingsIcon />
+            </div>
+            <div
+              className="products-left-control2"
+              onClick={productsLeftControl}
+            >
+            close
+              <CloseIcon />
             </div>
           </div>
-        </div>
-        <div className="left-setion">
-          <h2>sort by</h2>
-          <div className="item">
-            <input
-              type="radio"
-              name="price"
-              id="asc"
-              value="asc"
-              onChange={() => setSort("desc")}
+          <div className="products-right">
+            <img
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt=""
+              className=" hidden md:block w-full h-64 object-cover shadow-lg mb-14"
             />
-            <label htmlFor="asc">price (Higher first)</label>
-          </div>
-          <div className="item">
-            <input
-              type="radio"
-              name="price"
-              id="desc"
-              value="desc"
-              onChange={() => setSort("asc")}
+            <Items
+              priceRange={priceRange}
+              catId={id}
+              sort={sort}
+              subCat={selectedSubCat}
             />
-            <label htmlFor="desc">price (Lowest first)</label>
           </div>
         </div>
-        <div className="products-left-control" onClick={productsLeftControl}>
-          <SettingsIcon />
-        </div>
-      </div>
-      <div className="products-right">
-        <img
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          alt=""
-          className=" hidden md:block w-full h-64 object-cover shadow-lg mb-14"
-        />
-        <Items
-          priceRange={priceRange}
-          catId={id}
-          sort={sort}
-          subCat={selectedSubCat}
-        />
       </div>
     </div>
   );

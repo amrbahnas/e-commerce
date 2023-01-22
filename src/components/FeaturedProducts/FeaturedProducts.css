@@ -1,14 +1,16 @@
-.FeaturedProducts{
-    margin-top: 60px;
-    margin-bottom: 60px;
+.FeaturedProducts {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
 }
-.FeaturedProductsTop{
+
+.FeaturedProductsTop {
     display: flex;
     justify-content: space-between;
     @apply px-11
 }
 
-.FeaturedProductsTop h2{
+.FeaturedProductsTop h2 {
     flex-basis: 70%;
     text-transform: capitalize;
     font-weight: bold;
@@ -16,12 +18,18 @@
 }
 
 
-.FeaturedProductsBottom{
- display: flex;
- flex-wrap: wrap;
- gap: 20px;
- justify-content: center;
- /* align-items: center; */
- margin-top: 50px;
- @apply px-12
+.FeaturedProductsBottom {
+
+    margin-top: 50px;
+}
+
+.swiper-container {
+    @apply border shadow-md rounded-md 
+}
+
+.swiper-slide {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    @apply py-1
 }
