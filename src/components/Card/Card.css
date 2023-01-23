@@ -12,6 +12,10 @@
     padding: 10px;
 }
 
+.card:hover .addToCard {
+    display: flex
+}
+
 .card .newseason {
     @apply absolute p-1 text-white top-1 left-1 z-10 text-sm rounded;
     background: #f857a6;

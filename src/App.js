@@ -10,8 +10,11 @@ import Footer from "./components/Footer/Footer";
 import Products from "./Pages/Products/Products";
 import Product from "./Pages/Product/Product";
 import Home from "./Pages/Home/Home";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import AddProduct from "./Pages/AddProduct/AddProduct";
+import Cart from './Pages/Cart/Cart';
 
 
 /////////////Home page///////////////////
@@ -19,6 +22,7 @@ const Layout = () => {
   return (
     <div className="app">
       <Navbar />
+      <ToastContainer />
       <Outlet />
       <Footer />
     </div>
@@ -41,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <Product />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

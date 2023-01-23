@@ -19,6 +19,7 @@ const CardSlider = ({
   autoplayIs,
   spaceBetweenIs,
   slidesPerViewIs,
+  breakpoints,
 }) => {
   return (
     <Swiper
@@ -29,10 +30,30 @@ const CardSlider = ({
       autoplay={autoplayIs}
       spaceBetween={spaceBetweenIs}
       slidesPerView={slidesPerViewIs}
-      onSwiper={(swiper) => console.log("")}
-      onSlideChange={() => console.log("")}
-      className="w-full h-full"
-     
+      breakpoints={{
+        // when window width is >= 640px
+        320: {
+          width: breakpoints ? null : 300,
+          slidesPerView: breakpoints || 1,
+        },
+        // when window width is >= 640px
+        768: {
+          width: breakpoints ? null : 750,
+          slidesPerView: breakpoints || 2,
+        },
+        // when window width is >= 768px
+        992: {
+          width: breakpoints ? null : 970,
+          slidesPerView: breakpoints || 4,
+        },
+        1200: {
+          width: breakpoints ? null : 1170,
+          slidesPerView: breakpoints || 4,
+        },
+      }}
+      // onSwiper={(swiper) => console.log("")}
+      // onSlideChange={() => console.log("")}
+      className={`${styles.swiperContainer} w-full h-full`}
     >
       {data
         ? data?.map((item) => (

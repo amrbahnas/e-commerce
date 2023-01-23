@@ -8,7 +8,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import Cart from "./../Cart/Cart";
+// import Cart from "./../Cart/Cart";
 import MobileMenu from "../mobileMenu/MobileMenu";
 const Navbar = () => {
   const { data } = useSelector((store) => store.cartSlice);
@@ -107,14 +107,18 @@ const Navbar = () => {
           </div>
 
           <div className="flex gap-10 navRight ">
-            <div
-              className="relative cursor-pointer"
-              onClick={(e) => setCartControl(!cartControl)}
-            >
-              <ShoppingCartOutlinedIcon className="cursor-point" />
-              {data.length > 0 && <span className="count">{data.length}</span>}
-              <span className="text-md font-medium capitalize">cart</span>
-            </div>
+            <Link to="/cart">
+              <div
+                className="relative cursor-pointer flex gap-2 items-center"
+                // onClick={(e) => setCartControl(!cartControl)}
+              >
+                <ShoppingCartOutlinedIcon className="cursor-point" />
+                {data.length > 0 && (
+                  <span className="count">{data.length}</span>
+                )}
+                <span className="text-md font-medium capitalize">cart</span>
+              </div>
+            </Link>
             <div className="md:hidden">
               <MenuIcon
                 className="hidden"
@@ -122,7 +126,7 @@ const Navbar = () => {
               />
             </div>
           </div>
-          {cartControl && <Cart setCartControl={setCartControl} />}
+          {/*cartControl && <Cart setCartControl={setCartControl} />*/}
           {controlMobileMenu && (
             <MobileMenu setcontrolMobileMenu={setcontrolMobileMenu} />
           )}

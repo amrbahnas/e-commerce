@@ -1,0 +1,13 @@
+.priceDetails .ul li {
+    @apply flex justify-between items-end mb-5
+}
+
+.checkout button {
+    background-color: #e9c27d;
+    @apply w-full  text-black p-1 font-semibold text-lg capitalize rounded-md
+}
+
+.wrapper .body .left {
+    min-width: 200px;
+    min-height: 200px;
+}

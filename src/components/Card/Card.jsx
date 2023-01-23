@@ -1,13 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../store/cartSlice";
 import StarIcon from "@mui/icons-material/Star";
 import { motion } from "framer-motion";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "./Card.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Card = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch(addProduct({ ...item, itemCount: 1 }));
+    toast.success("Item Added", {
+      position: "top-right",
+      autoClose: 1200,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
   return (
-    <Link to={"/product/" + item.id}>
-      <div className="card ">
-        {item.isNew && <span className="newseason">New Season</span>}
+    <div className="card ">
+      {item.isNew && <span className="newseason">New Season</span>}
+      <Link to={"/product/" + item.id}>
         <div className="image overflow-hidden">
           <img
             src={item?.img}
@@ -16,22 +37,30 @@ const Card = ({ item }) => {
           />
           {/*<img src={item?.img2} alt="" className="hover:scale-105" />*/}
         </div>
-        <div className="cardFooter">
+      </Link>
+      <div className="cardFooter">
+        <Link to={"/product/" + item.id}>
           <h2 className="title">{item?.title.substr(0, 30)}</h2>
-          <div className="stars">
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-          </div>
-          <div className="price">
-            <span className="old">${item.oldPrice || item?.price + 20}</span>
-            <span className="current">${item?.price}</span>
-          </div>
+        </Link>
+        <div className="stars">
+          <StarIcon />
+          <StarIcon />
+          <StarIcon />
+          <StarIcon />
+          <StarIcon />
+        </div>
+        <div className="price">
+          <span className="old">${item.oldPrice || item?.price + 20}</span>
+          <span className="current">${item?.price}</span>
         </div>
       </div>
-    </Link>
+      <div
+        className="hidden addToCard absolute w-10 h-10 bg-slate-300  items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2  bottom-4 right-6 "
+        onClick={addToCart}
+      >
+        <AddShoppingCartIcon />
+      </div>
+    </div>
   );
 };
 

@@ -6,6 +6,8 @@ module.exports = {
       colors: {
         amr: "#2064d1",
         img: "#f0f0f0",
+        offWhite: "#333",
+        buttonBg: "#e9c27d",
       },
     },
   },

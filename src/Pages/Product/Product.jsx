@@ -10,7 +10,7 @@ import Loading from "../../components/Loading/Loading";
 import { db } from "../../Firebase/index";
 import { onSnapshot, doc } from "firebase/firestore";
 /// end firebase
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
@@ -130,7 +130,6 @@ const Product = () => {
               </div>
             </div>
           </div>
-          <ToastContainer />
         </div>
       </div>
     </div>
