@@ -12,6 +12,9 @@ import Product from "./Pages/Product/Product";
 import Home from "./Pages/Home/Home";
 import "./index.css";
 import AddProduct from "./Pages/AddProduct/AddProduct";
+
+
+/////////////Home page///////////////////
 const Layout = () => {
   return (
     <div className="app">

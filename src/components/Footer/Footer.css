@@ -4,11 +4,13 @@
 
 
 .footer {
-    @apply mt-20 
+    background-color: #252525;
+    
+    @apply mt-20 pt-10 text-white
 }
 
 .top {
-    @apply grid grid-cols-4 ;
+    @apply grid grid-cols-4 mb-10 ;
 }
 
 .top .box {
@@ -20,7 +22,7 @@
 }
 
 .box ul {
-    color: #555;
+    color: #fff;
     @apply text-xl md:text-sm
 }
 
@@ -29,7 +31,7 @@
 }
 
 .box span {
-    color: #555;
+    color: #fff;
 }
 
 .bottom {

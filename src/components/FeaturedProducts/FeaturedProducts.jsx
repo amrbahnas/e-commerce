@@ -1,18 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
+import CardSlider from "../CardSlider/CardSlider";
 //fire base
 import { products } from "../../Firebase/index";
 import { onSnapshot, query, orderBy, where } from "firebase/firestore";
-// import Swiper core and required modules
-import { Navigation, Pagination, A11y, Scrollbar, Autoplay } from "swiper";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+
 // Import component styles
 import "./FeaturedProducts.css";
 const FeaturedProducts = ({ title, type }) => {
@@ -45,22 +38,17 @@ const FeaturedProducts = ({ title, type }) => {
             </p>
           </div>
           <div className="FeaturedProductsBottom">
-            <Swiper
-              modules={[Navigation, Pagination, A11y, Scrollbar, Autoplay]}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
-              spaceBetween={1}
-              slidesPerView={4}
-              onSwiper={(swiper) => console.log(swiper)}
-              onSlideChange={() => console.log("slide change")}
-              className="swiper-container"
+            <CardSlider
+              data={data}
+              paginationIs={false}
+              ScrollbarIs={false}
+              NavigationIs={true}
+              autoplayIs={false}
+              spaceBetweenIs={1}
+              slidesPerViewIs={4}
             >
-              {data?.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <Card item={item} key={item.id} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+              <Card/>
+            </CardSlider>
           </div>
         </div>
       </div>

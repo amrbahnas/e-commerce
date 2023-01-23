@@ -1,0 +1,7 @@
+.LandingPage{
+    height: calc(100vh -80px);
+
+}
+.wrapper .top .right {
+    flex-basis: 33%;
+}

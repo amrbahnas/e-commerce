@@ -2,8 +2,8 @@ import React from "react";
 import "./Footer.css";
 const Footer = () => {
   return (
+    <div className="footer" id="footer">
     <div className="theContainer">
-      <div className="footer" id="footer">
         <div className="top">
           <div className="box">
             <h2 className="title">categories</h2>
@@ -50,7 +50,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="right">
-            <img src={require("../../assets/payment.png")} alt="" />
+            <img src="assets/payment.png" alt="" />
           </div>
         </div>
       </div>

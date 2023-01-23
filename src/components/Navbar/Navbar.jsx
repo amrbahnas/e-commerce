@@ -112,7 +112,8 @@ const Navbar = () => {
               onClick={(e) => setCartControl(!cartControl)}
             >
               <ShoppingCartOutlinedIcon className="cursor-point" />
-              <span className="count">{data.length}</span>
+              {data.length > 0 && <span className="count">{data.length}</span>}
+              <span className="text-md font-medium capitalize">cart</span>
             </div>
             <div className="md:hidden">
               <MenuIcon
@@ -129,7 +130,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-          };
-          
-          export default Navbar;
-          
+};
+
+export default Navbar;

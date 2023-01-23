@@ -23,5 +23,5 @@
 
 .count {
     background-color: dodgerblue;
-    @apply flex justify-center items-center absolute rounded-full w-2 h-2 -top-2 -right-2 p-2 select-none text-white
+    @apply flex justify-center items-center absolute rounded-full w-2 h-2 -top-2 left-3 p-2 select-none text-white
 }

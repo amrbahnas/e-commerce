@@ -23,13 +23,3 @@
     margin-top: 50px;
 }
 
-.swiper-container {
-    @apply border shadow-md rounded-md 
-}
-
-.swiper-slide {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    @apply py-1
-}
