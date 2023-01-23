@@ -29,7 +29,7 @@ const Navbar = () => {
             <ul className="ul-item hidden md:flex">
               <li className="flex">
                 <img
-                  src={require("../../assets/egypt.png")}
+                  src="assets/egypt.png"
                   className="w-6 object-cover"
                   alt=""
                 />
