@@ -41,6 +41,16 @@ const AddUpdateProduct = () => {
         setSubCategory(data.sub_category);
         setType(data.type);
       });
+    } else {
+      setIsNew(false);
+      setTitle("");
+      setDes("");
+      setImg("");
+      setImg2("");
+      setPrice("");
+      setCategory("");
+      setSubCategory("");
+      setType("");
     }
   }, []);
 
