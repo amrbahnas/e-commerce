@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import styles from "./CardSlider.module.css";
+import "./CardSlider.css";
 const CardSlider = ({
   children,
   data,
@@ -30,34 +30,13 @@ const CardSlider = ({
       autoplay={autoplayIs}
       spaceBetween={spaceBetweenIs}
       slidesPerView={slidesPerViewIs}
-      breakpoints={{
-        // when window width is >= 640px
-        320: {
-          width: breakpoints ? null : 300,
-          slidesPerView: breakpoints || 1,
-        },
-        // when window width is >= 640px
-        768: {
-          width: breakpoints ? null : 750,
-          slidesPerView: breakpoints || 2,
-        },
-        // when window width is >= 768px
-        992: {
-          width: breakpoints ? null : 970,
-          slidesPerView: breakpoints || 4,
-        },
-        1200: {
-          width: breakpoints ? null : 1170,
-          slidesPerView: breakpoints || 4,
-        },
-      }}
       // onSwiper={(swiper) => console.log("")}
       // onSlideChange={() => console.log("")}
-      className={`${styles.swiperContainer} w-full h-full`}
+      className={`swiper-container ${images ? "p-0" : "p-4"}`}
     >
       {data
         ? data?.map((item) => (
-            <SwiperSlide key={item.id} className={styles.swiperSlide}>
+            <SwiperSlide key={item.id} className="swiperSlide">
               {React.cloneElement(children, { item, key: item.id })}
             </SwiperSlide>
           ))

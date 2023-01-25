@@ -11,7 +11,6 @@ import { db } from "../../Firebase/index";
 import { onSnapshot, doc } from "firebase/firestore";
 /// end firebase
 import {  toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
   

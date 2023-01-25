@@ -4,7 +4,7 @@
 
 .checkout button {
     background-color: #e9c27d;
-    @apply w-full  text-black p-1 font-semibold text-lg capitalize rounded-md
+    @apply w-full  text-black p-1 font-semibold text-lg capitalize rounded-md hover:bg-orange-400
 }
 
 .wrapper .body .left {

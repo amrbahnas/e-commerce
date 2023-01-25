@@ -1,0 +1,3 @@
+.Myproducts {
+    @apply flex flex-col gap-3 p-4  text-white
+}

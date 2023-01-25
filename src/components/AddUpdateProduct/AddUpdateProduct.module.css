@@ -1,10 +1,5 @@
- .admin {
-     background-color: #181826;
-     padding: 20px 0;
-     min-height: 100vh;
- }
 
- .processTitle {
+ /* .processTitle {
      width: fit-content;
      height: fit-content;
      margin: auto;
@@ -14,7 +9,7 @@
      text-transform: capitalize;
      padding: 10px 30px;
 
- }
+ } */
 
  .wrapper {
      background-color: #212134;
@@ -116,20 +111,7 @@
  .submit {
      background-color: rgba(0, 191, 255, 0.637);
      padding: 10px 15px;
-     @apply rounded text-white capitalize
+     min-width: 100px ;
+     @apply rounded text-white capitalize hover:scale-105
  }
 
- .goBACK {
-     position: fixed;
-     left: 10px;
-     bottom: 50%;
-     color: white;
-     cursor: pointer;
-     /* background-color: black; */
-     padding: 20px;
-     border-radius: 50%;
-     text-align: center;
-     display: flex;
-     align-items: center;
-     justify-items: center;
- }

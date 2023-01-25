@@ -44,7 +44,7 @@ const FeaturedProducts = ({ title, type }) => {
               ScrollbarIs={false}
               NavigationIs={true}
               autoplayIs={false}
-              spaceBetweenIs={1}
+              spaceBetweenIs={20}
               slidesPerViewIs={4}
             >
               <Card />

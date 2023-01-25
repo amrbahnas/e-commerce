@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
@@ -12,7 +12,7 @@ import "./Navbar.css";
 import MobileMenu from "../mobileMenu/MobileMenu";
 const Navbar = () => {
   const { data } = useSelector((store) => store.cartSlice);
-
+  const searchBar = useRef();
   const [cartControl, setCartControl] = useState(false);
   const [controlMobileMenu, setcontrolMobileMenu] = useState(false);
 
@@ -26,7 +26,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="left">
-            <ul className="ul-item hidden md:flex">
+            <ul className="ul-item hidden lg:flex">
               <li className="flex">
                 <img
                   src="assets/egypt.png"
@@ -35,14 +35,14 @@ const Navbar = () => {
                 />
                 <ExpandMoreIcon className="cursor-pointer" />
               </li>
-              <li>
+              <li className="flex">
                 USD
                 <ExpandMoreIcon className="cursor-pointer" />
               </li>
             </ul>
           </div>
           <div className="wrapper">
-            <ul className="ul-item">
+            <ul className="ul-item hidden lg:flex">
               <li>
                 <Link to="/products/men" className="link">
                   Men
@@ -92,8 +92,21 @@ const Navbar = () => {
                   stores
                 </Link>
               </li>
-              <li>
-                <SearchOutlinedIcon className="cursor-pointer" />
+              <li className="relative flex items-center gap-1">
+                <input
+                  type="search"
+                  name="searchItem"
+                  id=""
+                  className="searchBar"
+                  autoFocus
+                  ref={searchBar}
+                />
+                <SearchOutlinedIcon
+                  onClick={(e) =>
+                    searchBar.current.classList.toggle("showSearchBar")
+                  }
+                  className="cursor-pointer"
+                />
               </li>
               <li>
                 <Link to="/admin">
@@ -101,7 +114,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <FavoriteBorderOutlinedIcon className="cursor-pointer" />
+                <FavoriteBorderOutlinedIcon className="cursor-pointer hover:text-red-600" />
               </li>
             </ul>
           </div>

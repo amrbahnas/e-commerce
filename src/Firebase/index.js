@@ -1,6 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,6 +32,8 @@ export const db = getFirestore();
 export const products = collection(db, "products");
 export const category = collection(db, "categories");
 
+
+// add new product
 export const addProduct = (data) => {
   addDoc(products, {
     title: data.title,
@@ -35,5 +45,18 @@ export const addProduct = (data) => {
     sub_category: data.sub_category,
     isNew: data.isNew,
     type: data.type,
+    createdAt: serverTimestamp(),
   });
 };
+
+// update product
+export const updataProduct =(id,newData)=>{
+  let docRef = doc(db,"products",id);
+  updateDoc (docRef,newData)
+}
+
+// delete product
+export const deleteProduct =(id)=>{
+  let docRef = doc(db,"products",id);
+  deleteDoc (docRef)
+}

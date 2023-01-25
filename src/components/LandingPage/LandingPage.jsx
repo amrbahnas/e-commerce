@@ -19,10 +19,9 @@ const LandingPage = () => {
               paginationIs={true}
               scrollbarIs={false}
               NavigationIs={false}
-              autoplayIs={false}
+              autoplayIs={true}
               spaceBetweenIs={1}
               slidesPerViewIs={1}
-              breakpoints={1}
             />
           </div>
           <div className="  col-end-4 col-span-1 row-start-1 row-span-1 hidden md:flex gap-2 ">

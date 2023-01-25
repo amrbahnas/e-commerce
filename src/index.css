@@ -54,3 +54,8 @@ body {
         width: 1170px;
     }
 }
+
+
+.active{
+    color: #e9c27d;
+}

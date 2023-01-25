@@ -1,0 +1,28 @@
+.dashboard {
+    background-color: #181826;
+    padding: 20px 0;
+    min-height: 100vh;
+}
+
+
+.goBACK {
+    position: fixed;
+    left: 10px;
+    bottom: 50%;
+    color: white;
+    cursor: pointer;
+    /* background-color: black; */
+    padding: 20px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+
+
+.header {
+    @apply text-white flex gap-6 p-3 mb-4 
+}
+

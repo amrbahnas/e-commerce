@@ -13,14 +13,15 @@ import Home from "./Pages/Home/Home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
-import AddProduct from "./Pages/AddProduct/AddProduct";
-import Cart from './Pages/Cart/Cart';
-
+import Cart from "./Pages/Cart/Cart";
+import Dashboard from './Pages/Dashboard/Dashboard';
+import AddUpdateProduct from "./components/AddUpdateProduct/AddUpdateProduct";
+import Myproducts from './components/Myproducts/Myproducts';
 
 /////////////Home page///////////////////
 const Layout = () => {
   return (
-    <div className="app">
+    <div className="mainContent">
       <Navbar />
       <ToastContainer />
       <Outlet />
@@ -54,7 +55,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AddProduct />,
+    element: <Dashboard />,
+    children: [
+      { index: true, element: <Myproducts /> },
+      { path: "/admin/myproducts", element: <Myproducts /> },
+      { path: "/admin/addproduct", element: <AddUpdateProduct /> },
+      { path: "/admin/edditproduct/:id", element: <AddUpdateProduct /> },
+    ],
   },
 ]);
 

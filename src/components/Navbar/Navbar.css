@@ -4,7 +4,7 @@
 
 
 .navbar {
-    @apply h-20  flex items-center relative 
+    @apply h-20  flex items-center relative
 }
 
 
@@ -23,5 +23,13 @@
 
 .count {
     background-color: dodgerblue;
-    @apply flex justify-center items-center absolute rounded-full w-2 h-2 -top-2 left-3 p-2 select-none text-white
+    @apply flex justify-center items-center  absolute rounded-full w-4 h-4  -top-1 left-3 text-sm p-2  select-none text-white font-bold
+}
+
+.searchBar{
+    @apply  p-2 hidden border-2  focus:outline rounded-md w-80   absolute -left-72 top-80
+}
+
+.showSearchBar{
+  display: block;
 }

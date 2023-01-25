@@ -30,10 +30,9 @@ const Cart = () => {
               </span>
             </Link>
             <span className="  font-medium capitalize">
-              {" "}
               {data.length} items
             </span>
-            <span className="hidden md:block">need help ? call (800) 9659-48</span>
+            <span className="hidden md:block">need help ? call (+20) 106-448-0375</span>
           </div>
           <div
             className={`${styles.body} flex flex-wrap gap-2 md:p-4  border-b-4 border-img`}
@@ -76,7 +75,7 @@ const Cart = () => {
               )}
             </div>
             <div
-              className={`${styles.right} w-full md:w-80  h-full flex flex-col mt-5 md:mt-0 p-2 `}
+              className={`${styles.right} w-full md:w-80  h-full flex flex-col mt-5 md:mt-0 p-2 sticky top-24 `}
             >
               <div className={`${styles.promoCode} flex flex-col gap-2 mb-4`}>
                 <span>enter promo code</span>

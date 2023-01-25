@@ -5,8 +5,9 @@ import { addProduct } from "../../store/cartSlice";
 import StarIcon from "@mui/icons-material/Star";
 import { motion } from "framer-motion";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import EditIcon from "@mui/icons-material/Edit";
 import "./Card.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Card = ({ item }) => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Card = ({ item }) => {
       </Link>
       <div className="cardFooter">
         <Link to={"/product/" + item.id}>
-          <h2 className="title">{item?.title.substr(0, 30)}</h2>
+          <h2 className="title">{item?.title.substr(0, 25)}</h2>
         </Link>
         <div className="stars">
           <StarIcon />
@@ -54,12 +55,14 @@ const Card = ({ item }) => {
           <span className="current">${item?.price}</span>
         </div>
       </div>
-      <div
-        className="hidden addToCard absolute w-10 h-10 bg-slate-300  items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2  bottom-4 right-6 "
-        onClick={addToCart}
-      >
+      <div className="addToCard" onClick={addToCart}>
         <AddShoppingCartIcon />
       </div>
+      <Link to={"/admin/edditproduct/"+item.id} target="_blank">
+        <div className="editProduct">
+          <EditIcon />
+        </div>
+      </Link>
     </div>
   );
 };

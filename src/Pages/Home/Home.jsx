@@ -13,7 +13,7 @@ const Home = () => {
     <div className="home ">
       <LandingPage/>
       <FeaturedProducts title="featured products" type="featured" />
-      <Categories Categories />
+  {/*<Categories Categories />*/}
       <FeaturedProducts title="trending products" type="trending" />
       <Offers/>
       <FeaturedProducts title="popular products" type="normal" />

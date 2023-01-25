@@ -1,0 +1,56 @@
+.swiper-container {
+    @apply h-full
+}
+
+
+.swiperSlide {
+    @apply flex items-center justify-center rounded-md 
+}
+
+
+.swiper-container .swiper-button-next,
+.swiper-container .swiper-button-prev {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 50px;
+    height: 50px;
+    /* border: 1px solid gray; */
+    border-radius: 50%;
+    box-sizing: border-box;
+    @apply hover:scale-105 hover:shadow-md
+}
+
+
+
+/* .swiper-container .swiper-button-next{
+}
+
+.swiper-container .swiper-button-prev{
+} */
+
+
+
+
+.swiper-container .swiper-button-prev::after {
+    font-size: 16px;
+    color: white;
+}
+
+.swiper-container .swiper-button-next::after {
+    font-size: 16px;
+    color: white;
+}
+
+
+/* 
+
+@media screen and (min-width: 640px) {
+    .swiper-container {
+        width: 640px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .swiper-container {
+        width: 768px;
+    }
+} */
