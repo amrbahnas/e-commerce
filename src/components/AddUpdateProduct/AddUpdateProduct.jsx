@@ -52,7 +52,7 @@ const AddUpdateProduct = () => {
       setSubCategory("");
       setType("");
     }
-  }, []);
+  }, [id]);
 
   //on submit form update or add product
   const submitHandler = (e) => {
