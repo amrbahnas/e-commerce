@@ -8,6 +8,8 @@ module.exports = {
         img: "#f0f0f0",
         offWhite: "#333",
         buttonBg: "#e9c27d",
+        backgroundAColor: "#3b5998",
+        backgroundAColor2: "#55acee",
       },
     },
   },

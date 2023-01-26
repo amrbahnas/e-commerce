@@ -18,7 +18,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddUpdateProduct from "./components/AddUpdateProduct/AddUpdateProduct";
 import Myproducts from "./components/Myproducts/Myproducts";
 import Login from './Pages/Login/Login';
-import SignUp from './Pages/SignUp/SignUp';
+import Register from './Pages/Register/Register';
 
 /////////////Home page///////////////////
 const Layout = () => {
@@ -60,8 +60,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/signup",
-    element: <SignUp />,
+    path: "/Register",
+    element: <Register />,
   },
   {
     path: "/admin",

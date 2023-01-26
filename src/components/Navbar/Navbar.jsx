@@ -73,9 +73,9 @@ const Navbar = () => {
                         login
                       </Link>
                     </div>
-                    <div className="signup capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
-                      <Link to="/signup" target="_blank">
-                        signup
+                    <div className="Register capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
+                      <Link to="/Register" target="_blank">
+                        Register
                       </Link>
                     </div>
                   </div>
@@ -90,21 +90,21 @@ const Navbar = () => {
               <li className="hidden">
                 <FavoriteBorderOutlinedIcon className="cursor-pointer hover:text-red-600" />
               </li>
-              <li className="flex gap-10 navRight ">
-                <Link to="/cart">
-                  <div
-                    className="relative cursor-pointer flex gap-2 items-center"
-                    // onClick={(e) => setCartControl(!cartControl)}
-                  >
-                    <ShoppingCartOutlinedIcon className="cursor-point" />
-                    {data.length > 0 && (
-                      <span className="count">{data.length}</span>
-                    )}
-                    <span className="text-md font-medium capitalize">cart</span>
-                  </div>
-                </Link>
-              </li>
             </ul>
+            <div className="flex gap-10 navRight ">
+              <Link to="/cart">
+                <div
+                  className="relative cursor-pointer flex gap-2 items-center"
+                  // onClick={(e) => setCartControl(!cartControl)}
+                >
+                  <ShoppingCartOutlinedIcon className="cursor-point" />
+                  {data.length > 0 && (
+                    <span className="count">{data.length}</span>
+                  )}
+                  <span className="text-md font-medium capitalize">cart</span>
+                </div>
+              </Link>
+            </div>
             <div
               className=" cursor-pointer block lg:hidden"
               onClick={(e) => setcontrolMobileMenu(true)}
@@ -112,7 +112,6 @@ const Navbar = () => {
               <MenuIcon />
             </div>
           </div>
-          {/*cartControl && <Cart setCartControl={setCartControl} />*/}
           {controlMobileMenu && (
             <MobileMenu setcontrolMobileMenu={setcontrolMobileMenu} />
           )}

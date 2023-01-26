@@ -58,4 +58,5 @@ body {
 
 .active{
     color: #e9c27d;
+    /* @apply border */
 }
