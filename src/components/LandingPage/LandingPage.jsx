@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./LandingPage.module.css";
-import CardSlider from "./../CardSlider/CardSlider";
+// import CardSlider from "./../CardSlider/CardSlider";
+import LandingSlider from "./../LandingSlider/LandingSlider";
 const LandingPage = () => {
   const images = [
     "assets/1.jpg",
@@ -14,14 +15,8 @@ const LandingPage = () => {
           className={`${styles.wrapper} h-full grid grid-cols-3 grid-rows-3 gap-2`}
         >
           <div className=" col-start-1 col-span-3 md:col-span-2 row-start-1 row-span-2 rounded-md overflow-hidden ">
-            <CardSlider
+            <LandingSlider
               images={images}
-              paginationIs={true}
-              scrollbarIs={false}
-              NavigationIs={false}
-              autoplayIs={true}
-              spaceBetweenIs={1}
-              slidesPerViewIs={1}
             />
           </div>
           <div className="  col-end-4 col-span-1 row-start-1 row-span-1 hidden md:flex gap-2 ">

@@ -33,7 +33,7 @@ const Myproducts = () => {
         data?.map((item) => {
           return (
             <div
-              className="item w-full flex items-center justify-center gap-4  p-2 hover:shadow-lg "
+              className="item w-full flex items-start justify-center gap-4  p-2 hover:shadow-lg "
               key={item.id}
             >
               <img src={item.img} alt="" className=" w-6 basis-1/6 bg-white" />
@@ -49,7 +49,7 @@ const Myproducts = () => {
                   ${item.price}
                 </span>
               </div>
-              <div className="delete basis-1/6 text-center flex gap-10 ">
+              <div className="delete basis-1/6 text-center flex gap-4 mg:gap-10 self-center">
                 <Link to={"edditproduct/" + item.id}>
                   <EditIcon className="text-white cursor-pointer hover:scale-105" />
                 </Link>

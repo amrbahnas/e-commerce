@@ -14,9 +14,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import Cart from "./Pages/Cart/Cart";
-import Dashboard from './Pages/Dashboard/Dashboard';
+import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddUpdateProduct from "./components/AddUpdateProduct/AddUpdateProduct";
-import Myproducts from './components/Myproducts/Myproducts';
+import Myproducts from "./components/Myproducts/Myproducts";
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/SignUp/SignUp';
 
 /////////////Home page///////////////////
 const Layout = () => {
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   },
   {
     path: "/admin",

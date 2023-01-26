@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { Link } from "react-router-dom";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import { Link ,NavLink } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
 const MobileMenu = ({ setcontrolMobileMenu }) => {
   // target cart element
@@ -25,7 +26,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
   });
 
   return (
-    <div className={`${styles.layout} md:hidden`}>
+    <div className={`${styles.layout} lg:hidden`}>
       <div className={styles.menu} ref={menu}>
         <div className={styles.menuWrapper}>
           <div className={styles.search}>
@@ -34,10 +35,14 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
           </div>
           <ul className={styles.topMenu}>
             <li>
-              <Link to="/admin">
-                <PersonOutlineOutlinedIcon className="cursor-pointer" />
-                <span>amr@gmail.com</span>
-              </Link>
+              <NavLink to="/admin">
+                <DashboardIcon />
+                Dashboard
+              </NavLink>
+            </li>
+            <li>
+              <PersonOutlineOutlinedIcon className="cursor-pointer" />
+              <span>amr@gmail.com</span>
             </li>
 
             <li>

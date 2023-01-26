@@ -4,32 +4,52 @@
 
 
 .navbar {
-    @apply h-20  flex items-center relative
+    @apply h-20 flex items-center relative gap-3
 }
 
 
 
-.wrapper {
-    @apply flex-1 hidden md:flex justify-between items-center;
+.navLeft {
+    @apply  flex gap-2 items-center;
+}
+
+.searchBar{
+    @apply relative flex-1 flex items-center gap-1
+}
+
+.navRight {
+    @apply  flex gap-2 items-center;
 }
 
 .ul-item {
-    @apply flex items-center justify-between gap-3 p-2;
+    @apply hidden lg:flex items-center  gap-4 p-2;
 }
 
 .center {
-    @apply font-bold text-lg
+    @apply font-bold text-xl
 }
 
 .count {
     background-color: dodgerblue;
-    @apply flex justify-center items-center  absolute rounded-full w-4 h-4  -top-1 left-3 text-sm p-2  select-none text-white font-bold
+    @apply flex justify-center items-center absolute rounded-full w-4 h-4 -top-1 left-3 text-sm p-2 select-none text-white font-bold
 }
 
-.searchBar{
-    @apply  p-2 hidden border-2  focus:outline rounded-md w-80   absolute -left-72 top-80
+.searchBarInput {
+    @apply  border p-2 flex-1 focus:outline-none rounded-md
 }
 
-.showSearchBar{
-  display: block;
+.showSearchBar {
+    display: block;
 }
+
+/* .loginMenu::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 15px 10px;
+    border-color: transparent transparent #ffff transparent;
+    top: -14px;
+    right: 5px;
+} */
