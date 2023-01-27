@@ -2,12 +2,17 @@ import React, { useEffect, useRef } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { Link ,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setLoginState } from "../../store/AuthSlice";
+//firebase
+import{logOut} from "../../Firebase/index"
 const MobileMenu = ({ setcontrolMobileMenu }) => {
+  const dispatch = useDispatch();
   // target cart element
   const menu = useRef();
-
+  const { login } = useSelector((store) => store.AuthSlice);
   useEffect(() => {
     const handler = (e) => {
       //if the element which clicked not in the menu then
@@ -24,7 +29,11 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
       document.removeEventListener("mousedown", handler);
     };
   });
-
+  // logout function
+  const logOutHandler = () => {
+    dispatch(setLoginState(false));
+    logOut();
+  };
   return (
     <div className={`${styles.layout} lg:hidden`}>
       <div className={styles.menu} ref={menu}>
@@ -42,7 +51,11 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
             </li>
             <li>
               <PersonOutlineOutlinedIcon className="cursor-pointer" />
-              <span>amr@gmail.com</span>
+              {login ? (
+                <span className=" cursor-pointer" onClick={e=>logOutHandler()}>LogOut</span>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
             </li>
 
             <li>
