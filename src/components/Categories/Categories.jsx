@@ -6,7 +6,7 @@ const Categories = () => {
     <div className="categories flex flex-col  md:grid grid-cols-4 grid-rows-2 md:h-screen my-8 mx-2 gap-2">
       <div className="sale col-start-1 col-span-1">
         <img
-          src="https://images.pexels.com/photos/5872348/pexels-photo-5872348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://images.pexels.com/photos/220455/pexels-photo-220455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""
         />
         <button>
@@ -52,7 +52,7 @@ const Categories = () => {
       </div>
       <div className="shoes col-end-5 col-span-2">
         <img
-          src="https://images.pexels.com/photos/267202/pexels-photo-267202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""
         />
         <button>
