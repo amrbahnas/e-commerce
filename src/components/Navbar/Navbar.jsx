@@ -60,7 +60,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <div className="searchBar">
+          <div className="searchBar hidden md:flex">
             <input
               type="text"
               name="searchItem"
