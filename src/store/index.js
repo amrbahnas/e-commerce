@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 // import fetchSlice from "./fetchSlice";
 import cartSlice from "./cartSlice";
-
+import AuthSlice from "./AuthSlice";
 // import persist things
 import {
   persistStore,
@@ -29,6 +29,7 @@ const persistConfig = {
 // add your slices before add to store
 const rootReducer = combineReducers({
   cartSlice,
+  AuthSlice,
 });
 
 // represent reducer , takes config variable and rootReducer

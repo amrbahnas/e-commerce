@@ -5,11 +5,10 @@ import styles from "./Items.module.css";
 //fire base
 import { products } from "../../Firebase/index";
 import { onSnapshot, query, orderBy, where } from "firebase/firestore";
-import Pagination from './../Pagination/Pagination';
+import Pagination from "./../Pagination/Pagination";
 /// end firebase
 const Items = ({ subCat, sort, catId, priceRange }) => {
-  const [data, setData] = useState([]);
-
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     let q = "";
     if (subCat.length > 0 && sort) {
@@ -42,28 +41,38 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
       );
     }
 
-    setData([]);
+    setPosts([]);
     onSnapshot(q, (snapshot) => {
       snapshot.docs.forEach((doc) => {
-        setData((prev) => [...prev, { ...doc.data(), id: doc.id }]);
+        setPosts((prev) => [...prev, { ...doc.data(), id: doc.id }]);
       });
     });
   }, [subCat, sort, catId, priceRange]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
   return (
     <div
-      // className={`${styles.items} flex flex-wrap  items-center  justify-center gap-10`}
     >
       <div
         className={`${styles.items} flex flex-wrap  items-center  justify-center gap-10`}
       >
-        {data.length > 0 ? (
-          data?.map((item) => <Card item={item} key={item.id} />)
+        {currentPosts.length > 0 ? (
+          currentPosts?.map((item) => <Card item={item} key={item.id} />)
         ) : (
           <div className=" capitalize">no data available</div>
         )}
       </div>
-      <Pagination />
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };

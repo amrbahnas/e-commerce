@@ -1,7 +1,53 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { signIn } from "../../Firebase/index";
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { setLoginState } from "../../store/AuthSlice.js";
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useSelector((store) => store.AuthSlice);
+  useEffect(() => {
+    if (login) {
+      navigate("/");
+    }
+  }, [login]);
+  const formHandler = (e) => {
+    e.preventDefault();
+    signIn(email, password)
+      .then((res) => {
+        console.log("1", res.user);
+        dispatch(setLoginState(true));
+        toast.success("login", {
+          position: "top-right",
+          autoClose: 1200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        navigate("/", { replace: false });
+      })
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-right",
+          autoClose: 1200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
+  };
   return (
     <div className="loginPage h-screen">
       <div className="theContainer">
@@ -13,16 +59,21 @@ const Login = () => {
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
                     className="w-full"
-                    alt="Phone image"
+                    alt="login"
                   />
                 </div>
                 <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-                  <form>
+                  <form onSubmit={(e) => formHandler(e)}>
                     <div className="mb-6">
                       <input
                         type="text"
                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Email address"
+                        required
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                       />
                     </div>
 
@@ -31,6 +82,11 @@ const Login = () => {
                         type="password"
                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Password"
+                        required
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                       />
                     </div>
 
@@ -49,12 +105,9 @@ const Login = () => {
                           Remember me
                         </label>
                       </div>
-                      <a
-                        href="#!"
-                        className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                      >
-                        Forgot password?
-                      </a>
+                      <span className=" cursor-pointer text-blue-600 hover:text-blue-700 hover:underline focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out">
+                        <Link to="/resetpassword">Forgot password?</Link>
+                      </span>
                     </div>
 
                     <button
@@ -63,7 +116,7 @@ const Login = () => {
                       data-mdb-ripple="true"
                       data-mdb-ripple-color="light"
                     >
-                      <Link to="/">Sign in</Link>
+                      Sign in
                     </button>
 
                     <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
@@ -114,7 +167,7 @@ const Login = () => {
                     <Link
                       to="/Register"
                       href="#!"
-                      className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                      className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out hover:underline"
                     >
                       Register
                     </Link>
@@ -125,6 +178,7 @@ const Login = () => {
           </section>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

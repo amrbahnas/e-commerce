@@ -9,6 +9,18 @@ import {
   deleteDoc,
   serverTimestamp,
 } from "firebase/firestore";
+
+// authentication
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,13 +37,13 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-// get data base
+// init services
 export const db = getFirestore();
+const auth = getAuth();
 
 // get collection from db
 export const products = collection(db, "products");
 export const category = collection(db, "categories");
-
 
 // add new product
 export const addProduct = (data) => {
@@ -50,13 +62,49 @@ export const addProduct = (data) => {
 };
 
 // update product
-export const updataProduct =(id,newData)=>{
-  let docRef = doc(db,"products",id);
-  updateDoc (docRef,newData)
-}
+export const updataProduct = (id, newData) => {
+  let docRef = doc(db, "products", id);
+  updateDoc(docRef, newData);
+};
 
 // delete product
-export const deleteProduct =(id)=>{
-  let docRef = doc(db,"products",id);
-  deleteDoc (docRef)
-}
+export const deleteProduct = (id) => {
+  let docRef = doc(db, "products", id);
+  deleteDoc(docRef);
+};
+
+/**********************auth */
+
+//sign up
+export const signup = (email, password, firstName) => {
+  const result = createUserWithEmailAndPassword(
+    auth,
+    email,
+    password,
+    firstName
+  );
+  return result;
+};
+
+// sign in
+export const signIn = (email, password) => {
+  const result = signInWithEmailAndPassword(auth, email, password);
+  return result;
+};
+
+// reset password request
+export const resetPassword = (email) => {
+ const result=  sendPasswordResetEmail(auth, email)
+    return result;
+};
+// logout
+
+export const logOut = () => {
+  signOut(auth)
+    .then(() => {
+      console.log("user logged out");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

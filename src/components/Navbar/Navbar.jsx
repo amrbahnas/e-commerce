@@ -1,20 +1,34 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+// reduc
+import { useSelector, useDispatch } from "react-redux";
+import { setLoginState } from "../../store/AuthSlice";
+
+//firebase
+import{logOut} from "../../Firebase/index"
+// mui icons
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MenuIcon from "@mui/icons-material/Menu";
+// react router
 import { Link, NavLink } from "react-router-dom";
+// css file
 import "./Navbar.css";
-// import Cart from "./../Cart/Cart";
+// component
 import MobileMenu from "../mobileMenu/MobileMenu";
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const { login } = useSelector((store) => store.AuthSlice);
   const { data } = useSelector((store) => store.cartSlice);
   const [loginMenuControl, setLoginMenuControl] = useState(false);
   const [controlMobileMenu, setcontrolMobileMenu] = useState(false);
-
+  // logout function
+  const logOutHandler = () => {
+    dispatch(setLoginState(false));
+    logOut()
+  };
   return (
     <div className="storeHeader bg-white w-full shadow-md fixed z-50 top-0">
       <div className="theContainer">
@@ -64,20 +78,28 @@ const Navbar = () => {
                   onClick={(e) => setLoginMenuControl(!loginMenuControl)}
                 >
                   <PersonOutlineOutlinedIcon />
-                  login/signup
+                  {login ? "amr@gmail.com" : "login/signup"}
                 </div>
                 {loginMenuControl && (
                   <div className="loginMenu absolute rounded-md w-full p-4 top-10  left-0 border flex flex-col items-center justify-center gap-4 shadow-md bg-white">
-                    <div className="login capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
-                      <Link to="/login" target="_blank">
-                        login
-                      </Link>
-                    </div>
-                    <div className="Register capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
-                      <Link to="/Register" target="_blank">
-                        Register
-                      </Link>
-                    </div>
+                    {login ? (
+                      <div className="login capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
+                        <span onClick={(e) => logOutHandler()}>logOut</span>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="login capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
+                          <Link to="/login" replace>
+                            login
+                          </Link>
+                        </div>
+                        <div className="Register capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
+                          <Link to="/Register" target="_blank">
+                            Register
+                          </Link>
+                        </div>
+                      </>
+                    )}
                   </div>
                 )}
               </li>

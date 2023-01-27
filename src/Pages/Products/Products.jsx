@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Products.css";
 import Items from "./../../components/Items/Items";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 //fire base
 import { category } from "../../Firebase/index";
-import { onSnapshot, query, orderBy, where } from "firebase/firestore";
+import { onSnapshot, query, where } from "firebase/firestore";
 /// end firebase
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloseIcon from "@mui/icons-material/Close";
 const Products = () => {
   const productsLeft = useRef();
-  const dispatch = useDispatch();
   const { id } = useParams();
   const [priceRange, setPriceRange] = useState(1000);
   const [sort, setSort] = useState("");
@@ -25,7 +23,7 @@ const Products = () => {
         setData(doc.data());
       });
     });
-  }, []);
+  }, [id]);
 
   //hidden show menu
   const productsLeftControl = () => {
@@ -68,14 +66,14 @@ const Products = () => {
                       <div className="item" key={item}>
                         <input
                           type="checkbox"
-                          className="h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                          className="h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200  align-top bg-no-repeat bg-center bg-contain float-left mr-1 cursor-pointer"
                           value={item}
                           id={item}
                           onChange={(e) => catHandler(e)}
                         />
                         <label
                           htmlFor={item}
-                          className="form-check-label inline-block text-gray-800"
+                          className=" capitalize cursor-pointer form-check-label inline-block text-gray-800"
                         >
                           {item}
                         </label>

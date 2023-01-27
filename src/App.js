@@ -19,6 +19,7 @@ import AddUpdateProduct from "./components/AddUpdateProduct/AddUpdateProduct";
 import Myproducts from "./components/Myproducts/Myproducts";
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 
 /////////////Home page///////////////////
 const Layout = () => {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Register />,
+  },
+  {
+    path: "/resetpassword",
+    element: <ResetPassword />,
   },
   {
     path: "/admin",
