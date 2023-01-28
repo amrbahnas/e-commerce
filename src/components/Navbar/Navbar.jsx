@@ -1,10 +1,10 @@
-import { useState } from "react";
-// reduc
+import { useState, useRef, useEffect } from "react";
+// reducx
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginState } from "../../store/AuthSlice";
 
 //firebase
-import{logOut} from "../../Firebase/index"
+import { logOut } from "../../Firebase/Auth";
 // mui icons
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -20,15 +20,33 @@ import "./Navbar.css";
 import MobileMenu from "../mobileMenu/MobileMenu";
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { login } = useSelector((store) => store.AuthSlice);
+  const { login, admin } = useSelector((store) => store.AuthSlice);
   const { data } = useSelector((store) => store.cartSlice);
+  const { userName } = useSelector((store) => store.userSlice);
   const [loginMenuControl, setLoginMenuControl] = useState(false);
   const [controlMobileMenu, setcontrolMobileMenu] = useState(false);
   // logout function
   const logOutHandler = () => {
     dispatch(setLoginState(false));
-    logOut()
+    logOut();
   };
+
+  const loginMenu = useRef();
+  useEffect(() => {
+    const handler = (e) => {
+      //if the element which clicked not in the menu then
+      if (!loginMenu.current.contains(e.target)) {
+        setLoginMenuControl(false);
+        console.log("as");
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    // cleanup event listeners
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
+
   return (
     <div className="storeHeader bg-white w-full shadow-md fixed z-50 top-0">
       <div className="theContainer">
@@ -72,18 +90,22 @@ const Navbar = () => {
           </div>
           <div className="navRight">
             <ul className="ul-item">
-              <li className=" relative">
+              <li className=" relative" ref={loginMenu}>
                 <div
                   className="cursor-pointer flex items-center "
                   onClick={(e) => setLoginMenuControl(!loginMenuControl)}
                 >
                   <PersonOutlineOutlinedIcon />
-                  {login ? "amr@gmail.com" : "Login"}
+                  {login && admin
+                    ? userName + " (Admin)"
+                    : login
+                    ? userName
+                    : "Login"}
                 </div>
                 {loginMenuControl && (
                   <div className="loginMenu absolute rounded-md w-fit p-4 top-10 -left-4  border flex flex-col items-center justify-center gap-4 shadow-md bg-white">
                     {login ? (
-                      <div className="login capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
+                      <div className="login capitalize  hover:scale-105 cursor-pointer border p-2 bg-white rounded-md w-full text-center">
                         <span onClick={(e) => logOutHandler()}>logOut</span>
                       </div>
                     ) : (
@@ -101,15 +123,18 @@ const Navbar = () => {
                   </div>
                 )}
               </li>
-              <li>
-                <NavLink to="/admin" className="flex items-center">
-                  <DashboardIcon />
-                  Dashboard
-                </NavLink>
-              </li>
-              <li className="hidden">
-                <FavoriteBorderOutlinedIcon className="cursor-pointer hover:text-red-600" />
-              </li>
+              {admin ? (
+                <li>
+                  <NavLink to="/admin" className="flex items-center">
+                    <DashboardIcon />
+                    Dashboard
+                  </NavLink>
+                </li>
+              ) : (
+                <li>
+                  <FavoriteBorderOutlinedIcon className="cursor-pointer hover:text-red-600" />
+                </li>
+              )}
             </ul>
             <div className="flex gap-10 navRight ">
               <Link to="/cart">

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../store/cartSlice";
 import StarIcon from "@mui/icons-material/Star";
 import { motion } from "framer-motion";
@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Card = ({ item }) => {
   const dispatch = useDispatch();
-
+  const { admin } = useSelector((store) => store.AuthSlice);
   const addToCart = () => {
     dispatch(addProduct({ ...item, itemCount: 1 }));
     toast.success("Item Added", {
@@ -58,11 +58,13 @@ const Card = ({ item }) => {
       <div className="addToCard" onClick={addToCart}>
         <AddShoppingCartIcon />
       </div>
-      <Link to={"/admin/edditproduct/"+item.id} target="_blank">
-        <div className="editProduct">
-          <EditIcon />
-        </div>
-      </Link>
+      {admin && (
+        <Link to={"/admin/edditproduct/" + item.id} target="_blank">
+          <div className="editProduct">
+            <EditIcon />
+          </div>
+        </Link>
+      )}
     </div>
   );
 };

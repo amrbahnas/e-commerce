@@ -8,6 +8,7 @@ import FeaturedProducts from "./../../components/FeaturedProducts/FeaturedProduc
 const Cart = () => {
   const dispatch = useDispatch();
   const { data, totalPrice } = useSelector((store) => store.cartSlice);
+  const { login } = useSelector((store) => store.AuthSlice);
   const deleteHandler = (id, price) => {
     const res = window.confirm("Are you sure you want to delete");
     if (res) {
@@ -95,12 +96,16 @@ const Cart = () => {
                     submit
                   </button>
                 </div>
-                <span>
+                {!login&&
+                  <span>
                   <span className=" cursor-pointer text-buttonBg underline mr-1">
-                    signin
+                  <Link to="/login">
+                  signin
+                  </Link>
                   </span>
                   to your account to see available rewards
-                </span>
+                  </span>
+                }
               </div>
               <div className={`${styles.promotions}`}>
                 <span className=" block font-bold text-lg mb-2">

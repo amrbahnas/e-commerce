@@ -3,12 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
-import { signup } from "../../Firebase/index";
+import { signup, signupUserName } from "../../Firebase/Auth";
 const Register = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkPass, setCheckPass] = useState(false);
   // check if user is already logged in
@@ -20,11 +21,12 @@ const Register = () => {
   }, [login]);
   const formHandler = (e) => {
     e.preventDefault();
-    signup(email, password, firstName)
-      .then((res) => {
-        console.log("1", res);
+    signup(email, password)
+      .then((user) => {
+        signupUserName(user.user, { displayName: firstName + " " + lastName });
         setCheckEmail(false);
         setCheckPass(false);
+        //message
         toast.success("Account Created successfully", {
           position: "top-right",
           autoClose: 1200,
@@ -35,6 +37,7 @@ const Register = () => {
           progress: undefined,
           theme: "colored",
         });
+        //end message
         setTimeout(() => {
           navigate("/login", false);
         }, 1500);
@@ -116,6 +119,8 @@ const Register = () => {
                           aria-describedby="emailHelp124"
                           placeholder="Last name"
                           required
+                          value={lastName}
+                          onChange={(e) => setLastName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -128,7 +133,7 @@ const Register = () => {
                       <input
                         type="email"
                         className={`
-                        ${checkEmail ? " border-red-700" : ""}
+                        ${checkEmail ? " border-red-700" : "border-gray-300"}
                         form-control block
                           w-full
                           px-4
@@ -137,7 +142,7 @@ const Register = () => {
                           font-normal
                           text-gray-700
                           bg-white bg-clip-padding
-                          border border-solid border-gray-300
+                          border border-solid
                           rounded
                           transition
                           ease-in-out
@@ -161,7 +166,7 @@ const Register = () => {
                       <input
                         type="password"
                         className={`
-                        ${checkPass ? " border-red-700" : ""}
+                        ${checkPass ? " border-red-700" : "border-gray-300"}
                         form-control block
                         w-full
                         px-4
@@ -170,7 +175,7 @@ const Register = () => {
                         font-normal
                         text-gray-700
                         bg-white bg-clip-padding
-                        border border-solid border-gray-300
+                        border border-solid 
                         rounded
                         transition
                         ease-in-out

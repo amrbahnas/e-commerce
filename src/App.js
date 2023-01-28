@@ -20,6 +20,7 @@ import Myproducts from "./components/Myproducts/Myproducts";
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
+import UserProfile from './Pages/UserProfile/UserProfile';
 
 /////////////Home page///////////////////
 const Layout = () => {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/profile",
+        element: <UserProfile/>,
       },
     ],
   },

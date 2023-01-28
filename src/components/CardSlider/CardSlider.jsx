@@ -1,8 +1,13 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 // import Swiper core and required modules
 import { Navigation, Pagination, A11y, Scrollbar, Autoplay } from "swiper";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+//icon
+import EditIcon from "@mui/icons-material/Edit";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -20,6 +25,7 @@ const CardSlider = ({
   spaceBetweenIs,
   slidesPerViewIs,
 }) => {   
+    const {  admin } = useSelector((store) => store.AuthSlice);
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y, Scrollbar, Autoplay]}
@@ -70,6 +76,13 @@ const CardSlider = ({
               </span>
             </div>
           </Link>
+          {admin && (
+            <Link to={"/admin/edditproduct/" + item.id} target="_blank">
+              <div className="editProduct">
+                <EditIcon />
+              </div>
+            </Link>
+          )}
         </SwiperSlide>
       ))}
     </Swiper>

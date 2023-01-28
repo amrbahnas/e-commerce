@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { signIn } from "../../Firebase/index";
+import { signIn } from "../../Firebase/Auth";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { setLoginState } from "../../store/AuthSlice.js";
+import { setLoginState, setAdminState } from "../../store/AuthSlice.js";
+import {
+  setTheEmail,
+  setTheUserName,
+  setThePhotoURL,
+} from "../../store/userSlice.js";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [checkEmail, setCheckEmail] = useState(false);
+  const [checkEmailEnable, setCheckEmailEnable] = useState(false);
   const [checkPass, setCheckPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,11 +27,24 @@ const Login = () => {
   }, [login]);
   const formHandler = (e) => {
     e.preventDefault();
+    //start login function
     signIn(email, password)
       .then((res) => {
+        // if user is admin
+        if (res.user.email === "admin@store.com") {
+          dispatch(setAdminState(true));
+        } else {
+          dispatch(setAdminState(false));
+        }
+        //store user info to global store
         dispatch(setLoginState(true));
+        dispatch(setTheEmail(res.user.email));
+        dispatch(setTheUserName(res.user.displayName));
+        dispatch(setThePhotoURL(res.user.photoURL));
+        //set check values
         setCheckEmail(false);
         setCheckPass(false);
+        //message for successful login
         toast.success("login", {
           position: "top-right",
           autoClose: 1200,
@@ -36,16 +55,22 @@ const Login = () => {
           progress: undefined,
           theme: "colored",
         });
-        navigate("/", { replace: false });
+        //end message
+        navigate(-1, { replace: false });
       })
       .catch((error) => {
-        // console.log(error.message);
         if (error.message.includes("email")) {
           setCheckEmail(true);
           setCheckPass(false);
-        } else {
+          setCheckEmailEnable(false);
+        } else if (error.message.includes("password")) {
           setCheckPass(true);
           setCheckEmail(false);
+          setCheckEmailEnable(false);
+        } else {
+          setCheckPass(false);
+          setCheckEmail(false);
+          setCheckEmailEnable(true);
         }
       });
   };
@@ -71,11 +96,18 @@ const Login = () => {
                           The Emain that you've entered is incorrect.
                         </span>
                       )}
+                      {checkEmailEnable && (
+                        <span className=" block text-red-700 pb-2">
+                          Sorry Your Email has been Blocked.
+                        </span>
+                      )}
                       <input
                         type="text"
                         className={`${
-                          checkEmail ? " border-red-700" : ""
-                        } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+                          checkEmail || checkEmailEnable
+                            ? " border-red-700"
+                            : "border-gray-300"
+                        } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid     rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         placeholder="Email address"
                         required
                         value={email}
@@ -94,8 +126,8 @@ const Login = () => {
                       <input
                         type="password"
                         className={`${
-                          checkPass ? " border-red-700" : ""
-                        } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+                          checkPass ? " border-red-700" : "border-gray-300"
+                        } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid  rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         placeholder="Password"
                         required
                         value={password}
@@ -104,7 +136,7 @@ const Login = () => {
                         }}
                       />
                     </div>
-                   
+
                     <div className="flex justify-between items-center mb-6">
                       <div className="form-group form-check">
                         <input

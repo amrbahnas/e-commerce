@@ -1,0 +1,34 @@
+.right .box {
+    @apply bg-white p-8 rounded-md grid gap-10
+}
+
+.box .inputsContainer{
+    @apply flex  gap-6
+}
+
+.box lable {
+    @apply capitalize
+}
+.box .title {
+    @apply mb-6 text-lg font-semibold
+}
+
+.box .input {
+    @apply flex flex-col flex-1 gap-4 
+}
+
+.box .inputsContainer input {
+    @apply bg-slate-300 rounded-md  px-7 py-3 cursor-not-allowed
+}
+
+.box .buttons{
+    @apply flex gap-8  items-center
+}
+
+.box  button {
+    @apply bg-amr px-4 py-2 rounded-md text-white
+}
+
+.buttons span {
+    @apply text-red-600 underline text-sm cursor-pointer
+}

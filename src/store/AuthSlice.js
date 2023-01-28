@@ -14,6 +14,9 @@ export const AuthSlice = createSlice({
         setLoginState: (state,action)=>{
             state.login =action.payload;
         },
+        setAdminState: (state,action)=>{
+            state.admin =action.payload;
+        },
         setAminState: (state,action)=>{
             state.admin =action.payload;
         },
@@ -23,5 +26,5 @@ export const AuthSlice = createSlice({
     }
 })
 
-export const { setLoginState, setAminState, setUserName } = AuthSlice.actions;
+export const { setLoginState,setAdminState, setAminState, setUserName } = AuthSlice.actions;
 export default AuthSlice.reducer;

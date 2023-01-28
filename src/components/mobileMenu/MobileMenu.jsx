@@ -7,12 +7,14 @@ import styles from "./MobileMenu.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginState } from "../../store/AuthSlice";
 //firebase
-import{logOut} from "../../Firebase/index"
+import{logOut} from "../../Firebase/Auth"
 const MobileMenu = ({ setcontrolMobileMenu }) => {
   const dispatch = useDispatch();
   // target cart element
   const menu = useRef();
-  const { login } = useSelector((store) => store.AuthSlice);
+  const { login, admin } = useSelector((store) => store.AuthSlice);
+  const { userName } = useSelector((store) => store.userSlice);
+
   useEffect(() => {
     const handler = (e) => {
       //if the element which clicked not in the menu then
@@ -52,7 +54,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
             <li>
               <PersonOutlineOutlinedIcon className="cursor-pointer" />
               {login ? (
-                <span className=" cursor-pointer" onClick={e=>logOutHandler()}>LogOut</span>
+                <span className=" cursor-pointer" onClick={e=>logOutHandler()}>{userName}{admin&&" (Admin)"}</span>
               ) : (
                 <Link to="/login">Login</Link>
               )}

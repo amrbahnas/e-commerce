@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { resetPassword } from "../../Firebase/index";
+import { resetPassword } from "../../Firebase/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
