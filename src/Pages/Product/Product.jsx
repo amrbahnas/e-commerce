@@ -13,7 +13,6 @@ import { onSnapshot, doc } from "firebase/firestore";
 import {  toast } from "react-toastify";
 
 const Product = () => {
-  
   const dispatch = useDispatch();
   const id = useParams().id;
   const [item, setItem] = useState({});
@@ -29,7 +28,7 @@ const Product = () => {
 
   const addToCart = () => {
     dispatch(addProduct({ ...item, itemCount }));
-    toast.success("Item Added", {
+    toast.success(`Item Added`, {
       position: "top-right",
       autoClose: 1200,
       hideProgressBar: true,

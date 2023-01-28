@@ -22,14 +22,14 @@ const LandingPage = () => {
               <img
                 src={"assets/ar_dk_eg-explore-03.avif"}
                 alt=""
-                className="h-full object-cover"
+                className="h-full object-fill"
               />
             </div>
             <div className=" rounded-md overflow-hidden">
               <img
                 src={"assets/ar_dk_eg-mega-03.avif"}
                 alt=""
-                className="h-full object-cover"
+                className="h-full object-fill"
               />
             </div>
           </div>
@@ -37,7 +37,7 @@ const LandingPage = () => {
             <img
               src={"assets/ar_dk_eg-top-01.avif"}
               alt=""
-              className="min-h-full object-cover"
+              className="min-h-full object-fill"
             />
           </div>
           <div className="col-start-1 col-span-3 row-start-3 row-span-1 flex gap-2  h-48 ">
@@ -45,21 +45,21 @@ const LandingPage = () => {
               <img
                 src={"assets/ar_dk_eg-top-01.gif"}
                 alt=""
-                className=" h-full w-full  object-cover "
+                className=" h-full w-full  object-fill "
               />
             </div>
             <div className=" rounded-md overflow-hidden flex-1">
               <img
                 src={"assets/Offer-Discounts.jpg"}
                 alt=""
-                className=" h-full w-full object-cover "
+                className=" h-full w-full object-fill "
               />
             </div>
             <div className="rounded-md overflow-hidden  hidden md:block flex-1">
               <img
-                src={"assets/F3.png"}
+                src={"assets/images.png"}
                 alt=""
-                className=" h-full w-full object-cover"
+                className=" h-full w-full object-fill"
               />
             </div>
           </div>

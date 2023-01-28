@@ -26,7 +26,7 @@ function LandingSlider({ images }) {
             src={item}
             alt=""
             key={indx}
-            className=" w-full h-full object-cover cursor-pointer"
+            className=" w-full h-full object-fill cursor-pointer"
           />
         </SwiperSlide>
       ))}
