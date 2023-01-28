@@ -89,7 +89,7 @@ const Navbar = () => {
                     ) : (
                       <>
                         <div className="login capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
-                          <Link to="/login" replace>
+                          <Link to="/login">
                             login
                           </Link>
                         </div>

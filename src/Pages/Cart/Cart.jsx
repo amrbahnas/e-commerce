@@ -4,12 +4,15 @@ import { daleteProduct, resetCart } from "../../store/cartSlice";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Link } from "react-router-dom";
 import styles from "./Cart.module.css";
-import FeaturedProducts from './../../components/FeaturedProducts/FeaturedProducts';
+import FeaturedProducts from "./../../components/FeaturedProducts/FeaturedProducts";
 const Cart = () => {
   const dispatch = useDispatch();
   const { data, totalPrice } = useSelector((store) => store.cartSlice);
   const deleteHandler = (id, price) => {
-    dispatch(daleteProduct({ id, price }));
+    const res = window.confirm("Are you sure you want to delete");
+    if (res) {
+      dispatch(daleteProduct({ id, price }));
+    }
   };
   const resetHandler = () => {
     dispatch(resetCart());
@@ -32,7 +35,9 @@ const Cart = () => {
             <span className="  font-medium capitalize">
               {data.length} items
             </span>
-            <span className="hidden md:block">need help ? call (+20) 106-448-0375</span>
+            <span className="hidden md:block">
+              need help ? call (+20) 106-448-0375
+            </span>
           </div>
           <div
             className={`${styles.body} flex flex-wrap gap-2 md:p-4  border-b-4 border-img`}

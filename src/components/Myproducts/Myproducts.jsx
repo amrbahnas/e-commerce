@@ -20,8 +20,11 @@ const Myproducts = () => {
   }, []);
 
   const deleteHandler = (id) => {
-    setData((prev) => prev.filter((doc) => doc.id !== id));
-    deleteProduct(id);
+    const res = window.confirm("Are you sure you want to delete");
+    if (res) {
+      setData((prev) => prev.filter((doc) => doc.id !== id));
+      deleteProduct(id);
+    }
   };
 
   return (
