@@ -11,12 +11,10 @@
 .swiper-container .swiper-button-next,
 .swiper-container .swiper-button-prev {
     background-color: rgba(0, 0, 0, 0.7);
-    width: 50px;
-    height: 50px;
     /* border: 1px solid gray; */
     border-radius: 50%;
     box-sizing: border-box;
-    @apply hover:scale-105 hover:shadow-md
+    @apply hover:scale-105 hover:shadow-md w-9 h-9 md:w-12 md:h-12 
 }
 
 

@@ -42,7 +42,7 @@ const FeaturedProducts = ({ title, type }) => {
               data={data}
               paginationIs={false}
               ScrollbarIs={false}
-              NavigationIs={false}
+              NavigationIs={true}
               autoplayIs={false}
               spaceBetweenIs={20}
               slidesPerViewIs={5}

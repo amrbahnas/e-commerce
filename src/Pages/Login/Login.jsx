@@ -9,6 +9,8 @@ import { setLoginState } from "../../store/AuthSlice.js";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [checkEmail, setCheckEmail] = useState(false);
+  const [checkPass, setCheckPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useSelector((store) => store.AuthSlice);
@@ -21,8 +23,9 @@ const Login = () => {
     e.preventDefault();
     signIn(email, password)
       .then((res) => {
-        console.log("1", res.user);
         dispatch(setLoginState(true));
+        setCheckEmail(false);
+        setCheckPass(false);
         toast.success("login", {
           position: "top-right",
           autoClose: 1200,
@@ -36,16 +39,14 @@ const Login = () => {
         navigate("/", { replace: false });
       })
       .catch((error) => {
-        toast.error(error.message, {
-          position: "top-right",
-          autoClose: 1200,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        // console.log(error.message);
+        if (error.message.includes("email")) {
+          setCheckEmail(true);
+          setCheckPass(false);
+        } else {
+          setCheckPass(true);
+          setCheckEmail(false);
+        }
       });
   };
   return (
@@ -65,9 +66,16 @@ const Login = () => {
                 <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
                   <form onSubmit={(e) => formHandler(e)}>
                     <div className="mb-6">
+                      {checkEmail && (
+                        <span className=" block text-red-700 pb-2">
+                          The Emain that you've entered is incorrect.
+                        </span>
+                      )}
                       <input
                         type="text"
-                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        className={`${
+                          checkEmail ? " border-red-700" : ""
+                        } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         placeholder="Email address"
                         required
                         value={email}
@@ -78,9 +86,16 @@ const Login = () => {
                     </div>
 
                     <div className="mb-6">
+                      {checkPass && (
+                        <span className=" block text-red-700 pb-2">
+                          The Password that you've entered is incorrect.
+                        </span>
+                      )}
                       <input
                         type="password"
-                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        className={`${
+                          checkPass ? " border-red-700" : ""
+                        } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         placeholder="Password"
                         required
                         value={password}
@@ -89,7 +104,7 @@ const Login = () => {
                         }}
                       />
                     </div>
-
+                   
                     <div className="flex justify-between items-center mb-6">
                       <div className="form-group form-check">
                         <input

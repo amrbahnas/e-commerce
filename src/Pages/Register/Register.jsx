@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,19 +9,23 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [checkEmail, setCheckEmail] = useState(false);
+  const [checkPass, setCheckPass] = useState(false);
   // check if user is already logged in
   const { login } = useSelector((store) => store.AuthSlice);
-    useEffect(() => {
-      if (login) {
-        navigate("/");
-      }
-    }, [login]);
+  useEffect(() => {
+    if (login) {
+      navigate("/");
+    }
+  }, [login]);
   const formHandler = (e) => {
     e.preventDefault();
     signup(email, password, firstName)
       .then((res) => {
         console.log("1", res);
-        toast.success("Account Created", {
+        setCheckEmail(false);
+        setCheckPass(false);
+        toast.success("Account Created successfully", {
           position: "top-right",
           autoClose: 1200,
           hideProgressBar: true,
@@ -36,16 +40,13 @@ const Register = () => {
         }, 1500);
       })
       .catch((error) => {
-        toast.error(error.message, {
-          position: "top-right",
-          autoClose: 1200,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        if (error.message.includes("email")) {
+          setCheckEmail(true);
+          setCheckPass(false);
+        } else {
+          setCheckPass(true);
+          setCheckEmail(false);
+        }
       });
     // Navigate("/login", true);
   };
@@ -119,9 +120,16 @@ const Register = () => {
                       </div>
                     </div>
                     <div className="form-group mb-6">
+                      {checkEmail && (
+                        <span className=" block text-red-700 pb-2">
+                          The Emain Is already Used.
+                        </span>
+                      )}
                       <input
                         type="email"
-                        className="form-control block
+                        className={`
+                        ${checkEmail ? " border-red-700" : ""}
+                        form-control block
                           w-full
                           px-3
                           py-1.5
@@ -134,7 +142,7 @@ const Register = () => {
                           transition
                           ease-in-out
                           m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         id="exampleInput125"
                         placeholder="Email address"
                         required
@@ -145,9 +153,16 @@ const Register = () => {
                       />
                     </div>
                     <div className="form-group mb-6">
+                      {checkPass && (
+                        <span className=" block text-red-700 pb-2">
+                          Password shoud be at least 6 characters
+                        </span>
+                      )}
                       <input
                         type="password"
-                        className="form-control block
+                        className={`
+                        ${checkPass ? " border-red-700" : ""}
+                        form-control block
                         w-full
                         px-3
                         py-1.5
@@ -160,7 +175,7 @@ const Register = () => {
                         transition
                         ease-in-out
                         m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         id="exampleInput126"
                         placeholder="Password"
                         required

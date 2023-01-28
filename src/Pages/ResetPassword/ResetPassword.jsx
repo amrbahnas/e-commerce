@@ -41,9 +41,9 @@ const ResetPassword = () => {
   return (
     <div className="resetPassword">
       <div classNamee="thecontainer">
-        <div className="flex justify-center items-center h-screen bg-white ">
+        <div className="flex justify-center items-center h-screen bg-white  ">
           <form
-            className="mb-3  w-2/5 border h-80 flex flex-col justify-center gap-10 p-10 shadow-md rounded-lg"
+            className="mb-3  md:w-8/12 lg:w-5/12 lg:ml-20 border h-80 flex flex-col justify-center gap-10 p-10 shadow-lg rounded-lg"
             onSubmit={(e) => sendMailHandler(e)}
           >
             <span
@@ -88,7 +88,7 @@ const ResetPassword = () => {
           </form>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
