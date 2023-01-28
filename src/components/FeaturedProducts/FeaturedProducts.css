@@ -19,6 +19,7 @@
 
 
 .FeaturedProductsBottom {
-    margin-top: 50px;
+    /* margin-top: 50px; */
+    @apply md:mt-12
 }
 

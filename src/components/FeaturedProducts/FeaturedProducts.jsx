@@ -27,7 +27,7 @@ const FeaturedProducts = ({ title, type }) => {
   return (
     <div className="FeaturedProducts">
       <div className="theContainer">
-        <div className="sectionWrapper bg-white  py-10 rounded-md">
+        <div className="sectionWrapper bg-white pt-6  md:py-10 rounded-md">
           <div className="FeaturedProductsTop flex flex-col md:flex-row">
             <h2 className=" md:mr-10 w-full ">{title}</h2>
             <p className="hidden md:block">
@@ -37,18 +37,16 @@ const FeaturedProducts = ({ title, type }) => {
               Obcaecati corporis quisquam ullam ipsam vero aliquid.
             </p>
           </div>
-          <div className="FeaturedProductsBottom px-10">
+          <div className="FeaturedProductsBottom">
             <CardSlider
               data={data}
               paginationIs={false}
               ScrollbarIs={false}
-              NavigationIs={true}
+              NavigationIs={false}
               autoplayIs={false}
               spaceBetweenIs={20}
-              slidesPerViewIs={4}
-            >
-              <Card />
-            </CardSlider>
+              slidesPerViewIs={5}
+            />
           </div>
         </div>
       </div>

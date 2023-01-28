@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "./CardSlider.css";
+import { Link } from "react-router-dom";
 const CardSlider = ({
   children,
   data,
@@ -18,7 +19,7 @@ const CardSlider = ({
   autoplayIs,
   spaceBetweenIs,
   slidesPerViewIs,
-}) => {
+}) => {   
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y, Scrollbar, Autoplay]}
@@ -30,15 +31,15 @@ const CardSlider = ({
       slidesPerView={slidesPerViewIs}
       breakpoints={{
         340: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-        },
-        640: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
         768: {
-          slidesPerView: 3,
+          slidesPerView: 4,
           spaceBetween: 20,
         },
         1024: {
@@ -51,11 +52,26 @@ const CardSlider = ({
       className="swiper-container p-4"
     >
       {data?.map((item) => (
-            <SwiperSlide key={item.id} className="swiperSlide">
-              {React.cloneElement(children, { item, key: item.id })}
-            </SwiperSlide>
-          ))
-       }
+        <SwiperSlide key={item.id} className="swiperSlide">
+          <Link
+            to={"/product/" + item.id}
+            className="miniCard  w-full rounded-md shadow-md h-72 overflow-hidden p-4 hover:scale-105 hover:shadow-lg"
+          >
+            <img
+              src={item.img}
+              alt=""
+              className=" bg-img h-2/3  w-full object-cover rounded-md"
+            />
+            <div className="info p-2 h-2/5 overflow-hidden ">
+              <h3 className=" whitespace-nowrap mb-2">{item.title}</h3>
+              <span className="block font-bold text-lg">${item.price}</span>
+              <span className=" text-gray-500 text-sm line-through">
+                ${+item.price + 20}
+              </span>
+            </div>
+          </Link>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };
