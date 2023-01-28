@@ -1,9 +1,10 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserProfile.module.css";
 import { useSelector } from "react-redux";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 const UserProfile = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { email, userName, photoURL } = useSelector((store) => store.userSlice);
   const { login } = useSelector((store) => store.AuthSlice);
 
@@ -19,14 +20,16 @@ const UserProfile = () => {
           <div
             className={`${styles.left} col-span-4 md:col-span-1 flex justify-center p-8 bg-white`}
           >
-            <div
-              className={`${styles.img}  w-32 h-32 rounded-full overflow-hidden bg-white`}
-            >
+            <div className={`${styles.img}`}>
               <img
                 src="assets/1.jpg"
                 alt=""
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-full"
               />
+              <div className={`${styles.editIcon}`}>
+                <CameraAltIcon />
+                Edit
+              </div>
             </div>
           </div>
           <div

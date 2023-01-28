@@ -13,13 +13,14 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MenuIcon from "@mui/icons-material/Menu";
 // react router
-import { Link, NavLink } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 // css file
 import "./Navbar.css";
 // component
 import MobileMenu from "../mobileMenu/MobileMenu";
 const Navbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { login, admin } = useSelector((store) => store.AuthSlice);
   const { data } = useSelector((store) => store.cartSlice);
   const { userName } = useSelector((store) => store.userSlice);
@@ -29,6 +30,7 @@ const Navbar = () => {
   const logOutHandler = () => {
     dispatch(setLoginState(false));
     logOut();
+    setLoginMenuControl(false);
   };
 
   const loginMenu = useRef();
@@ -93,7 +95,11 @@ const Navbar = () => {
               <li className=" relative" ref={loginMenu}>
                 <div
                   className="cursor-pointer flex items-center "
-                  onClick={(e) => setLoginMenuControl(!loginMenuControl)}
+                  onClick={(e) =>
+                    login
+                      ? setLoginMenuControl(!loginMenuControl)
+                      : navigate("/login")
+                  }
                 >
                   <PersonOutlineOutlinedIcon />
                   {login && admin
@@ -104,22 +110,14 @@ const Navbar = () => {
                 </div>
                 {loginMenuControl && (
                   <div className="loginMenu absolute rounded-md w-fit p-4 top-10 -left-4  border flex flex-col items-center justify-center gap-4 shadow-md bg-white">
-                    {login ? (
-                      <div className="login capitalize  hover:scale-105 cursor-pointer border p-2 bg-white rounded-md w-full text-center">
-                        <span onClick={(e) => logOutHandler()}>logOut</span>
-                      </div>
-                    ) : (
-                      <>
-                        <div className=" bg-orange-300 hover:scale-105 hover:shadow-md login capitalize cursor-pointer border p-2  rounded-md w-full text-center">
-                          <Link to="/login">login</Link>
-                        </div>
-                        <div className="hover:scale-105 hover:shadow-md Register capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
-                          <Link to="/Register" target="_blank">
-                            Admin
-                          </Link>
-                        </div>
-                      </>
-                    )}
+                    <div className=" bg-orange-400 text-white hover:scale-105 hover:shadow-md Register capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
+                      <Link to="/profile">
+                        Profile
+                      </Link>
+                    </div>
+                    <div className="login capitalize  hover:scale-105 cursor-pointer border p-2 bg-white rounded-md w-full text-center">
+                      <span onClick={(e) => logOutHandler()}>logOut</span>
+                    </div>
                   </div>
                 )}
               </li>
