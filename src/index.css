@@ -57,6 +57,9 @@ body {
 
 
 .active{
-    color: #e9c27d;
-    /* @apply border */
+    background-color: #f0f0f0;
+    padding: 4px;
+    /* font-weight:700; */
+    /* @apply shadow-inner */
+     /* @apply    */
 }

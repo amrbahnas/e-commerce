@@ -1,48 +1,67 @@
     @tailwind base;
-@tailwind components;
-@tailwind utilities;
+    @tailwind components;
+    @tailwind utilities;
 
 
-.navbar {
-    @apply h-20 flex items-center relative gap-3
-}
+    .navbar {
+        @apply h-20 flex items-center relative gap-3
+    }
 
+    .navbar ul li {
+        position: relative;
+        /* @apply hover:text-white */
+    }
+    .navbar ul li:hover::after {
+        width: 100%;
+        padding: 10px;
+    }
 
+    .navbar ul li::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background: #f0f0f0;
+        z-index: -1;
+        @apply  transition-all duration-300 ease-linear  rounded-md
+    }
 
-.navLeft {
-    @apply  flex gap-2 items-center;
-}
+    .navLeft {
+        @apply flex gap-2 items-center;
+    }
 
-.searchBar{
-    @apply relative flex-1 flex items-center gap-1
-}
+    .searchBar {
+        @apply relative flex-1 flex items-center gap-1
+    }
 
-.navRight {
-    @apply  flex gap-2 items-center;
-}
+    .navRight {
+        @apply flex gap-2 items-center;
+    }
 
-.ul-item {
-    @apply hidden lg:flex items-center  gap-4 p-2;
-}
+    .ul-item {
+        @apply hidden lg:flex items-center gap-4 p-2;
+    }
 
-.center {
-    @apply font-bold text-xl
-}
+    .center {
+        @apply font-bold text-xl
+    }
 
-.count {
-    background-color: dodgerblue;
-    @apply flex justify-center items-center absolute rounded-full w-4 h-4 -top-1 left-3 text-sm p-2 select-none text-white font-bold
-}
+    .count {
+        background-color: dodgerblue;
+        @apply flex justify-center items-center absolute rounded-full w-4 h-4 -top-1 left-3 text-sm p-2 select-none text-white font-bold
+    }
 
-.searchBarInput {
-    @apply  border p-2 flex-1 focus:outline-none rounded-md
-}
+    .searchBarInput {
+        @apply border p-2 flex-1 focus:outline-none rounded-md
+    }
 
-.showSearchBar {
-    display: block;
-}
+    .showSearchBar {
+        display: block;
+    }
 
-/* .loginMenu::after {
+    /* .loginMenu::after {
     content: "";
     position: absolute;
     width: 0;

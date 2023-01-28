@@ -74,28 +74,26 @@ const Navbar = () => {
             <ul className="ul-item">
               <li className=" relative">
                 <div
-                  className="cursor-pointer"
+                  className="cursor-pointer flex items-center "
                   onClick={(e) => setLoginMenuControl(!loginMenuControl)}
                 >
                   <PersonOutlineOutlinedIcon />
-                  {login ? "amr@gmail.com" : "login/signup"}
+                  {login ? "amr@gmail.com" : "Login"}
                 </div>
                 {loginMenuControl && (
-                  <div className="loginMenu absolute rounded-md w-full p-4 top-10  left-0 border flex flex-col items-center justify-center gap-4 shadow-md bg-white">
+                  <div className="loginMenu absolute rounded-md w-fit p-4 top-10 -left-4  border flex flex-col items-center justify-center gap-4 shadow-md bg-white">
                     {login ? (
                       <div className="login capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
                         <span onClick={(e) => logOutHandler()}>logOut</span>
                       </div>
                     ) : (
                       <>
-                        <div className="login capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
-                          <Link to="/login">
-                            login
-                          </Link>
+                        <div className=" bg-orange-300 hover:scale-105 hover:shadow-md login capitalize cursor-pointer border p-2  rounded-md w-full text-center">
+                          <Link to="/login">login</Link>
                         </div>
-                        <div className="Register capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
+                        <div className="hover:scale-105 hover:shadow-md Register capitalize cursor-pointer border p-2 bg-white rounded-md w-full text-center">
                           <Link to="/Register" target="_blank">
-                            Register
+                            Admin
                           </Link>
                         </div>
                       </>
@@ -104,7 +102,7 @@ const Navbar = () => {
                 )}
               </li>
               <li>
-                <NavLink to="/admin">
+                <NavLink to="/admin" className="flex items-center">
                   <DashboardIcon />
                   Dashboard
                 </NavLink>

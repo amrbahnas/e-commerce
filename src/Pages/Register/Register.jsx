@@ -74,8 +74,8 @@ const Register = () => {
                           className="form-control
                           block
                           w-full
-                          px-3
-                          py-1.5
+                          px-4
+                          py-2
                           text-base
                           font-normal
                           text-gray-700
@@ -100,8 +100,8 @@ const Register = () => {
                           className="form-control
                           block
                           w-full
-                          px-3
-                          py-1.5
+                          px-4
+                          py-2
                           text-base
                           font-normal
                           text-gray-700
@@ -131,8 +131,8 @@ const Register = () => {
                         ${checkEmail ? " border-red-700" : ""}
                         form-control block
                           w-full
-                          px-3
-                          py-1.5
+                          px-4
+                          py-2
                           text-base
                           font-normal
                           text-gray-700
@@ -164,8 +164,8 @@ const Register = () => {
                         ${checkPass ? " border-red-700" : ""}
                         form-control block
                         w-full
-                        px-3
-                        py-1.5
+                        px-4
+                          py-2
                         text-base
                         font-normal
                         text-gray-700
@@ -202,8 +202,8 @@ const Register = () => {
                       type="submit"
                       className="
                         w-full
-                        px-6
-                        py-2.5
+                        px-7
+                        py-3
                         bg-blue-600
                         text-white
                         font-medium
