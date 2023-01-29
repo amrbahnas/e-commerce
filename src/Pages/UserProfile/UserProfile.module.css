@@ -1,5 +1,5 @@
 .left .img {
-    @apply  w-44 h-44  rounded-full p-2  bg-slate-300 relative overflow-hidden
+    @apply    w-44 h-44 rounded-full p-2  bg-slate-300 relative overflow-hidden
 }
 
 .left .editIcon {
@@ -13,7 +13,7 @@
 }
 
 .box .inputsContainer{
-    @apply flex  gap-6
+    @apply flex flex-wrap  gap-6 
 }
 
 .box lable {
@@ -32,7 +32,7 @@
 }
 
 .box .buttons{
-    @apply flex gap-8  items-center
+    @apply flex flex-wrap gap-8  items-center
 }
 
 .box  button {

@@ -1,17 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginState } from "../../store/AuthSlice";
 //firebase
-import{logOut} from "../../Firebase/Auth"
+import { logOut } from "../../Firebase/Auth";
 const MobileMenu = ({ setcontrolMobileMenu }) => {
   const dispatch = useDispatch();
   // target cart element
   const menu = useRef();
+  const [optionsControl, setOptionsControl] = useState(false);
   const { login, admin } = useSelector((store) => store.AuthSlice);
   const { userName } = useSelector((store) => store.userSlice);
 
@@ -54,11 +57,37 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
             <li>
               <PersonOutlineOutlinedIcon className="cursor-pointer" />
               {login ? (
-                <span className=" cursor-pointer" onClick={e=>logOutHandler()}>{userName}{admin&&" (Admin)"}</span>
+                <span
+                  className=" cursor-pointer"
+                  onClick={(e) => setOptionsControl(!optionsControl)}
+                >
+                  {userName}
+                  {admin && " (Admin)"}
+                  {optionsControl ? <ExpandMoreIcon /> : <ChevronRightIcon />}
+                </span>
               ) : (
-                <Link to="/login">Login</Link>
+                <span className=" cursor-pointer">
+                  <Link to="/login">Login</Link>
+                </span>
               )}
             </li>
+            {login && optionsControl ? (
+              <>
+                <li>
+                  <Link to="/profile" className="link">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <span
+                    onClick={(e) => logOutHandler()}
+                    className="cursor-pointer"
+                  >
+                    Logout
+                  </span>
+                </li>
+              </>
+            ) : null}
 
             <li>
               <Link to="/" className="link">
