@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -7,6 +9,9 @@ import {
   signOut,
   onAuthStateChanged,
   updateProfile,
+  updateEmail,
+  updatePassword,
+  deleteUser,
 } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -38,8 +43,6 @@ export const signupUserName = (user, displayName) => {
   updateProfile(user, displayName);
 };
 
-
-
 // sign in
 export const signIn = (email, password) => {
   const result = signInWithEmailAndPassword(auth, email, password);
@@ -63,10 +66,45 @@ export const logOut = () => {
     });
 };
 
-
-
 // update user profile
 export const updateUserData = (updatedData) => {
   const user = getAuth().currentUser;
-  updateProfile(user, updatedData);
+  const result = updateProfile(user, updatedData);
+  return result;
+};
+
+// update user email
+export const updateUserEmail = (newEmail) => {
+  const user = getAuth().currentUser;
+  const result = updateEmail(user, newEmail);
+  return result;
+};
+
+// update user password
+export const updateUserPassword = (Newpassword) => {
+  const user = getAuth().currentUser;
+  updatePassword(user, Newpassword)
+    .then((res) => {
+      toast.success("password Updated successfully ", {
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: "colored",
+      });
+    })
+    .catch((err) => {
+      toast.error(err.message, {
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: "colored",
+      });
+    });
+};
+
+// delete user
+export const deleteUserAccount = () => {
+  const user = getAuth().currentUser;
+  const result = deleteUser(user);
+  return result;
 };

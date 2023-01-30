@@ -1,44 +1,101 @@
+.left{
+    @apply flex flex-col items-center gap-3 justify-start p-8 bg-white
+}
 .left .img {
-    @apply    w-44 h-44 rounded-full p-2  bg-slate-300 relative overflow-hidden
+    @apply w-44 h-44 rounded-full p-2 bg-slate-300 relative overflow-hidden
 }
 
 .left .editIcon {
     background-color: rgba(0, 0, 0, 0.322);
-    @apply opacity-0 hover:opacity-100  w-full h-full  text-white cursor-pointer absolute bottom-0 flex items-center justify-center right-0
+    @apply opacity-0 hover:opacity-100 w-full h-full text-white absolute bottom-0 flex items-center justify-center right-0
 }
 
+.left .editIcon label {
+@apply cursor-pointer
+}
+
+.left .editIcon label input {
+@apply hidden
+}
+
+.left button {
+    @apply bg-amr w-24 px-2 py-2 rounded-md text-white
+}
 
 .right .box {
     @apply bg-white p-8 rounded-md grid gap-10
 }
 
-.box .inputsContainer{
-    @apply flex flex-wrap  gap-6 
+.box .inputsContainer {
+    @apply flex flex-wrap gap-6
 }
 
 .box lable {
     @apply capitalize
 }
+
 .box .title {
-    @apply mb-6 text-lg font-semibold
+    @apply mb-2 text-lg font-semibold
 }
 
 .box .input {
-    @apply flex flex-col flex-1 gap-4 
+    @apply flex flex-col flex-1 gap-4
 }
 
 .box .inputsContainer input {
-    @apply bg-slate-300 rounded-md  px-7 py-3 cursor-not-allowed
+    @apply bg-slate-300 rounded-md px-7 py-3 focus:outline-none
 }
 
-.box .buttons{
-    @apply flex flex-wrap gap-8  items-center
+/* Disabled state */
+.box .inputsContainer input:disabled {
+    cursor: not-allowed;
+    opacity: .6;
 }
 
-.box  button {
+.box .buttons {
+    @apply flex flex-wrap gap-8 items-center
+}
+
+.box .buttons button {
+    min-width: 120px;
+}
+
+.box button {
     @apply bg-amr px-4 py-2 rounded-md text-white
 }
 
 .buttons span {
     @apply text-red-600 underline text-sm cursor-pointer
 }
+
+
+.changePassword {
+    background-color: rgba(0, 0, 0, 0.368);
+    @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center
+}
+
+
+.changePassword .form {
+    @apply bg-white p-4 w-80
+}
+
+.changePassword .form .header {
+    @apply flex justify-between
+}
+
+.changePassword .form .header h2 {
+    @apply font-semibold text-lg mb-5
+}
+
+.changePassword .form .input {
+    @apply flex flex-col gap-2 mb-4
+}
+
+.changePassword .form .input input {
+    @apply px-7 py-3 border
+}
+
+.changePassword .form button {
+    @apply px-7 py-3 border w-full mt-5
+}
+

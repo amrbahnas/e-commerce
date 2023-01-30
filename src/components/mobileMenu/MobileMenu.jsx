@@ -16,7 +16,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
   const menu = useRef();
   const [optionsControl, setOptionsControl] = useState(false);
   const { login, admin } = useSelector((store) => store.AuthSlice);
-  const { userName } = useSelector((store) => store.userSlice);
+  const { userName, userImage } = useSelector((store) => store.userSlice);
 
   useEffect(() => {
     const handler = (e) => {
@@ -54,13 +54,21 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
                 Dashboard
               </NavLink>
             </li>
-            <li>
-              <PersonOutlineOutlinedIcon className="cursor-pointer" />
+            <li onClick={(e) => setOptionsControl(!optionsControl)}>
               {login ? (
-                <span
-                  className=" cursor-pointer"
-                  onClick={(e) => setOptionsControl(!optionsControl)}
-                >
+                <div className=" w-8 h-8 rounded-full overflow-hidden mr-1">
+                  <img
+                    src={userImage}
+                    alt=""
+                    className=" w-full h-full object-cover"
+                  />
+                </div>
+              ) : (
+                <PersonOutlineOutlinedIcon />
+              )}
+
+              {login ? (
+                <span className=" cursor-pointer">
                   {userName}
                   {admin && " (Admin)"}
                   {optionsControl ? <ExpandMoreIcon /> : <ChevronRightIcon />}

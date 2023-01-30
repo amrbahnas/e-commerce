@@ -1,47 +1,75 @@
 import React, { useState, useEffect } from "react";
+// react router
 import { Link, useNavigate } from "react-router-dom";
+// toest
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// firebase
 import { signIn } from "../../Firebase/Auth";
+import { dowunloadUserImage } from "../../Firebase/Store.js";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginState, setAdminState } from "../../store/AuthSlice.js";
 import {
   setTheEmail,
   setTheUserName,
-  setThePhotoURL,
+  setUserImage,
 } from "../../store/userSlice.js";
+
 const Login = () => {
+  // initialize
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  //  check validation states 
+  const [emailSub, setEmailSub] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkEmailEnable, setCheckEmailEnable] = useState(false);
   const [checkPass, setCheckPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // get login state
   const { login } = useSelector((store) => store.AuthSlice);
+  // user cant access this page if he has login
   useEffect(() => {
     if (login) {
       navigate("/");
     }
-  }, [login]);
+  }, [login, navigate]);
+
+  // on click login
   const formHandler = (e) => {
     e.preventDefault();
     //start login function
     signIn(email, password)
       .then((res) => {
+        ///// login success /////
         // if user is admin
         if (res.user.email === "admin@store.com") {
+          // turn on admin permissions
           dispatch(setAdminState(true));
         } else {
+          // turn of admin permissions
           dispatch(setAdminState(false));
         }
-        //store user info to global store
+
+        //store ALL user info to global store
         dispatch(setLoginState(true));
         dispatch(setTheEmail(res.user.email));
         dispatch(setTheUserName(res.user.displayName));
-        dispatch(setThePhotoURL(res.user.photoURL));
-        //set check values
+        // get and store personal user img 
+        const url = res.user.photoURL;
+        if (url) {
+          // if user has img ,dowunload it 
+          dowunloadUserImage(url).then((img) => {
+            dispatch(setUserImage(img));
+          });
+        } else {
+          // if user hasn`t img ,dowunload defualt img
+          dowunloadUserImage("default-user-image.png").then((img) => {
+            dispatch(setUserImage(img));
+          });
+        }
+        //reset check validation values
         setCheckEmail(false);
         setCheckPass(false);
         //message for successful login
@@ -56,20 +84,35 @@ const Login = () => {
           theme: "colored",
         });
         //end message
+        // go to home page
         navigate(-1, { replace: false });
       })
       .catch((error) => {
-        if (error.message.includes("email")) {
+        ///// invalied info /////
+        if (error.message.includes("user-not-found")) {
+          // if enterd email is not subscribed
+          setEmailSub(true);
+          setCheckEmail(false);
+          setCheckPass(false);
+          setCheckEmailEnable(false);
+        } else if (error.message.includes("email")) {
+          // if enterd email is already used
+          setEmailSub(false);
           setCheckEmail(true);
           setCheckPass(false);
           setCheckEmailEnable(false);
         } else if (error.message.includes("password")) {
-          setCheckPass(true);
+          // if enterd password is wrong
+          setEmailSub(false);
           setCheckEmail(false);
+          setCheckPass(true);
           setCheckEmailEnable(false);
         } else {
-          setCheckPass(false);
+          // if enterd email has been blocked
+          console.log("Error: " + error.message);
+          setEmailSub(false);
           setCheckEmail(false);
+          setCheckPass(false);
           setCheckEmailEnable(true);
         }
       });
@@ -91,6 +134,11 @@ const Login = () => {
                 <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
                   <form onSubmit={(e) => formHandler(e)}>
                     <div className="mb-6">
+                      {emailSub && (
+                        <span className=" block text-red-700 pb-2">
+                          Invalid Email
+                        </span>
+                      )}
                       {checkEmail && (
                         <span className=" block text-red-700 pb-2">
                           The Emain that you've entered is incorrect.
@@ -101,10 +149,11 @@ const Login = () => {
                           Sorry Your Email has been Blocked.
                         </span>
                       )}
+
                       <input
                         type="text"
                         className={`${
-                          checkEmail || checkEmailEnable
+                          checkEmail || checkEmailEnable || emailSub
                             ? " border-red-700"
                             : "border-gray-300"
                         } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid     rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
