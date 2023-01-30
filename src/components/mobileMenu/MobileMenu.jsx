@@ -7,7 +7,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { setLoginState } from "../../store/AuthSlice";
+import { setLoginState, setAdminState } from "../../store/AuthSlice";
 //firebase
 import { logOut } from "../../Firebase/Auth";
 const MobileMenu = ({ setcontrolMobileMenu }) => {
@@ -37,6 +37,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
   // logout function
   const logOutHandler = () => {
     dispatch(setLoginState(false));
+    dispatch(setAdminState(false));
     logOut();
   };
   return (
@@ -48,13 +49,18 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
             <SearchOutlinedIcon className="cursor-pointer" />
           </div>
           <ul className={styles.topMenu}>
-            <li>
-              <NavLink to="/admin">
-                <DashboardIcon />
-                Dashboard
-              </NavLink>
-            </li>
-            <li onClick={(e) => setOptionsControl(!optionsControl)}>
+            {admin && (
+              <li>
+                <NavLink to="/admin">
+                  <DashboardIcon />
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
+            <li
+              onClick={(e) => setOptionsControl(!optionsControl)}
+              className={styles.userProfile}
+            >
               {login ? (
                 <div className=" w-8 h-8 rounded-full overflow-hidden mr-1">
                   <img

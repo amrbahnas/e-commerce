@@ -17,14 +17,11 @@ export const AuthSlice = createSlice({
         setAdminState: (state,action)=>{
             state.admin =action.payload;
         },
-        setAminState: (state,action)=>{
-            state.admin =action.payload;
-        },
         setUserName: (state,action)=>{
             state.username =action.payload;
         },
     }
 })
 
-export const { setLoginState,setAdminState, setAminState, setUserName } = AuthSlice.actions;
+export const { setLoginState,setAdminState, setUserName } = AuthSlice.actions;
 export default AuthSlice.reducer;

@@ -2,21 +2,19 @@
     @apply flex flex-col items-center gap-3 justify-start p-8 bg-white
 }
 .left .img {
-    @apply w-44 h-44 rounded-full p-2 bg-slate-300 relative overflow-hidden
+    @apply w-44 h-44 rounded-full p-1 bg-slate-300 relative overflow-hidden
 }
 
-.left .editIcon {
+.left .previewIcon {
     background-color: rgba(0, 0, 0, 0.322);
     @apply opacity-0 hover:opacity-100 w-full h-full text-white absolute bottom-0 flex items-center justify-center right-0
 }
 
-.left .editIcon label {
+.left .previewIcon  {
 @apply cursor-pointer
 }
 
-.left .editIcon label input {
-@apply hidden
-}
+
 
 .left button {
     @apply bg-amr w-24 px-2 py-2 rounded-md text-white

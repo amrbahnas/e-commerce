@@ -25,7 +25,7 @@
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.25); */
 }
- 
+
 
 
 .menuWrapper {
@@ -45,7 +45,15 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    @apply hover:translate-x-1 transition-all duration-200 hover:font-semibold
+    @apply hover:translate-x-1 transition-all duration-200 hover:font-semibold cursor-pointer
+}
+
+.menuWrapper ul li a{
+    @apply flex-1
+}
+
+.menuWrapper ul li.userProfile {
+    @apply hover:translate-x-0 
 }
 
 .search {
@@ -57,5 +65,5 @@
 .search input {
     flex: 1;
     padding: 5px;
-    @apply focus:outline-none   rounded
+    @apply focus:outline-none rounded
 }

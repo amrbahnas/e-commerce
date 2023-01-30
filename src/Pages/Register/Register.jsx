@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+//icon
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useSelector } from "react-redux";
 import { signup, signupUserName } from "../../Firebase/Auth";
 const Register = () => {
@@ -19,6 +22,20 @@ const Register = () => {
       navigate("/");
     }
   }, [login]);
+
+  /// control eye icon
+  const [showHiddenPassword, setShowHiddenPassword] = useState(false);
+  const [showIcon, setShowIcon] = useState(false);
+  const passwordField = useRef();
+  const showHiddenPasswordHandler = () => {
+    setShowHiddenPassword((prev) => !prev);
+    const type =
+      passwordField.current.getAttribute("type") === "password"
+        ? "text"
+        : "password";
+    passwordField.current.setAttribute("type", type);
+  };
+
   const formHandler = (e) => {
     e.preventDefault();
     signup(email, password)
@@ -78,7 +95,7 @@ const Register = () => {
                           block
                           w-full
                           px-4
-                          py-2
+                          py-3
                           text-base
                           font-normal
                           text-gray-700
@@ -104,7 +121,7 @@ const Register = () => {
                           block
                           w-full
                           px-4
-                          py-2
+                          py-3
                           text-base
                           font-normal
                           text-gray-700
@@ -137,7 +154,7 @@ const Register = () => {
                         form-control block
                           w-full
                           px-4
-                          py-2
+                          py-3
                           text-base
                           font-normal
                           text-gray-700
@@ -163,14 +180,29 @@ const Register = () => {
                           Password shoud be at least 6 characters
                         </span>
                       )}
-                      <input
-                        type="password"
-                        className={`
+                      <div className="relative">
+                        {showIcon ? (
+                          showHiddenPassword ? (
+                            <VisibilityIcon
+                              className="absolute right-4 top-3 text-lg cursor-pointer"
+                              onClick={(e) => showHiddenPasswordHandler()}
+                            />
+                          ) : (
+                            <VisibilityOffIcon
+                              className="absolute right-4 top-3 text-lg cursor-pointer"
+                              onClick={(e) => showHiddenPasswordHandler()}
+                            />
+                          )
+                        ) : null}
+                        <input
+                          type="password"
+                          ref={passwordField}
+                          className={`
                         ${checkPass ? " border-red-700" : "border-gray-300"}
                         form-control block
                         w-full
                         px-4
-                          py-2
+                          py-3
                         text-base
                         font-normal
                         text-gray-700
@@ -181,14 +213,16 @@ const Register = () => {
                         ease-in-out
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
-                        id="exampleInput126"
-                        placeholder="Password"
-                        required
-                        value={password}
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
-                      />
+                          id="exampleInput126"
+                          placeholder="Password"
+                          required
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
+                          onFocus={(e) => setShowIcon(true)}
+                        />
+                      </div>
                     </div>
                     <div className="form-group form-check text-center mb-6">
                       <input

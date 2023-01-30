@@ -1,0 +1,40 @@
+.photoPreview {
+    background-color: rgba(0, 0, 0, 0.368);
+    @apply fixed top-0 bottom-0 left-0 right-0 flex items-start justify-center z-50
+}
+
+.photoPreview .wrapper{
+    color: #404553;
+    @apply bg-white p-6 rounded-md mt-28 w-full md:w-3/4 lg:w-3/5
+}
+
+.photoPreview .wrapper .header{
+    @apply flex justify-between items-center mb-6
+}
+
+.photoPreview .wrapper .header span{
+    @apply text-lg font-semibold
+}
+.photoPreview .wrapper .img{
+    @apply flex justify-center items-center
+}
+.photoPreview .wrapper .img img{
+    @apply w-72 h-72 md:w-80 md:h-80 rounded-full object-cover
+}
+
+
+.photoPreview .wrapper .footer{
+    @apply flex items-center gap-10 mt-6
+}
+
+.photoPreview .footer * {
+    @apply flex flex-col justify-center items-center gap-1 cursor-pointer
+}
+
+.photoPreview .footer .edit label input {
+    @apply hidden
+}
+
+.photoPreview .footer button{
+        @apply bg-green-500 font-semibold w-24 px-2 py-2 rounded-md text-white
+}

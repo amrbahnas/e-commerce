@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 // reducx
 import { useSelector, useDispatch } from "react-redux";
-import { setLoginState } from "../../store/AuthSlice";
+import { setLoginState, setAdminState } from "../../store/AuthSlice";
 
 //firebase
 import { logOut } from "../../Firebase/Auth";
@@ -29,6 +29,7 @@ const Navbar = () => {
   // logout function
    const logOutHandler = () => {
     dispatch(setLoginState(false));
+    dispatch(setAdminState(false));
     logOut();
     setLoginMenuControl(false);
   };

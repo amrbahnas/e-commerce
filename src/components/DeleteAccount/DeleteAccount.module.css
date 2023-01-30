@@ -1,12 +1,12 @@
 .deleteAccount {
     background-color: rgba(0, 0, 0, 0.368);
-    @apply fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center z-50
+    @apply fixed top-0 bottom-0 left-0 right-0 flex items-start justify-center z-50
 }
 
 .deleteAccount .form {
     color: #404553;
     max-width: 90%;
-    @apply bg-white p-4  rounded-md 
+    @apply bg-white p-4  rounded-md mt-28
 }
 
 .deleteAccount .form .header {

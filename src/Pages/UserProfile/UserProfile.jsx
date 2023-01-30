@@ -5,11 +5,7 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { toast } from "react-toastify";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setTheEmail,
-  setTheUserName,
-  setUserImage,
-} from "../..//store/userSlice";
+import { setTheEmail, setTheUserName } from "../../store/userSlice";
 // firebase
 import {
   updateUserData,
@@ -17,50 +13,28 @@ import {
   updateUserPassword,
   deleteUserAccount,
 } from "../../Firebase/Auth.js";
-import { uploadUserImage } from "../../Firebase/Store.js";
 // component
 import ChangePassword from "../../components/ChangePassword/ChangePassword";
 import DeleteAccount from "../../components/DeleteAccount/DeleteAccount";
-// for generate random string
-import { v4 } from "uuid";
+import ProfilePhotoPreview from "../../components/ProfilePhotoPreview/ProfilePhotoPreview";
+
+/**************************start************** */
 const UserProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { email, userName, userImage } = useSelector(
+  const { email, userName, photoURL, userImage } = useSelector(
     (store) => store.userSlice
   );
   const { login } = useSelector((store) => store.AuthSlice);
-  const [firstName, setFirstName] = useState(userName.split(" ")[0]);
-  const [lastName, setLastName] = useState(userName.split(" ")[1]);
+  const [firstName, setFirstName] = useState(userName?.split(" ")[0]);
+  const [lastName, setLastName] = useState(userName?.split(" ")[1]);
   const [userEmail, setUserEmail] = useState(email);
+  const [profilePhotoLayout, setProfilePhotoLayout] = useState(false);
   const [changePasswordLayout, setChangePasswordLayout] = useState(false);
   const [deleteAccountLayout, setDeleteAccountLayout] = useState(false);
-  const [confirm, setConfirm] = useState(false);
-  const [imgFile, setImgFile] = useState(null);
-  const [profileImage, setProfileImage] = useState(userImage);
   const firstNameObject = useRef();
   const lastNameObject = useRef();
   const emailObject = useRef();
-
-  const previewImg = (files) => {
-    if (files.length > 0) {
-      setImgFile(files[0]);
-      const fileReader = new FileReader();
-      fileReader.onload = (event) => {
-        setProfileImage(event.target.result);
-        setConfirm(true);
-      };
-      fileReader.readAsDataURL(files[0]);
-    }
-  };
-
-  const uploadhandler = () => {
-    const randomString=v4()
-    uploadUserImage(imgFile, randomString);
-    updateUserData({ photoURL: imgFile.name + randomString });
-    dispatch(setUserImage(profileImage));
-    setConfirm(false);
-  };
 
   useEffect(() => {
     if (!login) {
@@ -74,7 +48,7 @@ const UserProfile = () => {
       firstNameObject.current.focus();
       lastNameObject.current.disabled = false;
       e.target.innerText = "Save";
-    } else {
+    } else if (userName !== firstName + " " + lastName) {
       updateUserData({ displayName: firstName + " " + lastName })
         .then((res) => {
           dispatch(setTheUserName(firstName + " " + lastName));
@@ -83,8 +57,8 @@ const UserProfile = () => {
           e.target.innerText = "UPDATE INFO";
           //message
           toast.success("Name Updated successfully ", {
-            autoClose: true,
-            hideProgressBar: true,
+            autoClose: 3000,
+            hideProgressBar: false,
             closeOnClick: true,
             theme: "colored",
           });
@@ -93,11 +67,14 @@ const UserProfile = () => {
         .catch((err) => {
           toast.error(err.message, {
             autoClose: false,
-            hideProgressBar: true,
             closeOnClick: true,
             theme: "colored",
           });
         });
+    } else {
+      firstNameObject.current.disabled = true;
+      lastNameObject.current.disabled = true;
+      e.target.innerText = "UPDATE INFO";
     }
   };
 
@@ -106,17 +83,19 @@ const UserProfile = () => {
   };
 
   const enableEmail = (e) => {
-    if (e.target.innerText === "Change Eamil") {
+    if (e.target.innerText === "Change Email") {
       emailObject.current.disabled = false;
       emailObject.current.focus();
       e.target.innerText = "Save New Email";
-    } else {
+    } else if (email !== userEmail) {
       updateUserEmail(userEmail)
         .then((res) => {
           dispatch(setTheEmail(userEmail));
+          emailObject.current.disabled = true;
+          e.target.innerText = "Change Email";
           toast.success("Email Updated successfully ", {
-            autoClose: true,
-            hideProgressBar: true,
+            autoClose: 3000,
+            hideProgressBar: false,
             closeOnClick: true,
             theme: "colored",
           });
@@ -125,13 +104,15 @@ const UserProfile = () => {
           setUserEmail(email);
           toast.error(" You Login For Along Time, Please Re-Login Again", {
             autoClose: false,
-            hideProgressBar: true,
             closeOnClick: true,
             theme: "colored",
           });
           emailObject.current.disabled = true;
-          e.target.innerText = "Change Eamil";
+          e.target.innerText = "Change Email";
         });
+    } else {
+      emailObject.current.disabled = true;
+      e.target.innerText = "Change Email";
     }
   };
 
@@ -146,25 +127,18 @@ const UserProfile = () => {
           <div className={`${styles.left} col-span-4 lg:col-span-1`}>
             <div className={`${styles.img}`}>
               <img
-                src={profileImage}
+                src={userImage}
                 alt=""
                 className="w-full h-full object-cover rounded-full"
               />
-              <div className={`${styles.editIcon}`}>
-                <label htmlFor="inputFile">
-                  <CameraAltIcon />
-                  Edit
-                  <input
-                    type="file"
-                    id="inputFile"
-                    onChange={(e) => previewImg(e.target.files)}
-                  />
-                </label>
+              <div
+                className={`${styles.previewIcon}`}
+                onClick={(e) => setProfilePhotoLayout(true)}
+              >
+                <CameraAltIcon />
+                Preview
               </div>
             </div>
-            {confirm && (
-              <button onClick={(e) => uploadhandler()}>Confirm</button>
-            )}
           </div>
           <div
             className={`${styles.right} col-span-4 lg:col-span-3 flex  flex-col gap-4 rounded-md`}
@@ -223,7 +197,7 @@ const UserProfile = () => {
                 </div>
               </div>
               <div className={`${styles.buttons}`}>
-                <button onClick={(e) => enableEmail(e)}>Change Eamil</button>
+                <button onClick={(e) => enableEmail(e)}>Change Email</button>
                 <button onClick={(e) => enablePassword(e)}>
                   Change password
                 </button>
@@ -243,6 +217,13 @@ const UserProfile = () => {
         <DeleteAccount
           setDeleteAccountLayout={setDeleteAccountLayout}
           deleteUserAccount={deleteUserAccount}
+        />
+      )}
+      {profilePhotoLayout && (
+        <ProfilePhotoPreview
+          userImage={userImage}
+          photoURL={photoURL}
+          setProfilePhotoLayout={setProfilePhotoLayout}
         />
       )}
     </div>

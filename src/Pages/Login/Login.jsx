@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // react router
 import { Link, useNavigate } from "react-router-dom";
 // toest
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+//icon
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 // firebase
 import { signIn } from "../../Firebase/Auth";
 import { dowunloadUserImage } from "../../Firebase/Store.js";
@@ -13,6 +16,7 @@ import { setLoginState, setAdminState } from "../../store/AuthSlice.js";
 import {
   setTheEmail,
   setTheUserName,
+  setPhotoURL,
   setUserImage,
 } from "../../store/userSlice.js";
 
@@ -20,7 +24,7 @@ const Login = () => {
   // initialize
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //  check validation states 
+  //  check validation states
   const [emailSub, setEmailSub] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkEmailEnable, setCheckEmailEnable] = useState(false);
@@ -35,7 +39,18 @@ const Login = () => {
       navigate("/");
     }
   }, [login, navigate]);
-
+  /// control eye icon
+  const [showHiddenPassword, setShowHiddenPassword] = useState(false);
+  const [showIcon, setShowIcon] = useState(false);
+  const passwordField = useRef();
+  const showHiddenPasswordHandler = () => {
+    setShowHiddenPassword((prev) => !prev);
+    const type =
+      passwordField.current.getAttribute("type") === "password"
+        ? "text"
+        : "password";
+    passwordField.current.setAttribute("type", type);
+  };
   // on click login
   const formHandler = (e) => {
     e.preventDefault();
@@ -56,10 +71,11 @@ const Login = () => {
         dispatch(setLoginState(true));
         dispatch(setTheEmail(res.user.email));
         dispatch(setTheUserName(res.user.displayName));
-        // get and store personal user img 
+        // get and store personal user img
         const url = res.user.photoURL;
         if (url) {
-          // if user has img ,dowunload it 
+          dispatch(setPhotoURL(url));
+          // if user has img ,dowunload it
           dowunloadUserImage(url).then((img) => {
             dispatch(setUserImage(img));
           });
@@ -156,7 +172,7 @@ const Login = () => {
                           checkEmail || checkEmailEnable || emailSub
                             ? " border-red-700"
                             : "border-gray-300"
-                        } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid     rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+                        } form-control block w-full px-4 py-3 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid     rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
                         placeholder="Email address"
                         required
                         value={email}
@@ -172,18 +188,33 @@ const Login = () => {
                           The Password that you've entered is incorrect.
                         </span>
                       )}
-                      <input
-                        type="password"
-                        className={`${
-                          checkPass ? " border-red-700" : "border-gray-300"
-                        } form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid  rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
-                        placeholder="Password"
-                        required
-                        value={password}
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
-                      />
+                      <div className="relative">
+                        {showIcon ? showHiddenPassword ? (
+                          <VisibilityIcon
+                            className="absolute right-4 top-3 text-lg cursor-pointer"
+                            onClick={(e) => showHiddenPasswordHandler()}
+                          />
+                        ) : (
+                          <VisibilityOffIcon
+                            className="absolute right-4 top-3 text-lg cursor-pointer"
+                            onClick={(e) => showHiddenPasswordHandler()}
+                          />
+                        ):null}
+                        <input
+                          type="password"
+                          ref={passwordField}
+                          className={`${
+                            checkPass ? " border-red-700" : "border-gray-300"
+                          } form-control block w-full px-4 py-3 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid  rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
+                          placeholder="Password"
+                          required
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
+                          onFocus={e=>setShowIcon(true)}
+                        />
+                      </div>
                     </div>
 
                     <div className="flex justify-between items-center mb-6">

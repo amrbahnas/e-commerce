@@ -86,7 +86,8 @@ export const updateUserPassword = (Newpassword) => {
   updatePassword(user, Newpassword)
     .then((res) => {
       toast.success("password Updated successfully ", {
-        autoClose: 5000,
+        autoClose: 3000,
+        hideProgressBar: false,
         hideProgressBar: true,
         closeOnClick: true,
         theme: "colored",
@@ -94,7 +95,7 @@ export const updateUserPassword = (Newpassword) => {
     })
     .catch((err) => {
       toast.error(err.message, {
-        autoClose: 5000,
+        autoClose: false,
         hideProgressBar: true,
         closeOnClick: true,
         theme: "colored",

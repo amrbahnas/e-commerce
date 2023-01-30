@@ -83,7 +83,7 @@ const DeleteAccount = ({ setDeleteAccountLayout, deleteUserAccount }) => {
               type="text"
               name="confirm"
               id="confirm"
-              autofocus
+              autoFocus
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
               className={isNotValid ? "border-red-600" : ""}

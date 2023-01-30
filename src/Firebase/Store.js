@@ -1,6 +1,11 @@
-
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -22,6 +27,7 @@ const storage = getStorage(app);
 // Create a storage reference from our storage service
 
 // 'file' comes from the Blob or File API
+// upload imgs
 export const uploadUserImage = (file, randomString) => {
   const ImgRef = ref(
     storage,
@@ -32,9 +38,20 @@ export const uploadUserImage = (file, randomString) => {
   });
 };
 
-export const dowunloadUserImage = (imageName) => {
-  const result = getDownloadURL(
-    ref(storage, "users-Profiles-Images/" + imageName)
-  );
+// download a Image
+export const dowunloadUserImage = (imageName) => {  
+  const imgRef = ref(storage, "users-Profiles-Images/" + imageName);
+  const result = getDownloadURL(imgRef);
   return result;
 };
+
+
+export const deleteImage = (photoURL) => {
+  if (photoURL) {
+    const desertRef = ref(storage, "users-Profiles-Images/" + photoURL);
+    // Delete the file
+    deleteObject(desertRef);
+  }
+  ;
+};
+
