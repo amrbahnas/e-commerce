@@ -5,7 +5,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ClearIcon from "@mui/icons-material/Clear";
 import { updateUserData } from "../../Firebase/Auth.js";
 
-import { uploadUserImage, deleteImage } from "../../Firebase/Store";
+import {
+  uploadUserImage,
+  deleteImage,
+  dowunloadUserImage,
+} from "../../Firebase/Store";
 // redux
 import { useDispatch } from "react-redux";
 import { setPhotoURL, setUserImage } from "../../store/userSlice";
@@ -65,6 +69,21 @@ const ProfilePhotoPreview = ({
     setConfirm(false);
     setProfilePhotoLayout(false);
   };
+
+  const removeUserPhoto = () => {
+    if (photoURL) {
+      if (window.confirm("Are you sure")) {
+        dowunloadUserImage("default-user-image.png").then((img) => {
+          dispatch(setUserImage(img));
+          deleteImage(photoURL);
+          updateUserData({ photoURL: null });
+          dispatch(setPhotoURL(null));
+          setProfilePhotoLayout(false);
+        });
+      }
+    }
+  };
+
   const closeLayOut = () => {
     setProfilePhotoLayout(false);
     setProfileImage(userImage);
@@ -96,7 +115,10 @@ const ProfilePhotoPreview = ({
               </label>
             </div>
 
-            <div className={`${styles.delete}`}>
+            <div
+              className={`${styles.delete}`}
+              onClick={(e) => removeUserPhoto()}
+            >
               <DeleteIcon />
               Delete
             </div>

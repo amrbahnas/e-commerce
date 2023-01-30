@@ -34,6 +34,9 @@
 .photoPreview .footer .edit label input {
     @apply hidden
 }
+.photoPreview .footer .delete {
+    @apply hover:text-red-600
+}
 
 .photoPreview .footer button{
         @apply bg-green-500 font-semibold w-24 px-2 py-2 rounded-md text-white
