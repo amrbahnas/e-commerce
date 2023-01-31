@@ -1,0 +1,57 @@
+.moreOffers{
+    @apply my-8
+}
+
+.wrapper {
+    @apply grid grid-cols-4 lg:grid-cols-3 gap-6 md:gap-3
+}
+
+.wrapper .title span {
+    @apply font-bold capitalize text-lg
+}
+
+.wrapper .largeBox{
+    @apply bg-white col-span-4  md:col-span-2 lg:col-span-1  rounded-md flex flex-col gap-3 p-2
+}
+
+.wrapper .largeBox .boxs{
+    @apply bg-white grid grid-cols-2 rounded-md gap-3
+}
+
+.wrapper .largeBox .box{
+    @apply  rounded-md  cursor-pointer col-span-1
+}
+
+.wrapper .largeBox .box .img {
+    @apply w-full h-full
+}
+.wrapper .largeBox .box .img img{
+    @apply w-full h-full object-cover
+}
+
+.wrapper .largeBox .box .footer{
+    @apply p-2 h-24
+}
+.wrapper .largeBox .box .footer span:first-child{
+    @apply  text-red-400 font-bold text-sm capitalize block
+}
+.wrapper .largeBox .box .footer span:last-child{
+    @apply  text-xs capitalize font-normal
+}
+
+.wrapper .largeLargeBox{
+    @apply bg-white hidden lg:col-span-1 p-2 lg:flex flex-col  rounded-md gap-3
+}
+
+.wrapper .largeLargeBox .boxs{
+    @apply flex flex-col gap-3
+}
+.wrapper .largeLargeBox .img{
+    @apply flex-1 h-1/2
+}
+.wrapper .largeLargeBox .img img{
+    @apply w-full h-full object-cover
+}
+
+
+

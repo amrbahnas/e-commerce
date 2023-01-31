@@ -5,21 +5,10 @@
 }
 
 .FeaturedProductsTop {
-    display: flex;
-    justify-content: space-between;
-    @apply px-11
 }
-
-.FeaturedProductsTop h2 {
-    flex-basis: 70%;
-    text-transform: capitalize;
-    font-weight: bold;
-    font-size: 25px;
-}
-
 
 .FeaturedProductsBottom {
     /* margin-top: 50px; */
-    @apply md:mt-12
+    @apply md:mt-4
 }
 

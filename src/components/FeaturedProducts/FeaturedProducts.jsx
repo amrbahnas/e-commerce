@@ -27,15 +27,11 @@ const FeaturedProducts = ({ title, type }) => {
   return (
     <div className="FeaturedProducts">
       <div className="theContainer">
-        <div className="sectionWrapper bg-white pt-6  md:py-10 rounded-md">
-          <div className="FeaturedProductsTop flex flex-col md:flex-row">
-            <h2 className=" md:mr-10 w-full ">{title}</h2>
-            <p className="hidden md:block">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Dignissimos delectus perspiciatis numquam earum, ab quisquam,
-              quibusdam temporibus animi harum eaque autem eum voluptate.
-              Obcaecati corporis quisquam ullam ipsam vero aliquid.
-            </p>
+        <div className="sectionWrapper bg-white  rounded-md">
+          <div className="FeaturedProductsTop w-full">
+            <h2 className="p-6 capitalize font-bold text-3xl">
+              {title}
+            </h2>
           </div>
           <div className="FeaturedProductsBottom">
             <CardSlider

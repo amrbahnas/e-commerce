@@ -12,7 +12,7 @@ const Contact = () => {
           <p className="text-white capitalize font-bold text-lg">
             be in toch with us
           </p>
-          <div className="emailBar flex justify-center w-96">
+          <div className="emailBar flex justify-center w-full md:w-96">
             <input
               type="email"
               name="email"

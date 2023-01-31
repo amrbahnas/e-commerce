@@ -55,7 +55,7 @@ const CardSlider = ({
       }}
       // onSwiper={(swiper) => console.log("")}
       // onSlideChange={() => console.log("")}
-      className="swiper-container p-4"
+      className="swiper-container"
     >
       {data?.map((item) => (
         <SwiperSlide key={item.id} className="swiperSlide">

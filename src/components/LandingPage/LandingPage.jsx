@@ -48,18 +48,18 @@ const LandingPage = () => {
                 className=" h-full w-full  object-fill "
               />
             </div>
+            <div className="rounded-md overflow-hidden  hidden md:block flex-1">
+              <img
+                src={"assets/en_dk_eg-top-01.avif"}
+                alt=""
+                className=" h-full w-full object-fill"
+              />
+            </div>
             <div className=" rounded-md overflow-hidden flex-1">
               <img
                 src={"assets/Offer-Discounts.jpg"}
                 alt=""
                 className=" h-full w-full object-fill "
-              />
-            </div>
-            <div className="rounded-md overflow-hidden  hidden md:block flex-1">
-              <img
-                src={"assets/images.png"}
-                alt=""
-                className=" h-full w-full object-fill"
               />
             </div>
           </div>
