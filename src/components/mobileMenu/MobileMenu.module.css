@@ -48,7 +48,7 @@
     @apply hover:translate-x-1 transition-all duration-200 hover:font-semibold cursor-pointer
 }
 
-.menuWrapper ul li a{
+.menuWrapper ul li a ,.menuWrapper ul li span,.menuWrapper ul li span a{
     @apply flex-1
 }
 

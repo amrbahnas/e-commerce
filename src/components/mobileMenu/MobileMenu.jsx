@@ -80,9 +80,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
                   {optionsControl ? <ExpandMoreIcon /> : <ChevronRightIcon />}
                 </span>
               ) : (
-                <span className=" cursor-pointer">
-                  <Link to="/login">Login</Link>
-                </span>
+                <Link to="/login">Login</Link>
               )}
             </li>
             {login && optionsControl ? (

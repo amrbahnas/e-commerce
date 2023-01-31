@@ -74,7 +74,7 @@ const DeleteAccount = ({ setDeleteAccountLayout, deleteUserAccount }) => {
             </span>
           </div>
           <div className={`${styles.input}`}>
-            <label htmlFor="NewPassword">
+            <label htmlFor="confirm">
               To verify, types
               <strong> delete my Account </strong>
               below:

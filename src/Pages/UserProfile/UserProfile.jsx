@@ -17,6 +17,7 @@ import {
 import ChangePassword from "../../components/ChangePassword/ChangePassword";
 import DeleteAccount from "../../components/DeleteAccount/DeleteAccount";
 import ProfilePhotoPreview from "../../components/ProfilePhotoPreview/ProfilePhotoPreview";
+import ConfirmPassword from "../../components/ConfirmPassword/ConfirmPassword";
 
 /**************************start************** */
 const UserProfile = () => {
@@ -30,6 +31,8 @@ const UserProfile = () => {
   const [lastName, setLastName] = useState(userName?.split(" ")[1]);
   const [userEmail, setUserEmail] = useState(email);
   const [profilePhotoLayout, setProfilePhotoLayout] = useState(false);
+  const [changeEmailState, setChangeEmailState] = useState(false);
+  const [confirmPasswordLayout, setConfirmPasswordLayout] = useState(false);
   const [changePasswordLayout, setChangePasswordLayout] = useState(false);
   const [deleteAccountLayout, setDeleteAccountLayout] = useState(false);
   const firstNameObject = useRef();
@@ -83,10 +86,8 @@ const UserProfile = () => {
   };
 
   const enableEmail = (e) => {
-    if (e.target.innerText === "Change Email") {
-      emailObject.current.disabled = false;
-      emailObject.current.focus();
-      e.target.innerText = "Save New Email";
+    if (!changeEmailState) {
+      setConfirmPasswordLayout(true);
     } else if (email !== userEmail) {
       updateUserEmail(userEmail)
         .then((res) => {
@@ -101,19 +102,21 @@ const UserProfile = () => {
           });
         })
         .catch((err) => {
-          setUserEmail(email);
-          toast.error(" You Login For Along Time, Please Re-Login Again", {
+          toast.error("Invalid Email", {
             autoClose: false,
             closeOnClick: true,
             theme: "colored",
           });
-          emailObject.current.disabled = true;
-          e.target.innerText = "Change Email";
         });
     } else {
-      emailObject.current.disabled = true;
-      e.target.innerText = "Change Email";
+      setChangeEmailState(false);
     }
+  };
+
+  const canselChangeEmail = () => {
+    setUserEmail(email);
+
+    setChangeEmailState(false);
   };
 
   const deleteUserHandler = (e) => {
@@ -183,7 +186,7 @@ const UserProfile = () => {
                     ref={emailObject}
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
-                    disabled
+                    disabled={!changeEmailState}
                   />
                 </div>
                 <div className={`${styles.input}`}>
@@ -197,7 +200,12 @@ const UserProfile = () => {
                 </div>
               </div>
               <div className={`${styles.buttons}`}>
-                <button onClick={(e) => enableEmail(e)}>Change Email</button>
+                <button onClick={(e) => enableEmail(e)}>
+                  {changeEmailState ? "Save Email" : "Change Email"}
+                </button>
+                {changeEmailState && (
+                  <button onClick={(e) => canselChangeEmail(e)}>Cancel</button>
+                )}
                 <button onClick={(e) => enablePassword(e)}>
                   Change password
                 </button>
@@ -211,6 +219,7 @@ const UserProfile = () => {
         <ChangePassword
           setChangePasswordLayout={setChangePasswordLayout}
           updateUserPassword={updateUserPassword}
+          email={email}
         />
       )}
       {deleteAccountLayout && (
@@ -224,6 +233,13 @@ const UserProfile = () => {
           userImage={userImage}
           photoURL={photoURL}
           setProfilePhotoLayout={setProfilePhotoLayout}
+        />
+      )}
+      {confirmPasswordLayout && (
+        <ConfirmPassword
+          setConfirmPasswordLayout={setConfirmPasswordLayout}
+          setChangeEmailState={setChangeEmailState}
+          email={email}
         />
       )}
     </div>
