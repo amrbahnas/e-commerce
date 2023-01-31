@@ -4,9 +4,12 @@ import styles from "./LandingPage.module.css";
 import LandingSlider from "./../LandingSlider/LandingSlider";
 const LandingPage = () => {
   const images = [
+    "assets/landing/landing3.webp",
+    "assets/landing/landing2.webp",
+    "assets/3.jpg",
+    "assets/landing/landing1.webp",
     "assets/1.jpg",
     "assets/2f2439c4-fd71-44d3-b302-94216df147b0.jpg",
-    "assets/3.jpg",
   ];
   return (
     <div className={`${styles.LandingPage}  mt-24 `}>

@@ -41,7 +41,7 @@
 }
 
 .products-left .left-setion .item {
-    @apply flex gap-1 items-center justify-start
+    @apply flex gap-1 items-center justify-start cursor-pointer
 }
 
 

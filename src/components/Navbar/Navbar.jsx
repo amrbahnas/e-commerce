@@ -23,11 +23,11 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { login, admin } = useSelector((store) => store.AuthSlice);
   const { data } = useSelector((store) => store.cartSlice);
-  const { userName,userImage } = useSelector((store) => store.userSlice);
+  const { userName, userImage } = useSelector((store) => store.userSlice);
   const [loginMenuControl, setLoginMenuControl] = useState(false);
   const [controlMobileMenu, setcontrolMobileMenu] = useState(false);
   // logout function
-   const logOutHandler = () => {
+  const logOutHandler = () => {
     dispatch(setLoginState(false));
     dispatch(setAdminState(false));
     logOut();
@@ -70,7 +70,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink to="/products/children" className="NavLink">
-                  Children
+                  children
                 </NavLink>
               </li>
               <li>
@@ -100,14 +100,18 @@ const Navbar = () => {
                       ? setLoginMenuControl(!loginMenuControl)
                       : navigate("/login")
                   }
-                >{
-                  login?
-                  <div className=" w-8 h-8 rounded-full overflow-hidden mr-1">
-                  <img src={userImage} alt="" className=" w-full h-full object-cover" />
-                  </div>
-                  :
-                  <PersonOutlineOutlinedIcon />
-                }
+                >
+                  {login ? (
+                    <div className=" w-8 h-8 rounded-full overflow-hidden mr-1">
+                      <img
+                        src={userImage}
+                        alt=""
+                        className=" w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <PersonOutlineOutlinedIcon />
+                  )}
                   {login && admin
                     ? userName + " (Admin)"
                     : login
@@ -117,9 +121,7 @@ const Navbar = () => {
                 {loginMenuControl && (
                   <div className="loginMenu absolute rounded-md w-fit p-4 top-10 -left-4  border flex flex-col items-center justify-center gap-4 shadow-md bg-white">
                     <div className=" bg-orange-400 text-white hover:scale-105 hover:shadow-md Register capitalize cursor-pointer border p-2  rounded-md w-full text-center">
-                      <Link to="/profile">
-                        Profile
-                      </Link>
+                      <Link to="/profile">Profile</Link>
                     </div>
                     <div className="login capitalize  hover:scale-105 cursor-pointer border p-2 bg-white rounded-md w-full text-center">
                       <span onClick={(e) => logOutHandler()}>logOut</span>

@@ -12,7 +12,7 @@ function LandingSlider({ images }) {
   return (
     <Swiper
       modules={[Pagination, Autoplay]}
-      pagination={{clickable: true}}
+      pagination={{ clickable: true }}
       autoplay={true}
       spaceBetween={20}
       slidesPerView={1}

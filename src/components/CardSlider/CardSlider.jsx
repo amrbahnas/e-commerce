@@ -24,8 +24,8 @@ const CardSlider = ({
   autoplayIs,
   spaceBetweenIs,
   slidesPerViewIs,
-}) => {   
-    const {  admin } = useSelector((store) => store.AuthSlice);
+}) => {
+  const { admin } = useSelector((store) => store.AuthSlice);
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y, Scrollbar, Autoplay]}

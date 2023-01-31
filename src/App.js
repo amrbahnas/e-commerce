@@ -17,10 +17,10 @@ import Cart from "./Pages/Cart/Cart";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddUpdateProduct from "./components/AddUpdateProduct/AddUpdateProduct";
 import Myproducts from "./components/Myproducts/Myproducts";
-import Login from './Pages/Login/Login';
-import Register from './Pages/Register/Register';
+import Login from "./Pages/Login/Login";
+import Register from "./Pages/Register/Register";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
-import UserProfile from './Pages/UserProfile/UserProfile';
+import UserProfile from "./Pages/UserProfile/UserProfile";
 
 /////////////Home page///////////////////
 const Layout = () => {
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <UserProfile/>,
+        element: <UserProfile />,
       },
     ],
   },

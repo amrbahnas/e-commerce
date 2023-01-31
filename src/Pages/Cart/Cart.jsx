@@ -44,7 +44,7 @@ const Cart = () => {
             className={`${styles.body} flex flex-wrap gap-2 md:p-4  border-b-4 border-img`}
           >
             <div
-              className={`${styles.left} flex-1 md:p-2 flex flex-col justify-center gap-3   overflow-y-scroll`}
+              className={`${styles.left} flex-1 md:p-2 flex flex-col  gap-3   overflow-y-scroll`}
             >
               {data.length === 0 ? (
                 <div className=" text-center">Empty</div>
@@ -70,7 +70,7 @@ const Cart = () => {
                         </span>
                       </div>
                       <div
-                        className="delete basis-1/6 text-red-600 text-center cursor-pointer"
+                        className="delete basis-1/6 text-red-600 text-center cursor-pointer hover:scale-105"
                         onClick={(e) => deleteHandler(item.id, item.price)}
                       >
                         <DeleteOutlineIcon />
@@ -90,7 +90,7 @@ const Cart = () => {
                     type="text"
                     name="promoCode"
                     placeholder="promo code"
-                    className="flex-1 border-2 border-img p-2 rounded-md"
+                    className="flex-1 border-2 border-img p-2 rounded-md focus:outline-none"
                   />
                   <button className=" w-24 bg-black text-white p-2 rounded-md">
                     submit

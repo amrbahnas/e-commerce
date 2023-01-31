@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 //fire base
 import { category } from "../../Firebase/index";
 import { onSnapshot, query, where } from "firebase/firestore";
+import { dowunloadCategoryImage } from "../../Firebase/Store";
 /// end firebase
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloseIcon from "@mui/icons-material/Close";
@@ -15,6 +16,7 @@ const Products = () => {
   const [sort, setSort] = useState("");
   const [selectedSubCat, setSelectedSubCat] = useState([]);
   const [data, setData] = useState([]);
+  const [categoryCover, setCategoryCover] = useState([]);
 
   useEffect(() => {
     const q = query(category, where("title", "==", id));
@@ -22,6 +24,9 @@ const Products = () => {
       snapshot.docs.forEach((doc) => {
         setData(doc.data());
       });
+    });
+    dowunloadCategoryImage(id).then((img) => {
+      setCategoryCover(img);
     });
   }, [id]);
 
@@ -158,13 +163,13 @@ const Products = () => {
               className="products-left-control2"
               onClick={productsLeftControl}
             >
-            close
+              close
               <CloseIcon />
             </div>
           </div>
           <div className="products-right">
             <img
-              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              src={categoryCover}
               alt=""
               className=" hidden md:block w-full h-64 object-cover shadow-lg mb-14"
             />

@@ -5,12 +5,13 @@ import { addProduct } from "../../store/cartSlice";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
+import CheckIcon from "@mui/icons-material/Check";
 import Loading from "../../components/Loading/Loading";
 //fire base
 import { db } from "../../Firebase/index";
 import { onSnapshot, doc } from "firebase/firestore";
 /// end firebase
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Product = () => {
   const [item, setItem] = useState({});
   const [itemCount, setItemCount] = useState(1);
   const [mainImage, setMainImg] = useState("img");
+  const [added, setAdded] = useState(false);
 
   useEffect(() => {
     const docRef = doc(db, "products", id);
@@ -26,18 +28,12 @@ const Product = () => {
     });
   }, []);
 
-  const addToCart = () => {
+  const addToCart = (e) => {
     dispatch(addProduct({ ...item, itemCount }));
-    toast.success(`Item Added`, {
-      position: "top-right",
-      autoClose: 1200,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+    setAdded(true);
+    setTimeout(() => {
+      setAdded(false);
+    }, 4000);
   };
 
   return (
@@ -98,16 +94,24 @@ const Product = () => {
               </button>
             </div>
             <button
-              className="px-20 py-2 bg-sky-500 text-white my-3"
-              onClick={addToCart}
+              className={` px-20 py-2 ${added?" bg-green-600" :"bg-sky-500"} text-white my-3 hover:scale-105 rounded-md flex items-center`}
+              onClick={(e) => addToCart(e)}
             >
-              <AddShoppingCartOutlinedIcon /> Add to cart
+              {added ? (
+                <>
+                  <CheckIcon /> {itemCount} Items Added
+                </>
+              ) : (
+                <>
+                  <AddShoppingCartOutlinedIcon /> Add to cart
+                </>
+              )}
             </button>
             <div className="addOptions flex gap-3 text-sky-500">
-              <div className="optionOne">
+              <div className="optionOne cursor-pointer">
                 <FavoriteBorderOutlinedIcon /> Add to wish list
               </div>
-              <div className="optionTwo">
+              <div className="optionTwo cursor-pointer">
                 <BalanceOutlinedIcon /> Add to compare
               </div>
             </div>

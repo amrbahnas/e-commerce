@@ -44,6 +44,12 @@ export const dowunloadUserImage = (imageName) => {
   const result = getDownloadURL(imgRef);
   return result;
 };
+// download a Image
+export const dowunloadCategoryImage = (categoryName) => {  
+  const imgRef = ref(storage, `${categoryName}-products-images/main.avif`);
+  const result = getDownloadURL(imgRef);
+  return result;
+};
 
 
 export const deleteImage = (photoURL) => {

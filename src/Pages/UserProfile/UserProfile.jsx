@@ -226,6 +226,7 @@ const UserProfile = () => {
         <DeleteAccount
           setDeleteAccountLayout={setDeleteAccountLayout}
           deleteUserAccount={deleteUserAccount}
+          email={email}
         />
       )}
       {profilePhotoLayout && (

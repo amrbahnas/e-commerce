@@ -10,7 +10,7 @@ const Categories = () => {
           alt=""
         />
         <button>
-          <Link to="/products/Children">Children</Link>
+          <Link to="/products/children">children</Link>
         </button>
       </div>
 

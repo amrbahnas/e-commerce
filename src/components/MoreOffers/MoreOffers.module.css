@@ -19,7 +19,7 @@
 }
 
 .wrapper .largeBox .box{
-    @apply  rounded-md  cursor-pointer col-span-1
+    @apply  rounded-md  cursor-pointer col-span-1 hover:scale-105
 }
 
 .wrapper .largeBox .box .img {
@@ -44,10 +44,10 @@
 }
 
 .wrapper .largeLargeBox .boxs{
-    @apply flex flex-col gap-3
+    @apply flex flex-col gap-3 cursor-pointer
 }
 .wrapper .largeLargeBox .img{
-    @apply flex-1 h-1/2
+    @apply flex-1 h-1/2 hover:scale-105
 }
 .wrapper .largeLargeBox .img img{
     @apply w-full h-full object-cover

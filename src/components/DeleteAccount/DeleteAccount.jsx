@@ -6,39 +6,53 @@ import styles from "./DeleteAccount.module.css";
 import { useDispatch } from "react-redux";
 import { setLoginState } from "../../store/AuthSlice";
 //firebase
-import { logOut } from "../../Firebase/Auth";
+import { signIn, logOut } from "../../Firebase/Auth";
 
-const DeleteAccount = ({ setDeleteAccountLayout, deleteUserAccount }) => {
+const DeleteAccount = ({
+  setDeleteAccountLayout,
+  deleteUserAccount,
+  email,
+}) => {
   const dispatch = useDispatch();
+  const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [ispasswordNotCorrect, setIspasswordNotCorrect] = useState(false);
   const [isNotValid, setIsNotValid] = useState(false);
 
   const deleteHandler = () => {
-    if (confirm === "delete my Account") {
-      deleteUserAccount()
-        .then((res) => {
-          dispatch(setLoginState(false));
-          logOut();
-          setDeleteAccountLayout(false);
-          // navigate("/", { replace: true });
-          toast.info("Account has been Deleted", {
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            theme: "colored",
-          });
-        })
-        .catch((err) => {
-          toast.error(" You Login For Along Time, Please Re-Login Again", {
-            autoClose: false,
-            hideProgressBar: true,
-            closeOnClick: true,
-            theme: "colored",
-          });
-        });
-    } else {
-      setIsNotValid(true);
-    }
+    signIn(email, password)
+      .then((res) => {
+        if (confirm === "delete my Account") {
+          deleteUserAccount()
+            .then((res) => {
+              dispatch(setLoginState(false));
+              logOut();
+              setDeleteAccountLayout(false);
+              // navigate("/", { replace: true });
+              toast.info("Account has been Deleted", {
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                theme: "colored",
+              });
+            })
+            .catch((err) => {
+              toast.error("Please Try Again", {
+                autoClose: false,
+                hideProgressBar: true,
+                closeOnClick: true,
+                theme: "colored",
+              });
+            });
+        } else {
+          setIsNotValid(true);
+        setIspasswordNotCorrect(false);
+
+        }
+      })
+      .catch((err) => {
+        setIspasswordNotCorrect(true);
+      });
   };
 
   const layout = useRef();
@@ -74,21 +88,33 @@ const DeleteAccount = ({ setDeleteAccountLayout, deleteUserAccount }) => {
             </span>
           </div>
           <div className={`${styles.input}`}>
+            <label htmlFor="Password">Account Password</label>
+            {ispasswordNotCorrect && <span>Wrong password</span>}
+            <input
+              type="password"
+              name="Password"
+              id="Password"
+              autoFoc
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={ispasswordNotCorrect ? "border-red-600" : ""}
+            />
+          </div>
+          <div className={`${styles.input}`}>
             <label htmlFor="confirm">
               To verify, types
               <strong> delete my Account </strong>
               below:
             </label>
+            {isNotValid && <span>Please match the requested Format</span>}
             <input
               type="text"
               name="confirm"
               id="confirm"
-              autoFocus
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
               className={isNotValid ? "border-red-600" : ""}
             />
-            {isNotValid && <span>Please match the requested Format</span>}
           </div>
           <button onClick={(e) => deleteHandler()}>Delete Account</button>
         </div>

@@ -138,7 +138,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
             </li>
             <li>
               <Link to="/products/children" className="link">
-                Children
+                children
               </Link>
             </li>
             <li>
