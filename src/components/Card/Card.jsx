@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../store/cartSlice";
@@ -6,12 +6,27 @@ import StarIcon from "@mui/icons-material/Star";
 import { motion } from "framer-motion";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import EditIcon from "@mui/icons-material/Edit";
+//firebase
+import { dowunloadImage } from "../../Firebase/Store";
 import "./Card.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Card = ({ item }) => {
   const dispatch = useDispatch();
   const { admin } = useSelector((store) => store.AuthSlice);
+  const [img1, setImg1] = useState(null);
+  const [img2, setImg2] = useState(null);
+
+  useEffect(() => {
+    const path ="products-images/";
+    dowunloadImage(path + item.img).then((img) => {
+      setImg1(img);
+    });
+    dowunloadImage(path + item.img2).then((img) => {
+      setImg2(img);
+    });
+  }, []);
+
   const addToCart = () => {
     dispatch(addProduct({ ...item, itemCount: 1 }));
     toast.success("Item Added", {
@@ -32,11 +47,11 @@ const Card = ({ item }) => {
       <Link to={"/product/" + item.id}>
         <div className="image overflow-hidden">
           <img
-            src={item?.img}
+            src={img1}
             alt=""
             className=" transition-all duration-400 hover:scale-110"
           />
-          {/*<img src={item?.img2} alt="" className="hover:scale-105" />*/}
+          {/*<img src={img2} alt="" className="hover:scale-105" />*/}
         </div>
       </Link>
       <div className="cardFooter">

@@ -32,10 +32,12 @@
 
  .row .col {
      flex: 1;
+     min-width: 200px;
  }
 
  .col {
      display: flex;
+     flex-wrap: wrap;
      flex-direction: column;
  }
 
@@ -48,8 +50,30 @@
      border: 1px solid #494969;
      background-color: transparent;
      color: rgba(255, 255, 255, 0.642);
-     @apply rounded bg-transparent
+     @apply rounded bg-transparent focus:outline-none
  }
+ input[type="number"]{
+    @apply -mt-4 focus:outline-none
+ }
+
+.imageLabel{
+    background-color: #181826;
+    @apply flex justify-center items-center overflow-hidden h-44 rounded-md cursor-pointer text-addPhotoText relative border border-addProductInputBorder
+}
+
+.imageLabel div {
+    @apply  absolute flex  flex-col justify-center items-center text-center  w-full h-full
+}
+.imageLabel div span {
+    @apply w-3/4
+}
+.imageLabel img {
+    @apply    object-cover w-fit h-fit
+}
+.imageLabel input {
+    @apply hidden
+}
+
 
  .inputText:-webkit-autofill,
  .inputText:-webkit-autofill:hover,
@@ -71,7 +95,7 @@
      padding: 10px 15px;
      border: 1px solid #494969;
      color: rgba(255, 255, 255, 0.642);
-     @apply bg-transparent rounded resize-none h-24
+     @apply bg-transparent rounded resize-none h-24 focus:outline-none
  }
 
  .select {
@@ -79,7 +103,7 @@
      padding: 10px 15px;
      color: rgba(255, 255, 255, 0.642);
      border: 1px solid #494969;
-     @apply rounded
+     @apply rounded focus:outline-none
  }
 
  .select * {

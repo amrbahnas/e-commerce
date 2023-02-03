@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 //fire base
 import { category } from "../../Firebase/index";
 import { onSnapshot, query, where } from "firebase/firestore";
-import { dowunloadCategoryImage } from "../../Firebase/Store";
+import { dowunloadImage } from "../../Firebase/Store";
 /// end firebase
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloseIcon from "@mui/icons-material/Close";
@@ -25,7 +25,7 @@ const Products = () => {
         setData(doc.data());
       });
     });
-    dowunloadCategoryImage(id).then((img) => {
+    dowunloadImage("products-images/"+id+".avif").then((img) => {
       setCategoryCover(img);
     });
   }, [id]);

@@ -20,19 +20,48 @@ const Home = () => {
     "assets/landing/4.avif",
     "assets/landing/5.gif"
 ];
+const categoriesSliderImages = [
+  "assets/landingCategories/1.avif",
+  "assets/landingCategories/2.avif",
+  "assets/landingCategories/3.avif",
+  "assets/landingCategories/4.avif",
+  "assets/landingCategories/5.avif",
+  "assets/landingCategories/6.avif",
+  "assets/landingCategories/7.avif",
+  "assets/landingCategories/8.avif",
+  "assets/landingCategories/9.avif",
+  "assets/landingCategories/10.avif",
+];
   return (
     <div className="home ">
       <LandingPage />
-      <FeaturedProducts title="featured products" type="featured" />
+      <div className="theContainer my-8">
+        <LandingSlider
+          images={categoriesSliderImages}
+          SPV1={4}
+          SPV2={6}
+          SPV3={8}
+          SPV4={10}
+          autoplay={false}
+        />
+      </div>
+      <FeaturedProducts title="trending products" type="trending" />
       <Offers images={imgsOfferThree} />
       <Categories Categories />
       <MoreOffers />
       <Offers images={imgsOfferFour} />
-      <FeaturedProducts title="trending products" type="trending" />
+      <FeaturedProducts title="featured products" type="featured" />
       <div className="theContainer my-8">
-      <LandingSlider images={imgsOfferSclider} />
+        <LandingSlider
+          images={imgsOfferSclider}
+          SPV1={1}
+          SPV2={1}
+          SPV3={1}
+          SPV4={1}
+          autoplay={true}
+        />
       </div>
-      <FeaturedProducts title="popular products" type="normal" />
+      <FeaturedProducts title="popular products" type="popular" />
       <Offers images={imgsOfferTwo} title={"smart watches deals"} />
       <Contact />
     </div>

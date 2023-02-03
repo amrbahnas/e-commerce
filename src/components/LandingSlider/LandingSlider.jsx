@@ -8,14 +8,32 @@ import "swiper/css";
 import "swiper/css/pagination";
 // import styles from "./LandingSlider.module.css";
 
-function LandingSlider({ images }) {
+function LandingSlider({ images, slidesPerView, autoplay,SPV1,SPV2,SPV3,SPV4 }) {
   return (
     <Swiper
       modules={[Pagination, Autoplay]}
       pagination={{ clickable: true }}
-      autoplay={true}
+      autoplay={autoplay}
       spaceBetween={20}
-      slidesPerView={1}
+      // slidesPerView={slidesPerView}
+      breakpoints={{
+        340: {
+          slidesPerView: SPV1,
+          spaceBetween: 20,
+        },
+        640: {
+          slidesPerView: SPV2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: SPV3,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: SPV4,
+          spaceBetween: 20,
+        },
+      }}
       // onSwiper={(swiper) => console.log("")}
       // onSlideChange={() => console.log("")}
       className="h-full"

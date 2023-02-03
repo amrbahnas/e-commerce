@@ -16,11 +16,12 @@ const FeaturedProducts = ({ title, type }) => {
       where("type", "==", type),
       orderBy("price", "asc")
     );
-    setData([]);
+    const fetchedData=[]
     onSnapshot(q, (snapshot) => {
       snapshot.docs.forEach((doc) => {
-        setData((prev) => [...prev, { ...doc.data(), id: doc.id }]);
+        fetchedData.push({ ...doc.data(), id: doc.id });
       });
+      setData(fetchedData);
     });
   }, [type]);
 

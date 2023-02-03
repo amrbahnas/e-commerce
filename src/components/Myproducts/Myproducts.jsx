@@ -1,31 +1,36 @@
 import { useEffect, useState } from "react";
 import { products, deleteProduct } from "../../Firebase/index";
-import { onSnapshot, query, orderBy, where } from "firebase/firestore";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import EditIcon from "@mui/icons-material/Edit";
+import { onSnapshot, query, orderBy } from "firebase/firestore";
+import { deleteImage } from "../../Firebase/Store";
+
 
 import styles from "./Myproducts.module.css";
-import { Link } from "react-router-dom";
+
+import SingleProduct from "./SingleProduct";
 const Myproducts = () => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
-    // const q = query(products, orderBy("createdAt"));
-    const q = query(products);
-    setData([]);
+    const q = query(products, orderBy("createdAt", "desc"));
+    // const q = query(products);
     onSnapshot(q, (snapshot) => {
+      const fetchedData=[]
       snapshot.docs.forEach((doc) => {
-        setData((prev) => [...prev, { ...doc.data(), id: doc.id }]);
+        fetchedData.push({ ...doc.data(), id: doc.id });
       });
+      setData(fetchedData);
     });
   }, []);
 
-  const deleteHandler = (id) => {
-    const res = window.confirm("Are you sure you want to delete");
-    if (res) {
-      setData((prev) => prev.filter((doc) => doc.id !== id));
-      deleteProduct(id);
-    }
-  };
+    const deleteHandler = ({ id, category, img, img2 }) => {
+      const res = window.confirm("Are you sure you want to delete");
+      if (res) {
+        setData((prev) => prev.filter((doc) => doc.id !== id));
+        deleteProduct(id);
+        deleteImage("products-images/"+img);
+        deleteImage("products-images/" + img2);
+      }
+    };
 
   return (
     <div className={styles.Myproducts}>
@@ -34,35 +39,7 @@ const Myproducts = () => {
         <div className=" text-center capitalize">no Products found</div>
       ) : (
         data?.map((item) => {
-          return (
-            <div
-              className="item w-full flex items-start justify-center gap-4  p-2 hover:shadow-lg "
-              key={item.id}
-            >
-              <img src={item.img} alt="" className=" w-6 basis-1/6 bg-white" />
-              <div className="info flex-1">
-                <Link to={"/product/" + item.id} target="_blank">
-                  <h3 className="mb-3 capitalize underline decoration-1 underline-offset-4 cursor-pointer hover:text-buttonBg">
-                    {item.title}
-                  </h3>
-                </Link>
-
-                <p className="text-gray-500">{item.des?.substring(0, 50)}</p>
-                <span className="price text-sky-700 text-md">
-                  ${item.price}
-                </span>
-              </div>
-              <div className="delete basis-1/6 text-center flex gap-4 mg:gap-10 self-center">
-                <Link to={"edditproduct/" + item.id}>
-                  <EditIcon className="text-white cursor-pointer hover:scale-105" />
-                </Link>
-                <DeleteOutlineIcon
-                  className="text-red-600 cursor-pointer hover:scale-105 "
-                  onClick={(e) => deleteHandler(item.id)}
-                />
-              </div>
-            </div>
-          );
+          return <SingleProduct key={item.id} item={item} deleteHandler={deleteHandler} />;
         })
       )}
     </div>

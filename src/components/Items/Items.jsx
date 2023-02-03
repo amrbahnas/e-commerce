@@ -16,7 +16,7 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
         products,
         where("category", "==", catId),
         where("price", "<=", +priceRange),
-        where("sub_category", "in", subCat),
+        where("sub_category", "in", subCat),  
         orderBy("price", sort)
       );
     } else if (sort) {
@@ -40,13 +40,15 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
         where("price", "<=", +priceRange)
       );
     }
-
-    setPosts([]);
+    const fetchedData =[]
     onSnapshot(q, (snapshot) => {
       snapshot.docs.forEach((doc) => {
-        setPosts((prev) => [...prev, { ...doc.data(), id: doc.id }]);
+        fetchedData.push({ ...doc.data(), id: doc.id });;
       });
+      setPosts(fetchedData);
     });
+
+    setCurrentPage(1);
   }, [subCat, sort, catId, priceRange]);
 
   const [currentPage, setCurrentPage] = useState(1);

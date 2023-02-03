@@ -18,7 +18,13 @@ const LandingPage = () => {
           className={`${styles.wrapper} h-full grid grid-cols-3 grid-rows-3 gap-2`}
         >
           <div className=" col-start-1 col-span-3 md:col-span-2 row-start-1 row-span-2 rounded-md overflow-hidden ">
-            <LandingSlider images={images} />
+            <LandingSlider
+              images={images}
+              SPV1={1}
+              SPV2={1}
+              SPV3={1}
+              SPV4={1}
+            />
           </div>
           <div className="  col-end-4 col-span-1 row-start-1 row-span-1 hidden md:flex gap-2 ">
             <div className=" rounded-md overflow-hidden ">

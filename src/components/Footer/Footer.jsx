@@ -3,14 +3,14 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <div className="footer" id="footer">
-    <div className="theContainer">
+      <div className="theContainer">
         <div className="top">
           <div className="box">
             <h2 className="title">categories</h2>
             <ul>
-              <li>woman</li>
+              <li>electronics</li>
               <li>men</li>
-              <li>shoes</li>
+              <li>sports</li>
               <li>accessories</li>
               <li>new arrivals</li>
             </ul>
@@ -36,9 +36,8 @@ const Footer = () => {
             <h2 className="title">contact</h2>
             <span>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Doloremque ipsa, ex pariatur,
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Doloremque ipsa, ex pariatur,
+              Doloremque ipsa, ex pariatur, Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Doloremque ipsa, ex pariatur,
             </span>
           </div>
         </div>

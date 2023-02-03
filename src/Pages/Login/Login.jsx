@@ -9,7 +9,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 // firebase
 import { signIn } from "../../Firebase/Auth";
-import { dowunloadUserImage } from "../../Firebase/Store.js";
+import { dowunloadImage } from "../../Firebase/Store.js";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginState, setAdminState } from "../../store/AuthSlice.js";
@@ -76,14 +76,16 @@ const Login = () => {
         if (url) {
           dispatch(setPhotoURL(url));
           // if user has img ,dowunload it
-          dowunloadUserImage(url).then((img) => {
+          dowunloadImage("users-profiles-images/"+url).then((img) => {
             dispatch(setUserImage(img));
           });
         } else {
           // if user hasn`t img ,dowunload defualt img
-          dowunloadUserImage("default-user-image.png").then((img) => {
-            dispatch(setUserImage(img));
-          });
+          dowunloadImage("users-profiles-images/default-user-image.png").then(
+            (img) => {
+              dispatch(setUserImage(img));
+            }
+          );
         }
         //reset check validation values
         setCheckEmail(false);
@@ -189,17 +191,19 @@ const Login = () => {
                         </span>
                       )}
                       <div className="relative">
-                        {showIcon ? showHiddenPassword ? (
-                          <VisibilityIcon
-                            className="absolute right-4 top-3 text-lg cursor-pointer"
-                            onClick={(e) => showHiddenPasswordHandler()}
-                          />
-                        ) : (
-                          <VisibilityOffIcon
-                            className="absolute right-4 top-3 text-lg cursor-pointer"
-                            onClick={(e) => showHiddenPasswordHandler()}
-                          />
-                        ):null}
+                        {showIcon ? (
+                          showHiddenPassword ? (
+                            <VisibilityIcon
+                              className="absolute right-4 top-3 text-lg cursor-pointer"
+                              onClick={(e) => showHiddenPasswordHandler()}
+                            />
+                          ) : (
+                            <VisibilityOffIcon
+                              className="absolute right-4 top-3 text-lg cursor-pointer"
+                              onClick={(e) => showHiddenPasswordHandler()}
+                            />
+                          )
+                        ) : null}
                         <input
                           type="password"
                           ref={passwordField}
@@ -212,7 +216,7 @@ const Login = () => {
                           onChange={(e) => {
                             setPassword(e.target.value);
                           }}
-                          onFocus={e=>setShowIcon(true)}
+                          onFocus={(e) => setShowIcon(true)}
                         />
                       </div>
                     </div>

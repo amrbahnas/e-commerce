@@ -8,6 +8,7 @@ import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
 import CheckIcon from "@mui/icons-material/Check";
 import Loading from "../../components/Loading/Loading";
 //fire base
+import {  dowunloadImage } from "../../Firebase/Store";
 import { db } from "../../Firebase/index";
 import { onSnapshot, doc } from "firebase/firestore";
 /// end firebase
@@ -18,13 +19,25 @@ const Product = () => {
   const id = useParams().id;
   const [item, setItem] = useState({});
   const [itemCount, setItemCount] = useState(1);
-  const [mainImage, setMainImg] = useState("img");
   const [added, setAdded] = useState(false);
+  const [img1, setImg1] = useState(null);
+  const [img2, setImg2] = useState(null);
+  const [mainImage, setMainImg] = useState(null);
 
   useEffect(() => {
     const docRef = doc(db, "products", id);
+    const data = [];
     onSnapshot(docRef, (doc) => {
-      setItem({ ...doc.data(), id: doc.id });
+      data.push({ ...doc.data(), id: doc.id });
+      setItem(data[0]);
+      const path ="products-images/";
+      dowunloadImage(path + data[0].img).then((img) => {
+        setImg1(img);
+        setMainImg(img);
+      });
+      dowunloadImage(path + data[0].img2).then((img) => {
+        setImg2(img);
+      });
     });
   }, []);
 
@@ -43,21 +56,21 @@ const Product = () => {
           <div className="product-left flex-1 flex">
             <div className="imgList basis-1/4 px-4 flex flex-col gap-4 cursor-pointer">
               <img
-                src={item?.img}
+                src={img1}
                 alt=""
                 className="bg-img rounded"
-                onClick={() => setMainImg("img")}
+                onClick={() => setMainImg(img1)}
               />
               <img
-                src={item?.img2}
+                src={img2}
                 alt=""
                 className="bg-img rounded"
-                onClick={() => setMainImg("img2")}
+                onClick={() => setMainImg(img2)}
               />
             </div>
             <div className="mainImg basis-3/4 h-3/4 bg-img rounded">
               <img
-                src={item?.[mainImage]}
+                src={mainImage}
                 alt=""
                 className="h-full object-cover w-full"
               />
@@ -94,7 +107,9 @@ const Product = () => {
               </button>
             </div>
             <button
-              className={` px-20 py-2 ${added?" bg-green-600" :"bg-sky-500"} text-white my-3 hover:scale-105 rounded-md flex items-center`}
+              className={` px-20 py-2 ${
+                added ? " bg-green-600" : "bg-sky-500"
+              } text-white my-3 hover:scale-105 rounded-md flex items-center`}
               onClick={(e) => addToCart(e)}
             >
               {added ? (

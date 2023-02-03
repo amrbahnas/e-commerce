@@ -4,6 +4,7 @@ import {
   ref,
   uploadBytes,
   getDownloadURL,
+  updateMetadata,
   deleteObject,
 } from "firebase/storage";
 
@@ -27,37 +28,27 @@ const storage = getStorage(app);
 // Create a storage reference from our storage service
 
 // 'file' comes from the Blob or File API
+
 // upload imgs
-export const uploadUserImage = (file, randomString) => {
-  const ImgRef = ref(
-    storage,
-    "users-Profiles-Images/" + file.name + randomString
-  );
-  uploadBytes(ImgRef, file).then((snapshot) => {
-    console.log("Uploaded a blob or file!", snapshot);
-  });
+export const uploadImage = (file, imagePath) => {
+  const ImgRef = ref(storage, imagePath);
+  const result = uploadBytes(ImgRef, file);
+  return result;
 };
 
 // download a Image
-export const dowunloadUserImage = (imageName) => {  
-  const imgRef = ref(storage, "users-Profiles-Images/" + imageName);
-  const result = getDownloadURL(imgRef);
-  return result;
-};
-// download a Image
-export const dowunloadCategoryImage = (categoryName) => {  
-  const imgRef = ref(storage, `${categoryName}-products-images/main.avif`);
+export const dowunloadImage = (imagePath) => {
+
+  const imgRef = ref(storage, imagePath);
   const result = getDownloadURL(imgRef);
   return result;
 };
 
 
-export const deleteImage = (photoURL) => {
-  if (photoURL) {
-    const desertRef = ref(storage, "users-Profiles-Images/" + photoURL);
+export const deleteImage = (imagePath) => {
+  if (imagePath) {
+    const desertRef = ref(storage, imagePath);
     // Delete the file
     deleteObject(desertRef);
   }
-  ;
 };
-

@@ -64,13 +64,13 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/products/woman" className="NavLink">
-                  Woman
+                <NavLink to="/products/electronics" className="NavLink">
+                  electronics
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/products/children" className="NavLink">
-                  children
+                <NavLink to="/products/kids" className="NavLink">
+                  kids
                 </NavLink>
               </li>
               <li>

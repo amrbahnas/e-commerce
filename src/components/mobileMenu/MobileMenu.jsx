@@ -132,13 +132,13 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
               </Link>
             </li>
             <li>
-              <Link to="/products/woman" className="link">
-                Woman
+              <Link to="/products/electronics" className="link">
+                electronics
               </Link>
             </li>
             <li>
-              <Link to="/products/children" className="link">
-                children
+              <Link to="/products/kids" className="link">
+                kids
               </Link>
             </li>
             <li>

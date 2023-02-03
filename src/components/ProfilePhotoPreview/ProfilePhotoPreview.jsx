@@ -5,11 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ClearIcon from "@mui/icons-material/Clear";
 import { updateUserData } from "../../Firebase/Auth.js";
 
-import {
-  uploadUserImage,
-  deleteImage,
-  dowunloadUserImage,
-} from "../../Firebase/Store";
+import { uploadImage, deleteImage, dowunloadImage } from "../../Firebase/Store";
 // redux
 import { useDispatch } from "react-redux";
 import { setPhotoURL, setUserImage } from "../../store/userSlice";
@@ -27,6 +23,7 @@ const ProfilePhotoPreview = ({
 
   /////////////////////////////close when click////////////////////////////
   const layout = useRef();
+  // close window onclick outside
   useEffect(() => {
     const handler = (e) => {
       //if the element which clicked not in the menu then
@@ -42,6 +39,7 @@ const ProfilePhotoPreview = ({
     };
   });
   /////////////////////////////start////////////////////////////
+  // take img from input file then show it
   const previewImg = (files) => {
     if (files.length > 0) {
       setImgFile(files[0]);
@@ -56,30 +54,40 @@ const ProfilePhotoPreview = ({
 
   const uploadhandler = () => {
     // DELETE OLD IMG
-    deleteImage(photoURL);
     const randomString = v4();
     // UPLOAD NEW IMG TO STORE
-    uploadUserImage(imgFile, randomString);
-    // UPDATE USER PHOTOURL
-    const newPhotoURL = imgFile.name + randomString;
-    updateUserData({ photoURL: newPhotoURL });
-    // UPDATE GLOBAL STARE
-    dispatch(setPhotoURL(newPhotoURL));
-    dispatch(setUserImage(profileImage));
-    setConfirm(false);
-    setProfilePhotoLayout(false);
+    const imageName = imgFile.name + randomString;
+    const imagePath = "users-profiles-images/" + imageName;
+    uploadImage(imgFile, imagePath)
+      .then((res) => {
+        if (photoURL) {
+          deleteImage("users-profiles-images/" + photoURL);
+        }
+        // UPDATE USER PHOTOURL
+        updateUserData({ photoURL: imageName });
+        // UPDATE GLOBAL STARE
+        dispatch(setPhotoURL(imageName));
+        dispatch(setUserImage(profileImage));
+        setConfirm(false);
+        setProfilePhotoLayout(false);
+      })
+      .catch((err) => {
+        console.log("upload", err);
+      });
   };
 
   const removeUserPhoto = () => {
     if (photoURL) {
       if (window.confirm("Are you sure")) {
-        dowunloadUserImage("default-user-image.png").then((img) => {
-          dispatch(setUserImage(img));
-          deleteImage(photoURL);
-          updateUserData({ photoURL: null });
-          dispatch(setPhotoURL(null));
-          setProfilePhotoLayout(false);
-        });
+        dowunloadImage("users-profiles-images/default-user-image.png").then(
+          (img) => {
+            dispatch(setUserImage(img));
+            deleteImage("users-profiles-images/" + photoURL);
+            updateUserData({ photoURL: null });
+            dispatch(setPhotoURL(null));
+            setProfilePhotoLayout(false);
+          }
+        );
       }
     }
   };
@@ -100,7 +108,7 @@ const ProfilePhotoPreview = ({
             />
           </div>
           <div className={`${styles.img}`}>
-            <img src={profileImage} alt="profile photo" />
+            <img src={profileImage} alt="profile" />
           </div>
           <div className={`${styles.footer}`}>
             <div className={`${styles.edit}`}>
