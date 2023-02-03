@@ -8,7 +8,7 @@ import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
 import CheckIcon from "@mui/icons-material/Check";
 import Loading from "../../components/Loading/Loading";
 //fire base
-import {  dowunloadImage } from "../../Firebase/Store";
+import { dowunloadImage } from "../../Firebase/Store";
 import { db } from "../../Firebase/index";
 import { onSnapshot, doc } from "firebase/firestore";
 /// end firebase
@@ -30,7 +30,7 @@ const Product = () => {
     onSnapshot(docRef, (doc) => {
       data.push({ ...doc.data(), id: doc.id });
       setItem(data[0]);
-      const path ="products-images/";
+      const path = "products-images/";
       dowunloadImage(path + data[0].img).then((img) => {
         setImg1(img);
         setMainImg(img);
@@ -42,11 +42,11 @@ const Product = () => {
   }, []);
 
   const addToCart = (e) => {
-    dispatch(addProduct({ ...item, itemCount }));
+    dispatch(addProduct({ ...item,previewImg:img1, itemCount }));
     setAdded(true);
     setTimeout(() => {
       setAdded(false);
-    }, 4000);
+    }, 2000);
   };
 
   return (

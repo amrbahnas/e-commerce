@@ -21,6 +21,8 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import UserProfile from "./Pages/UserProfile/UserProfile";
+import Confetti from "./Pages/Confetti/Confetti";
+import User from "./Pages/User/User";
 
 /////////////Home page///////////////////
 const Layout = () => {
@@ -62,17 +64,28 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/user",
+    element: <User />,
+    children: [
+      {
+        path: "/user/login",
+        element: <Login />,
+      },
+      {
+        path: "/user/Register",
+        element: <Register />,
+      },
+      {
+        path: "/user/successaccount",
+        element: <Confetti />,
+      },
+      {
+        path: "/user//resetpassword",
+        element: <ResetPassword />,
+      },
+    ],
   },
-  {
-    path: "/Register",
-    element: <Register />,
-  },
-  {
-    path: "/resetpassword",
-    element: <ResetPassword />,
-  },
+
   {
     path: "/admin",
     element: <Dashboard />,

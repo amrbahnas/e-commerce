@@ -8,11 +8,11 @@ import EditIcon from "@mui/icons-material/Edit";
 const SingleProduct = ({ item, deleteHandler }) => {
   const [img, setImg] = useState(null);
   useEffect(() => {
-    const path ="products-images/";
+    const path = "products-images/";
     dowunloadImage(path + item.img).then((img) => {
       setImg(img);
     });
-  }, []);
+  }, [item.img]);
 
   return (
     <div

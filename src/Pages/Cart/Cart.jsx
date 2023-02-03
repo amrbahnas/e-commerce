@@ -55,7 +55,11 @@ const Cart = () => {
                       className="item w-full flex items-center justify-center gap-4 border-2 border-img  p-2"
                       key={item.id}
                     >
-                      <img src={item.img} alt="" className=" w-6 basis-1/6" />
+                      <img
+                        src={item.previewImg}
+                        alt=""
+                        className=" w-6 basis-1/6"
+                      />
                       <div className="info flex-1">
                         <Link to={"/product/" + item.id}>
                           <h3 className="mb-3 capitalize text-gray-700 underline decoration-1 underline-offset-4 cursor-pointer">
@@ -99,7 +103,7 @@ const Cart = () => {
                 {!login&&
                   <span>
                   <span className=" cursor-pointer text-buttonBg underline mr-1">
-                  <Link to="/login">
+                  <Link to="user/login">
                   signin
                   </Link>
                   </span>

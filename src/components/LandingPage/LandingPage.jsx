@@ -20,6 +20,7 @@ const LandingPage = () => {
           <div className=" col-start-1 col-span-3 md:col-span-2 row-start-1 row-span-2 rounded-md overflow-hidden ">
             <LandingSlider
               images={images}
+              autoplay={true}
               SPV1={1}
               SPV2={1}
               SPV3={1}

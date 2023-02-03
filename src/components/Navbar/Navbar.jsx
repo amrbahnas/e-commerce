@@ -98,7 +98,7 @@ const Navbar = () => {
                   onClick={(e) =>
                     login
                       ? setLoginMenuControl(!loginMenuControl)
-                      : navigate("/login")
+                      : navigate("/user/login")
                   }
                 >
                   {login ? (

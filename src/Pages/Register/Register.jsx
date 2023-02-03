@@ -43,21 +43,8 @@ const Register = () => {
         signupUserName(user.user, { displayName: firstName + " " + lastName });
         setCheckEmail(false);
         setCheckPass(false);
-        //message
-        toast.success("Account Created successfully", {
-          position: "top-right",
-          autoClose: 1200,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-        //end message
-        setTimeout(() => {
-          navigate("/login", false);
-        }, 1500);
+        // nave to success  page
+          navigate("/user/successaccount", false); 
       })
       .catch((error) => {
         if (error.message.includes("email")) {
@@ -264,7 +251,7 @@ const Register = () => {
                   <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                     have an account?
                     <Link
-                      to="/login"
+                      to="/user/login"
                       href="#!"
                       className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out hover:underline"
                     >

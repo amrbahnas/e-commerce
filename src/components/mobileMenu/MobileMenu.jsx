@@ -80,7 +80,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
                   {optionsControl ? <ExpandMoreIcon /> : <ChevronRightIcon />}
                 </span>
               ) : (
-                <Link to="/login">Login</Link>
+                <Link to="/user/login">Login</Link>
               )}
             </li>
             {login && optionsControl ? (
