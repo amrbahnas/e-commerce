@@ -44,7 +44,7 @@ function LandingSlider({ images, slidesPerView, autoplay,SPV1,SPV2,SPV3,SPV4 }) 
             src={item}
             alt=""
             key={indx}
-            className=" w-full h-full object-fill cursor-pointer"
+            className="object-fill w-full h-full cursor-pointer"
           />
         </SwiperSlide>
       ))}

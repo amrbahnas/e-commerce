@@ -13,6 +13,8 @@ import {
   updateUserPassword,
   deleteUserAccount,
 } from "../../Firebase/Auth.js";
+//motion
+import { motion, AnimatePresence } from "framer-motion";
 // component
 import ChangePassword from "../../components/ChangePassword/ChangePassword";
 import DeleteAccount from "../../components/DeleteAccount/DeleteAccount";
@@ -128,18 +130,20 @@ const UserProfile = () => {
       <div className="theContainer">
         <div className={`${styles.wrapper} grid grid-cols-4 gap-3`}>
           <div className={`${styles.left} col-span-4 lg:col-span-1`}>
-            <div className={`${styles.img}`}>
-              <img
-                src={userImage}
-                alt=""
-                className="w-full h-full object-cover rounded-full"
-              />
-              <div
-                className={`${styles.previewIcon}`}
-                onClick={(e) => setProfilePhotoLayout(true)}
-              >
-                <CameraAltIcon />
-                Preview
+            <div className={`${styles.imgContainer}`}>
+              <div className={`${styles.img}`}>
+                <img
+                  src={userImage}
+                  alt=""
+                  className="object-cover w-full h-full rounded-full"
+                />
+                <div
+                  className={`${styles.previewIcon}`}
+                  onClick={(e) => setProfilePhotoLayout(true)}
+                >
+                  <CameraAltIcon />
+                  Preview
+                </div>
               </div>
             </div>
           </div>
@@ -215,34 +219,64 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-      {changePasswordLayout && (
-        <ChangePassword
-          setChangePasswordLayout={setChangePasswordLayout}
-          updateUserPassword={updateUserPassword}
-          email={email}
-        />
-      )}
-      {deleteAccountLayout && (
-        <DeleteAccount
-          setDeleteAccountLayout={setDeleteAccountLayout}
-          deleteUserAccount={deleteUserAccount}
-          email={email}
-        />
-      )}
-      {profilePhotoLayout && (
-        <ProfilePhotoPreview
-          userImage={userImage}
-          photoURL={photoURL}
-          setProfilePhotoLayout={setProfilePhotoLayout}
-        />
-      )}
-      {confirmPasswordLayout && (
-        <ConfirmPassword
-          setConfirmPasswordLayout={setConfirmPasswordLayout}
-          setChangeEmailState={setChangeEmailState}
-          email={email}
-        />
-      )}
+      <AnimatePresence>
+        {changePasswordLayout && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed z-50"
+          >
+            <ChangePassword
+              setChangePasswordLayout={setChangePasswordLayout}
+              updateUserPassword={updateUserPassword}
+              email={email}
+            />
+          </motion.div>
+        )}
+        {deleteAccountLayout && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed z-50"
+          >
+            <DeleteAccount
+              setDeleteAccountLayout={setDeleteAccountLayout}
+              deleteUserAccount={deleteUserAccount}
+              email={email}
+            />
+          </motion.div>
+        )}
+        {profilePhotoLayout && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed z-50"
+          >
+            <ProfilePhotoPreview
+              userImage={userImage}
+              photoURL={photoURL}
+              setProfilePhotoLayout={setProfilePhotoLayout}
+            />
+          </motion.div>
+        )}
+        {confirmPasswordLayout && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed z-50"
+          >
+            <ConfirmPassword
+              setConfirmPasswordLayout={setConfirmPasswordLayout}
+              setChangeEmailState={setChangeEmailState}
+              email={email}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

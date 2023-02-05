@@ -1,9 +1,30 @@
 .left{
-    @apply flex flex-col items-center gap-3 justify-start p-8 bg-white
+    @apply flex flex-col items-center gap-3 justify-start p-8 bg-white relative
 }
+
+
+.imgContainer {
+    @apply relative
+}
+
+.imgContainer::after {
+    bottom: 15px;
+    right: 27px;
+    width:15px;
+    height: 15px;
+    outline: 3px solid white;
+    /* z-index: 500; */
+    background-color: #44b700;
+    content: "";
+    position: absolute;
+    animation: jss400 1.2s infinite ease-in-out;
+    border-radius: 50%; 
+}
+
 .left .img {
-    @apply w-44 h-44 rounded-full p-1 bg-slate-300 relative overflow-hidden
+    @apply w-44 h-44 rounded-full p-1  relative overflow-hidden
 }
+
 
 .left .previewIcon {
     background-color: rgba(0, 0, 0, 0.322);

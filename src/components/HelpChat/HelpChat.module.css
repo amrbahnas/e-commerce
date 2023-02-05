@@ -1,0 +1,38 @@
+.help {
+    @apply  fixed z-50 flex flex-col gap-6 p-6 bottom-3 right-3 w-96
+}
+.chat {
+    @apply shadow-md
+}
+.form {
+    @apply flex flex-col gap-6
+}
+
+.form label {
+@apply font-bold mb-2 block
+}
+
+.form input{
+    @apply w-full px-3 py-2 focus:outline-none bg-img rounded-md
+}
+
+.form textarea{
+    @apply w-full px-3 py-2 focus:outline-none bg-img resize-none rounded-md
+}
+
+.chat {
+    @apply rounded-md overflow-hidden w-3/4 self-end
+}
+
+.chatBody{
+    @apply  bg-white p-4
+}
+
+
+.chatControl {
+    @apply flex-1 flex gap-6 justify-end items-center
+}
+
+.helpMessage{
+    @apply   relative bg-white p-4 rounded-md ml-4
+}

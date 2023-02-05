@@ -22,15 +22,15 @@ const Confetti = () => {
   }, []);
   return (
     <div className="w-screen h-screen">
-      <div className="theContainer w-full h-full flex justify-center items-center">
-        <div className="ConfettiWrapper -mt-14 text-center ">
-          <span className=" text-5xl font-bold">
+      <div className="flex items-center justify-center w-full h-full theContainer">
+        <div className="text-center ConfettiWrapper -mt-14 ">
+          <span className="text-5xl font-bold ">
             Thank you! you`re all set.
           </span>{" "}
           <br />
           <button
             onClick={(e) => navigate("/user/login", { replace: true })}
-            className="bg-amr text-white py-3 px-4 rounded-md w-2/3 mt-10"
+            className="w-2/4 px-4 py-3 mt-10 text-white rounded-md bg-amr"
           >
             Login
           </button>

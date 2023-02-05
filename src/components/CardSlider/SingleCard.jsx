@@ -18,17 +18,17 @@ const SingleCard = ({ item }) => {
     <>
       <Link
         to={"/product/" + item.id}
-        className="miniCard  w-full rounded-md shadow-md h-72 overflow-hidden p-4 hover:scale-105 hover:shadow-lg"
+        className="w-full p-4 overflow-hidden rounded-md shadow-md miniCard h-72 hover:scale-105 hover:shadow-lg"
       >
         <img
           src={img1}
           alt=""
-          className=" bg-img h-2/3  w-full object-cover rounded-md"
+          className="object-cover w-full rounded-md bg-img h-2/3 skeleton"
         />
-        <div className="info p-2 h-2/5 overflow-hidden ">
-          <h3 className=" whitespace-nowrap mb-2">{item.title}</h3>
-          <span className="block font-bold text-lg">${item.price}</span>
-          <span className=" text-gray-500 text-sm line-through">
+        <div className="p-2 overflow-hidden info h-2/5 ">
+          <h3 className="mb-2 whitespace-nowrap ">{item.title}</h3>
+          <span className="block text-lg font-bold">${item.price}</span>
+          <span className="text-sm text-gray-500 line-through ">
             ${+item.price + 20}
           </span>
         </div>

@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-// reducx
+// redux
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginState, setAdminState } from "../../store/AuthSlice";
-
+//motion
+import { motion, AnimatePresence } from "framer-motion";
 //firebase
 import { logOut } from "../../Firebase/Auth";
 // mui icons
@@ -50,9 +51,9 @@ const Navbar = () => {
   });
 
   return (
-    <div className="storeHeader bg-white w-full shadow-md fixed z-50 top-0">
+    <div className="fixed top-0 z-50 w-full bg-white shadow-md storeHeader">
       <div className="theContainer">
-        <div className="navbar justify-between">
+        <div className="justify-between navbar">
           <div className="navLeft">
             <div className="center">
               <Link to="/">STORE</Link>
@@ -80,7 +81,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <div className="searchBar hidden md:flex">
+          <div className="hidden searchBar md:flex">
             <input
               type="text"
               name="searchItem"
@@ -88,13 +89,13 @@ const Navbar = () => {
               className="searchBarInput"
               placeholder="Search"
             />
-            <SearchOutlinedIcon className="cursor-pointer absolute right-1" />
+            <SearchOutlinedIcon className="absolute cursor-pointer right-1" />
           </div>
           <div className="navRight">
             <ul className="ul-item">
-              <li className=" relative" ref={loginMenu}>
+              <li className="relative " ref={loginMenu}>
                 <div
-                  className="cursor-pointer flex items-center "
+                  className="flex items-center cursor-pointer "
                   onClick={(e) =>
                     login
                       ? setLoginMenuControl(!loginMenuControl)
@@ -102,12 +103,14 @@ const Navbar = () => {
                   }
                 >
                   {login ? (
-                    <div className=" w-8 h-8 rounded-full overflow-hidden mr-1">
-                      <img
-                        src={userImage}
-                        alt=""
-                        className=" w-full h-full object-cover"
-                      />
+                    <div className="profileImage">
+                      <div className="w-8 h-8 mr-1 overflow-hidden rounded-full">
+                        <img
+                          src={userImage}
+                          alt=""
+                          className="object-cover w-full h-full "
+                        />
+                      </div>
                     </div>
                   ) : (
                     <PersonOutlineOutlinedIcon />
@@ -118,16 +121,23 @@ const Navbar = () => {
                     ? userName
                     : "Login"}
                 </div>
-                {loginMenuControl && (
-                  <div className="loginMenu absolute rounded-md w-fit p-4 top-10 -left-4  border flex flex-col items-center justify-center gap-4 shadow-md bg-white">
-                    <div className=" bg-orange-400 text-white hover:scale-105 hover:shadow-md Register capitalize cursor-pointer border p-2  rounded-md w-full text-center">
-                      <Link to="/profile">Profile</Link>
-                    </div>
-                    <div className="login capitalize  hover:scale-105 cursor-pointer border p-2 bg-white rounded-md w-full text-center">
-                      <span onClick={(e) => logOutHandler()}>logOut</span>
-                    </div>
-                  </div>
-                )}
+                <AnimatePresence>
+                  {loginMenuControl && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute flex flex-col items-center justify-center gap-4 p-4 bg-white border rounded-md shadow-md loginMenu w-fit top-10 -left-4"
+                    >
+                      <div className="w-full p-2 text-center text-white capitalize bg-orange-400 border rounded-md cursor-pointer hover:scale-105 hover:shadow-md Register">
+                        <Link to="/profile">Profile</Link>
+                      </div>
+                      <div className="w-full p-2 text-center capitalize bg-white border rounded-md cursor-pointer login hover:scale-105">
+                        <span onClick={(e) => logOutHandler()}>logOut</span>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </li>
               {admin ? (
                 <li>
@@ -145,27 +155,35 @@ const Navbar = () => {
             <div className="flex gap-10 navRight ">
               <Link to="/cart">
                 <div
-                  className="relative cursor-pointer flex gap-2 items-center"
+                  className="relative flex items-center gap-2 cursor-pointer"
                   // onClick={(e) => setCartControl(!cartControl)}
                 >
                   <ShoppingCartOutlinedIcon className="cursor-point" />
                   {data.length > 0 && (
                     <span className="count">{data.length}</span>
                   )}
-                  <span className="text-md font-medium capitalize">cart</span>
+                  <span className="font-medium capitalize text-md">cart</span>
                 </div>
               </Link>
             </div>
             <div
-              className=" cursor-pointer block lg:hidden"
+              className="block cursor-pointer lg:hidden"
               onClick={(e) => setcontrolMobileMenu(true)}
             >
               <MenuIcon />
             </div>
           </div>
-          {controlMobileMenu && (
-            <MobileMenu setcontrolMobileMenu={setcontrolMobileMenu} />
-          )}
+          <AnimatePresence>
+            {controlMobileMenu && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <MobileMenu setcontrolMobileMenu={setcontrolMobileMenu} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

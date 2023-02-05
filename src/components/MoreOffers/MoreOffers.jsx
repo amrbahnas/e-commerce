@@ -5,7 +5,7 @@ const MoreOffers = () => {
     return (
       <div className={`${styles.box}`}>
         <div className={`${styles.img}`}>
-          <img src={img} alt="" />
+          <img src={img} alt="" className="skeleton" />
         </div>
         {title && (
           <div className={`${styles.footer}`}>
@@ -73,10 +73,10 @@ const MoreOffers = () => {
             </div>
             <div className={`${styles.boxs}`}>
               <div className={`${styles.img}`}>
-                <img src="assets/more9.avif" alt="" />
+                <img src="assets/more9.avif" alt="" className="skeleton" />
               </div>
               <div className={`${styles.img}`}>
-                <img src="assets/more10.avif" alt="" />
+                <img src="assets/more10.avif" alt="" className="skeleton" />
               </div>
             </div>
           </div>

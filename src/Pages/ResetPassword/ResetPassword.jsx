@@ -41,14 +41,14 @@ const ResetPassword = () => {
   return (
     <div className="resetPassword">
       <div classNamee="thecontainer">
-        <div className="flex justify-center items-center h-screen bg-white  ">
+        <div className="flex items-center justify-center h-screen bg-white ">
           <form
-            className="mb-3  md:w-8/12 lg:w-5/12 lg:ml-20 border h-80 flex flex-col justify-center gap-10 p-10 shadow-lg rounded-lg"
+            className="flex flex-col justify-center gap-10 p-10 mb-3 border rounded-lg shadow-lg md:w-8/12 lg:w-5/12 lg:ml-20 h-80"
             onSubmit={(e) => sendMailHandler(e)}
           >
             <span
               for="exampleEmail0"
-              className=" text-lg font-bold inline-block mb-2 text-gray-700 text-center"
+              className="inline-block mb-2 text-lg font-bold text-center text-gray-700 "
             >
               Enter Your Email
             </span>
@@ -79,7 +79,7 @@ const ResetPassword = () => {
             />
             <button
               type="submit"
-              className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+              className="inline-block w-full py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
             >

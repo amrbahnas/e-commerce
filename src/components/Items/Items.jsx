@@ -52,7 +52,7 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
   }, [subCat, sort, catId, priceRange]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(6);
+  const [postsPerPage] = useState(15);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
@@ -66,7 +66,7 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
         {currentPosts.length > 0 ? (
           currentPosts?.map((item) => <Card item={item} key={item.id} />)
         ) : (
-          <div className=" capitalize">no data available</div>
+          <div className="capitalize ">no data available</div>
         )}
       </div>
       <Pagination

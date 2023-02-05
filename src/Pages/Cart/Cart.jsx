@@ -16,7 +16,10 @@ const Cart = () => {
     }
   };
   const resetHandler = () => {
-    dispatch(resetCart());
+    if(window.confirm("Are you sure ? you will lose all items")){
+      dispatch(resetCart());
+      
+    }
   };
 
   return (
@@ -29,13 +32,11 @@ const Cart = () => {
             className={`${styles.header} flex justify-between gap-2 p-2 border-b-4 border-img`}
           >
             <Link to="/">
-              <span className=" hover:text-orange-400 cursor-pointer">
+              <span className="cursor-pointer hover:text-orange-400">
                 continue shopping
               </span>
             </Link>
-            <span className="  font-medium capitalize">
-              {data.length} items
-            </span>
+            <span className="font-medium capitalize ">{data.length} items</span>
             <span className="hidden md:block">
               need help ? call (+20) 106-448-0375
             </span>
@@ -47,22 +48,22 @@ const Cart = () => {
               className={`${styles.left} flex-1 md:p-2 flex flex-col  gap-3   overflow-y-scroll`}
             >
               {data.length === 0 ? (
-                <div className=" text-center">Empty</div>
+                <div className="text-center ">Empty</div>
               ) : (
                 data?.map((item) => {
                   return (
                     <div
-                      className="item w-full flex items-center justify-center gap-4 border-2 border-img  p-2"
+                      className="flex items-center justify-center w-full gap-4 p-2 border-2 item border-img"
                       key={item.id}
                     >
                       <img
                         src={item.previewImg}
                         alt=""
-                        className=" w-6 basis-1/6"
+                        className="w-6 basis-1/6"
                       />
-                      <div className="info flex-1">
+                      <div className="flex-1 info">
                         <Link to={"/product/" + item.id}>
-                          <h3 className="mb-3 capitalize text-gray-700 underline decoration-1 underline-offset-4 cursor-pointer">
+                          <h3 className="mb-3 text-gray-700 underline capitalize cursor-pointer decoration-1 underline-offset-4">
                             {item.title}
                           </h3>
                         </Link>
@@ -74,7 +75,7 @@ const Cart = () => {
                         </span>
                       </div>
                       <div
-                        className="delete basis-1/6 text-red-600 text-center cursor-pointer hover:scale-105"
+                        className="text-center text-red-600 cursor-pointer delete basis-1/6 hover:scale-105"
                         onClick={(e) => deleteHandler(item.id, item.price)}
                       >
                         <DeleteOutlineIcon />
@@ -85,7 +86,7 @@ const Cart = () => {
               )}
             </div>
             <div
-              className={`${styles.right} w-full md:w-80  h-full flex flex-col mt-5 md:mt-0 p-2 sticky top-24 `}
+              className={`${styles.right} w-full lg:w-80  h-full flex flex-col mt-5 md:mt-0 p-2 sticky top-24 `}
             >
               <div className={`${styles.promoCode} flex flex-col gap-2 mb-4`}>
                 <span>enter promo code</span>
@@ -94,25 +95,23 @@ const Cart = () => {
                     type="text"
                     name="promoCode"
                     placeholder="promo code"
-                    className="flex-1 border-2 border-img p-2 rounded-md focus:outline-none"
+                    className="flex-1 p-2 border-2 rounded-md border-img focus:outline-none"
                   />
-                  <button className=" w-24 bg-black text-white p-2 rounded-md">
+                  <button className="w-24 p-2 text-white bg-black rounded-md ">
                     submit
                   </button>
                 </div>
-                {!login&&
+                {!login && (
                   <span>
-                  <span className=" cursor-pointer text-buttonBg underline mr-1">
-                  <Link to="user/login">
-                  signin
-                  </Link>
+                    <span className="mr-1 underline cursor-pointer text-buttonBg">
+                      <Link to="user/login">signin</Link>
+                    </span>
+                    to your account to see available rewards
                   </span>
-                  to your account to see available rewards
-                  </span>
-                }
+                )}
               </div>
               <div className={`${styles.promotions}`}>
-                <span className=" block font-bold text-lg mb-2">
+                <span className="block mb-2 text-lg font-bold ">
                   promotions
                 </span>
                 <div className={`${styles.priceDetails}`}>
@@ -144,7 +143,7 @@ const Cart = () => {
                 <button>checkout</button>
               </div>
               <span
-                className=" block  mt-4 capitalize text-sm cursor-pointer text-red-600"
+                className="block mt-4 text-sm text-red-600 capitalize cursor-pointer "
                 onClick={resetHandler}
               >
                 reset cart

@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function Pagination({ postsPerPage, totalPosts, setCurrentPage, currentPage }) {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  });
   return (
     <div className="flex justify-center mt-10">
       {totalPosts !== 0 && (

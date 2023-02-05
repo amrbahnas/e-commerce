@@ -1,5 +1,5 @@
 import React from "react";
-import Slider from "../../components/Slider/Slider";
+// import Slider from "../../components/Slider/Slider";
 import FeaturedProducts from "../../components/FeaturedProducts/FeaturedProducts";
 import "./Home.css";
 import Categories from "./../../components/Categories/Categories";
@@ -8,6 +8,7 @@ import LandingPage from "./../../components/LandingPage/LandingPage";
 import Offers from "./../../components/Offers/Offers";
 import MoreOffers from "../../components/MoreOffers/MoreOffers";
 import LandingSlider from "../../components/LandingSlider/LandingSlider";
+// import HelpChat from "../../components/HelpChat/HelpChat";
 
 const Home = () => {
   const imgsOfferOne = ["assets/offerOne.avif"];
@@ -18,24 +19,25 @@ const Home = () => {
     "assets/landing/2.avif",
     "assets/landing/3.avif",
     "assets/landing/4.avif",
-    "assets/landing/5.gif"
-];
-const categoriesSliderImages = [
-  "assets/landingCategories/1.avif",
-  "assets/landingCategories/2.avif",
-  "assets/landingCategories/3.avif",
-  "assets/landingCategories/4.avif",
-  "assets/landingCategories/5.avif",
-  "assets/landingCategories/6.avif",
-  "assets/landingCategories/7.avif",
-  "assets/landingCategories/8.avif",
-  "assets/landingCategories/9.avif",
-  "assets/landingCategories/10.avif",
-];
+    "assets/landing/5.gif",
+  ];
+  const categoriesSliderImages = [
+    "assets/landingCategories/1.avif",
+    "assets/landingCategories/2.avif",
+    "assets/landingCategories/3.avif",
+    "assets/landingCategories/4.avif",
+    "assets/landingCategories/5.avif",
+    "assets/landingCategories/6.avif",
+    "assets/landingCategories/7.avif",
+    "assets/landingCategories/8.avif",
+    "assets/landingCategories/9.avif",
+    "assets/landingCategories/10.avif",
+  ];
+
   return (
     <div className="home ">
       <LandingPage />
-      <div className="theContainer my-8">
+      <div className="my-8 theContainer">
         <LandingSlider
           images={categoriesSliderImages}
           SPV1={4}
@@ -51,7 +53,7 @@ const categoriesSliderImages = [
       <MoreOffers />
       <Offers images={imgsOfferFour} />
       <FeaturedProducts title="featured products" type="featured" />
-      <div className="theContainer my-8">
+      <div className="my-8 theContainer">
         <LandingSlider
           images={imgsOfferSclider}
           SPV1={1}
@@ -64,6 +66,7 @@ const categoriesSliderImages = [
       <FeaturedProducts title="popular products" type="popular" />
       <Offers images={imgsOfferTwo} title={"smart watches deals"} />
       <Contact />
+      {/* <HelpChat/> */}
     </div>
   );
 };

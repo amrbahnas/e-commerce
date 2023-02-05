@@ -239,7 +239,7 @@ const AddUpdateProduct = () => {
               <img
                 src={previewImage1}
                 alt=""
-                className="w-full h-full object-cover"
+                className="object-cover w-full h-full"
               />
               <input
                 type="file"

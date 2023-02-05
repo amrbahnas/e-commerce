@@ -25,7 +25,7 @@ const Products = () => {
         setData(doc.data());
       });
     });
-    dowunloadImage("products-images/"+id+".avif").then((img) => {
+    dowunloadImage("products-images/" + id + ".avif").then((img) => {
       setCategoryCover(img);
     });
   }, [id]);
@@ -59,11 +59,11 @@ const Products = () => {
     );
   };
   return (
-    <div className="products mt-24">
+    <div className="mt-24 products">
       <div className="theContainer">
-        <div className="sectionWrapper flex justify-center bg-white p-4 rounded-md">
+        <div className="flex justify-center p-4 bg-white rounded-md sectionWrapper">
           <div className="products-left" ref={productsLeft}>
-            <div className="left-setion mt-16 md:mt-0">
+            <div className="mt-16 left-setion md:mt-0">
               <h2>product categores</h2>
               {data.sub_category?.length > 0
                 ? data?.sub_category?.map((item) => {
@@ -71,14 +71,14 @@ const Products = () => {
                       <div className="item" key={item}>
                         <input
                           type="checkbox"
-                          className="h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200  align-top bg-no-repeat bg-center bg-contain float-left mr-1 cursor-pointer"
+                          className="float-left w-4 h-4 mr-1 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm cursor-pointer checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
                           value={item}
                           id={item}
                           onChange={(e) => catHandler(e)}
                         />
                         <label
                           htmlFor={item}
-                          className=" capitalize cursor-pointer form-check-label inline-block text-gray-800"
+                          className="inline-block text-gray-800 capitalize cursor-pointer form-check-label"
                         >
                           {item}
                         </label>
@@ -111,7 +111,7 @@ const Products = () => {
                         priceRange > 1 ? parseInt(priceRange) - 50 : priceRange
                       )
                     }
-                    className=" w-6 h-6 bg-slate-400 text-center rounded"
+                    className="w-6 h-6 text-center rounded bg-slate-400"
                   >
                     -
                   </button>
@@ -123,7 +123,7 @@ const Products = () => {
                           : priceRange
                       )
                     }
-                    className=" w-6 h-6 bg-slate-400 text-center rounded"
+                    className="w-6 h-6 text-center rounded bg-slate-400"
                   >
                     +
                   </button>
@@ -171,7 +171,7 @@ const Products = () => {
             <img
               src={categoryCover}
               alt=""
-              className=" hidden md:block w-full h-64 object-cover shadow-lg mb-14"
+              className="hidden object-cover w-full h-64 shadow-lg md:block mb-14 skeleton"
             />
             <Items
               priceRange={priceRange}

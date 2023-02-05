@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styles from "./LandingPage.module.css";
 // import CardSlider from "./../CardSlider/CardSlider";
 import LandingSlider from "./../LandingSlider/LandingSlider";
@@ -11,13 +11,14 @@ const LandingPage = () => {
     "assets/1.jpg",
     "assets/2f2439c4-fd71-44d3-b302-94216df147b0.jpg",
   ];
+  
   return (
     <div className={`${styles.LandingPage}  mt-24 `}>
-      <div className="theContainer h-full">
+      <div className="h-full theContainer">
         <div
           className={`${styles.wrapper} h-full grid grid-cols-3 grid-rows-3 gap-2`}
         >
-          <div className=" col-start-1 col-span-3 md:col-span-2 row-start-1 row-span-2 rounded-md overflow-hidden ">
+          <div className="col-span-3 col-start-1 row-span-2 row-start-1 overflow-hidden rounded-md md:col-span-2">
             <LandingSlider
               images={images}
               autoplay={true}
@@ -27,49 +28,49 @@ const LandingPage = () => {
               SPV4={1}
             />
           </div>
-          <div className="  col-end-4 col-span-1 row-start-1 row-span-1 hidden md:flex gap-2 ">
-            <div className=" rounded-md overflow-hidden ">
+          <div className="hidden col-span-1 col-end-4 row-span-1 row-start-1 gap-2 md:flex">
+            <div className="overflow-hidden rounded-md ">
               <img
                 src={"assets/ar_dk_eg-explore-03.avif"}
                 alt=""
-                className="h-full object-fill"
+                className="object-fill h-full skeleton"
               />
             </div>
-            <div className=" rounded-md overflow-hidden">
+            <div className="overflow-hidden rounded-md ">
               <img
                 src={"assets/ar_dk_eg-mega-03.avif"}
                 alt=""
-                className="h-full object-fill"
+                className="object-fill h-full skeleton"
               />
             </div>
           </div>
-          <div className="col-end-4 col-span-1 row-start-2 row-span-1 rounded-md overflow-hidden hidden md:block">
+          <div className="hidden col-span-1 col-end-4 row-span-1 row-start-2 overflow-hidden rounded-md md:block">
             <img
               src={"assets/ar_dk_eg-top-01.avif"}
               alt=""
-              className="min-h-full object-fill"
+              className="object-fill min-h-full skeleton"
             />
           </div>
-          <div className="col-start-1 col-span-3 row-start-3 row-span-1 flex gap-2  h-48 ">
-            <div className=" rounded-md overflow-hidden flex-1 ">
+          <div className="flex h-48 col-span-3 col-start-1 row-span-1 row-start-3 gap-2 ">
+            <div className="flex-1 overflow-hidden rounded-md ">
               <img
                 src={"assets/ar_dk_eg-top-01.gif"}
                 alt=""
-                className=" h-full w-full  object-fill "
+                className="object-fill w-full h-full skeleton"
               />
             </div>
-            <div className="rounded-md overflow-hidden  hidden md:block flex-1">
+            <div className="flex-1 hidden overflow-hidden rounded-md md:block">
               <img
                 src={"assets/en_dk_eg-top-01.avif"}
                 alt=""
-                className=" h-full w-full object-fill"
+                className="object-fill w-full h-full skeleton "
               />
             </div>
-            <div className=" rounded-md overflow-hidden flex-1">
+            <div className="flex-1 overflow-hidden rounded-md ">
               <img
                 src={"assets/Offer-Discounts.jpg"}
                 alt=""
-                className=" h-full w-full object-fill "
+                className="object-fill w-full h-full skeleton "
               />
             </div>
           </div>

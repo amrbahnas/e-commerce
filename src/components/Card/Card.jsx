@@ -42,14 +42,19 @@ const Card = ({ item }) => {
   };
 
   return (
-    <div className="card ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="card "
+    >
       {item.isNew && <span className="newseason">New Season</span>}
       <Link to={"/product/" + item.id}>
-        <div className="image overflow-hidden">
+        <div className="overflow-hidden image">
           <img
             src={img1}
             alt=""
-            className=" transition-all duration-400 hover:scale-110"
+            className="transition-all duration-400 hover:scale-110 skeleton"
           />
           {/*<img src={img2} alt="" className="hover:scale-105" />*/}
         </div>
@@ -80,7 +85,7 @@ const Card = ({ item }) => {
           </div>
         </Link>
       )}
-    </div>
+    </motion.div>
   );
 };
 

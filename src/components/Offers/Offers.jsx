@@ -7,16 +7,16 @@ const Offers = ({ images, title }) => {
         className={`${styles.img} flex-1 rounded-md overflow-hidden`}
         key={indx}
       >
-        <img src={img} alt="" className="w-full h-full" />
+        <img src={img} alt="" className="w-full h-full skeleton" />
       </div>
     );
   });
   return (
-    <div className="offers h-fit my-8 ">
+    <div className="my-8 offers h-fit ">
       <div className="theContainer">
-        <div className="offerWrapper bg-white rounded-md cursor-pointer">
-          {title && <h2 className="p-6 capitalize font-bold text-3xl">{title}</h2>}
-          <div className="offersWrapper flex gap-2 flex-wrap">{allImages}</div>
+        <div className="bg-white rounded-md cursor-pointer offerWrapper">
+          {title && <h2 className="p-6 text-3xl font-bold capitalize">{title}</h2>}
+          <div className="flex flex-wrap gap-2 offersWrapper">{allImages}</div>
         </div>
       </div>
     </div>

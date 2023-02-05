@@ -76,7 +76,7 @@ const Login = () => {
         if (url) {
           dispatch(setPhotoURL(url));
           // if user has img ,dowunload it
-          dowunloadImage("users-profiles-images/"+url).then((img) => {
+          dowunloadImage("users-profiles-images/" + url).then((img) => {
             dispatch(setUserImage(img));
           });
         } else {
@@ -136,13 +136,13 @@ const Login = () => {
       });
   };
   return (
-    <div className="loginPage h-screen">
+    <div className="h-screen loginPage">
       <div className="theContainer">
-        <div className="loginPage h-screen flex items-center justify-center">
+        <div className="flex items-center justify-center h-screen loginPage">
           <section className="h-screen">
-            <div className="container px-6 py-12 h-full">
-              <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-                <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
+            <div className="container h-full px-6 py-12">
+              <div className="flex flex-wrap items-center justify-center h-full text-gray-800 g-6">
+                <div className="mb-12 md:w-8/12 lg:w-6/12 md:mb-0">
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
                     className="w-full"
@@ -153,17 +153,17 @@ const Login = () => {
                   <form onSubmit={(e) => formHandler(e)}>
                     <div className="mb-6">
                       {emailSub && (
-                        <span className=" block text-red-700 pb-2">
+                        <span className="block pb-2 text-red-700 ">
                           Invalid Email
                         </span>
                       )}
                       {checkEmail && (
-                        <span className=" block text-red-700 pb-2">
+                        <span className="block pb-2 text-red-700 ">
                           The Emain that you've entered is incorrect.
                         </span>
                       )}
                       {checkEmailEnable && (
-                        <span className=" block text-red-700 pb-2">
+                        <span className="block pb-2 text-red-700 ">
                           Sorry Your Email has been Blocked.
                         </span>
                       )}
@@ -186,7 +186,7 @@ const Login = () => {
 
                     <div className="mb-6">
                       {checkPass && (
-                        <span className=" block text-red-700 pb-2">
+                        <span className="block pb-2 text-red-700 ">
                           The Password that you've entered is incorrect.
                         </span>
                       )}
@@ -194,12 +194,12 @@ const Login = () => {
                         {showIcon ? (
                           showHiddenPassword ? (
                             <VisibilityIcon
-                              className="absolute right-4 top-3 text-lg cursor-pointer"
+                              className="absolute text-lg cursor-pointer right-4 top-3"
                               onClick={(e) => showHiddenPasswordHandler()}
                             />
                           ) : (
                             <VisibilityOffIcon
-                              className="absolute right-4 top-3 text-lg cursor-pointer"
+                              className="absolute text-lg cursor-pointer right-4 top-3"
                               onClick={(e) => showHiddenPasswordHandler()}
                             />
                           )
@@ -221,29 +221,29 @@ const Login = () => {
                       </div>
                     </div>
 
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="flex items-center justify-between mb-6">
                       <div className="form-group form-check">
                         <input
                           type="checkbox"
-                          className="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                          className="float-left w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
                           id="rememberCheck"
                           // checked
                         />
                         <label
-                          className="form-check-label inline-block text-gray-800 cursor-pointer"
+                          className="inline-block text-gray-800 cursor-pointer form-check-label"
                           htmlFor="rememberCheck"
                         >
                           Remember me
                         </label>
                       </div>
-                      <span className=" cursor-pointer text-blue-600 hover:text-blue-700 hover:underline focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out">
+                      <span className="text-blue-600 transition duration-200 ease-in-out cursor-pointer hover:text-blue-700 hover:underline focus:text-blue-700 active:text-blue-800">
                         <Link to="/resetpassword">Forgot password?</Link>
                       </span>
                     </div>
 
                     <button
                       type="submit"
-                      className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                      className="inline-block w-full py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
                       data-mdb-ripple="true"
                       data-mdb-ripple-color="light"
                     >
@@ -251,11 +251,11 @@ const Login = () => {
                     </button>
 
                     <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-                      <p className="text-center font-semibold mx-4 mb-0">OR</p>
+                      <p className="mx-4 mb-0 font-semibold text-center">OR</p>
                     </div>
 
                     <a
-                      className=" bg-backgroundAColor px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
+                      className="flex items-center justify-center w-full py-3 mb-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out rounded shadow-md bg-backgroundAColor px-7 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                       href="#!"
                       role="button"
                       data-mdb-ripple="true"
@@ -274,7 +274,7 @@ const Login = () => {
                       Continue with Facebook
                     </a>
                     <a
-                      className=" bg-backgroundAColor2 px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
+                      className="flex items-center justify-center w-full py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out rounded shadow-md bg-backgroundAColor2 px-7 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                       href="#!"
                       role="button"
                       data-mdb-ripple="true"
@@ -293,12 +293,12 @@ const Login = () => {
                       Continue with Twitter
                     </a>
                   </form>
-                  <p className="text-sm font-semibold mt-2 pt-1 mb-0">
+                  <p className="pt-1 mt-2 mb-0 text-sm font-semibold">
                     Don't have an account?
                     <Link
                       to="/user/Register"
                       href="#!"
-                      className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out hover:underline"
+                      className="text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700 hover:underline"
                     >
                       Register
                     </Link>

@@ -44,7 +44,7 @@ const Register = () => {
         setCheckEmail(false);
         setCheckPass(false);
         // nave to success  page
-          navigate("/user/successaccount", false); 
+        navigate("/user/successaccount", false);
       })
       .catch((error) => {
         if (error.message.includes("email")) {
@@ -58,13 +58,13 @@ const Register = () => {
     // Navigate("/login", true);
   };
   return (
-    <div className="loginPage h-screen">
+    <div className="h-screen loginPage">
       <div className="theContainer">
-        <div className="loginPage h-screen flex items-center justify-center">
+        <div className="flex items-center justify-center h-screen loginPage">
           <section className="h-screen">
-            <div className="container px-6 py-12 h-full">
-              <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-                <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
+            <div className="container h-full px-6 py-12">
+              <div className="flex flex-wrap items-center justify-center h-full text-gray-800 g-6">
+                <div className="mb-12 md:w-8/12 lg:w-6/12 md:mb-0">
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
                     className="w-full"
@@ -75,24 +75,10 @@ const Register = () => {
                 <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
                   <form onSubmit={(e) => formHandler(e)}>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="form-group mb-6">
+                      <div className="mb-6 form-group">
                         <input
                           type="text"
-                          className="form-control
-                          block
-                          w-full
-                          px-4
-                          py-3
-                          text-base
-                          font-normal
-                          text-gray-700
-                          bg-white bg-clip-padding
-                          border border-solid border-gray-300
-                          rounded
-                          transition
-                          ease-in-out
-                          m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          className="block w-full px-4 py-3 m-0 text-base font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                           id="exampleInput123"
                           aria-describedby="emailHelp123"
                           placeholder="First name"
@@ -101,24 +87,10 @@ const Register = () => {
                           onChange={(e) => setFirstName(e.target.value)}
                         />
                       </div>
-                      <div className="form-group mb-6">
+                      <div className="mb-6 form-group">
                         <input
                           type="text"
-                          className="form-control
-                          block
-                          w-full
-                          px-4
-                          py-3
-                          text-base
-                          font-normal
-                          text-gray-700
-                          bg-white bg-clip-padding
-                          border border-solid border-gray-300
-                          rounded
-                          transition
-                          ease-in-out
-                          m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          className="block w-full px-4 py-3 m-0 text-base font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                           id="exampleInput124"
                           aria-describedby="emailHelp124"
                           placeholder="Last name"
@@ -128,9 +100,9 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    <div className="form-group mb-6">
+                    <div className="mb-6 form-group">
                       {checkEmail && (
-                        <span className=" block text-red-700 pb-2">
+                        <span className="block pb-2 text-red-700 ">
                           The Emain Is already Used.
                         </span>
                       )}
@@ -161,9 +133,9 @@ const Register = () => {
                         }}
                       />
                     </div>
-                    <div className="form-group mb-6">
+                    <div className="mb-6 form-group">
                       {checkPass && (
-                        <span className=" block text-red-700 pb-2">
+                        <span className="block pb-2 text-red-700 ">
                           Password shoud be at least 6 characters
                         </span>
                       )}
@@ -171,12 +143,12 @@ const Register = () => {
                         {showIcon ? (
                           showHiddenPassword ? (
                             <VisibilityIcon
-                              className="absolute right-4 top-3 text-lg cursor-pointer"
+                              className="absolute text-lg cursor-pointer right-4 top-3"
                               onClick={(e) => showHiddenPasswordHandler()}
                             />
                           ) : (
                             <VisibilityOffIcon
-                              className="absolute right-4 top-3 text-lg cursor-pointer"
+                              className="absolute text-lg cursor-pointer right-4 top-3"
                               onClick={(e) => showHiddenPasswordHandler()}
                             />
                           )
@@ -211,14 +183,14 @@ const Register = () => {
                         />
                       </div>
                     </div>
-                    <div className="form-group form-check text-center mb-6">
+                    <div className="mb-6 text-center form-group form-check">
                       <input
                         type="checkbox"
-                        className="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
+                        className="w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
                         id="Subscribe"
                       />
                       <label
-                        className="form-check-label inline-block text-gray-800"
+                        className="inline-block text-gray-800 form-check-label"
                         htmlFor="Subscribe"
                       >
                         Subscribe to our newsletter
@@ -226,34 +198,17 @@ const Register = () => {
                     </div>
                     <button
                       type="submit"
-                      className="
-                        w-full
-                        px-7
-                        py-3
-                        bg-blue-600
-                        text-white
-                        font-medium
-                        text-xs
-                        leading-tight
-                        uppercase
-                        rounded
-                        shadow-md
-                        hover:bg-blue-700 hover:shadow-lg
-                        focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-                        active:bg-blue-800 active:shadow-lg
-                        transition
-                        duration-150
-                        ease-in-out"
+                      className="w-full py-3 text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md  px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
                     >
                       Sign up
                     </button>
                   </form>
-                  <p className="text-sm font-semibold mt-2 pt-1 mb-0">
+                  <p className="pt-1 mt-2 mb-0 text-sm font-semibold">
                     have an account?
                     <Link
                       to="/user/login"
                       href="#!"
-                      className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out hover:underline"
+                      className="text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700 hover:underline"
                     >
                       Login
                     </Link>

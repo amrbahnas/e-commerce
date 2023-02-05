@@ -1,74 +1,77 @@
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+.navbar {
+  @apply h-20 flex items-center relative gap-3;
+}
 
-    .navbar {
-        @apply h-20 flex items-center relative gap-3
-    }
+.navbar ul li {
+  position: relative;
+  /* @apply hover:text-white */
+}
+.navbar ul li:hover::after {
+  width: 100%;
+  padding: 10px;
+}
 
-    .navbar ul li {
-        position: relative;
-        /* @apply hover:text-white */
-    }
-    .navbar ul li:hover::after {
-        width: 100%;
-        padding: 10px;
-    }
+.navbar ul li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: #f0f0f0;
+  z-index: -1;
+  @apply transition-all duration-300 ease-linear  rounded-md;
+}
 
-    .navbar ul li::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 0;
-        height: 100%;
-        background: #f0f0f0;
-        z-index: -1;
-        @apply  transition-all duration-300 ease-linear  rounded-md
-    }
+.navLeft {
+  @apply flex gap-2 items-center;
+}
 
-    .navLeft {
-        @apply flex gap-2 items-center;
-    }
+.searchBar {
+  @apply relative flex-1 flex items-center gap-1;
+}
 
-    .searchBar {
-        @apply relative flex-1 flex items-center gap-1
-    }
+.navRight {
+  @apply flex gap-2 items-center;
+}
 
-    .navRight {
-        @apply flex gap-2 items-center;
-    }
+.ul-item {
+  @apply hidden lg:flex items-center gap-4 p-2;
+}
 
-    .ul-item {
-        @apply hidden lg:flex items-center gap-4 p-2;
-    }
+.center {
+  @apply font-bold text-xl;
+}
 
-    .center {
-        @apply font-bold text-xl
-    }
+.count {
+  background-color: dodgerblue;
+  @apply flex justify-center items-center absolute rounded-full w-4 h-4 -top-1 left-3 text-sm p-2 select-none text-white font-bold;
+}
 
-    .count {
-        background-color: dodgerblue;
-        @apply flex justify-center items-center absolute rounded-full w-4 h-4 -top-1 left-3 text-sm p-2 select-none text-white font-bold
-    }
+.searchBarInput {
+  @apply border p-2 flex-1 focus:outline-none rounded-md;
+}
 
-    .searchBarInput {
-        @apply border p-2 flex-1 focus:outline-none rounded-md
-    }
-
-    .showSearchBar {
-        display: block;
-    }
-
-    /* .loginMenu::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 10px 15px 10px;
-    border-color: transparent transparent #ffff transparent;
-    top: -14px;
-    right: 5px;
-} */
+.showSearchBar {
+  display: block;
+}
+.storeHeader .profileImage {
+  @apply relative;
+}
+.storeHeader .profileImage::after {
+  bottom: 0;
+  right: 3px;
+  width: 8px;
+  height: 8px;
+  outline: 2px solid white;
+  /* z-index: 500; */
+  background-color: #44b700;
+  content: "";
+  position: absolute;
+  animation: jss400 1.2s infinite ease-in-out;
+  border-radius: 50%;
+}
