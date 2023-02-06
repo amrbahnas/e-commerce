@@ -1,8 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
-import styles from './ConfirmPassword.module.css'
+//styles file
+import styles from "./ConfirmPassword.module.css";
+// firebase
 import { signIn } from "../../Firebase/Auth";
+// icons
 import CloseIcon from "@mui/icons-material/Close";
-const ConfirmPassword = ({ setConfirmPasswordLayout,setChangeEmailState,email }) => {
+
+/************************************* start ************************************************** */
+const ConfirmPassword = ({
+  setConfirmPasswordLayout,
+  setChangeEmailState,
+  email,
+}) => {
   const [passwordEntered, setPasswordEntered] = useState("");
   const [isNotValid, setIsNotValid] = useState(false);
   const layout = useRef();
@@ -19,25 +28,27 @@ const ConfirmPassword = ({ setConfirmPasswordLayout,setChangeEmailState,email })
       document.removeEventListener("mousedown", handler);
     };
   });
-  
+
   const confirmHandler = () => {
- signIn(email, passwordEntered)
-   .then((res) => {
-    setConfirmPasswordLayout(false);
-    setChangeEmailState(true);
-   })
-   .catch((err) => {
-     console.log("error");
-     setIsNotValid(true);
-   });
-  }
+    signIn(email, passwordEntered)
+      .then((res) => {
+        setConfirmPasswordLayout(false);
+        setChangeEmailState(true);
+      })
+      .catch((err) => {
+        console.log("error");
+        setIsNotValid(true);
+      });
+  };
+  
+  /************************************* DOM ************************************************** */
   return (
     <div className={`${styles.confirmPassword}`}>
-      <div className="theContainer flex items-center justify-center">
+      <div className="flex items-center justify-center theContainer">
         <div className={`${styles.wrapper}`} ref={layout}>
           <div className={`${styles.header}`}>
             <CloseIcon
-              className=" cursor-pointer"
+              className="cursor-pointer "
               onClick={(e) => setConfirmPasswordLayout(false)}
             />
           </div>

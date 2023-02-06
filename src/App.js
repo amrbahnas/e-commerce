@@ -23,6 +23,10 @@ import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 import Confetti from "./Pages/Confetti/Confetti";
 import User from "./Pages/User/User";
+import CheckOut from "./Pages/CheckOut/CheckOut";
+import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
+import Payment from "./components/Payment/Payment";
+import Placeorder from './components/Placeorder/Placeorder';
 
 /////////////Home page///////////////////
 const Layout = () => {
@@ -40,7 +44,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <Layout/>,
+    errorElement: <Layout />,
     children: [
       {
         index: true,
@@ -62,6 +66,24 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <UserProfile />,
       },
+      {
+        path: "/checkout",
+        element: <CheckOut />,
+        children: [
+          {
+            path: "/checkout/shopingAddress",
+            element: <ShippingAddress />,
+          },
+          {
+            path: "/checkout/payment",
+            element: <Payment/>,
+          },
+          {
+            path: "/checkout/placeorder",
+            element: <Placeorder />,
+          },
+        ],
+      },
     ],
   },
   {
@@ -81,7 +103,7 @@ const router = createBrowserRouter([
         element: <Confetti />,
       },
       {
-        path: "/user//resetpassword",
+        path: "/user/resetpassword",
         element: <ResetPassword />,
       },
     ],

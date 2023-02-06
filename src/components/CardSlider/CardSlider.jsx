@@ -1,20 +1,20 @@
 import React from "react";
-
 // import Swiper core and required modules
 import { Navigation, Pagination, A11y, Scrollbar, Autoplay } from "swiper";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+// style file
 import "./CardSlider.css";
+// component
 import SingleCard from "./SingleCard";
+
+/************************************* start ************************************************** */
 const CardSlider = ({
-  children,
   data,
   paginationIs,
   scrollbarIs,
@@ -23,6 +23,7 @@ const CardSlider = ({
   spaceBetweenIs,
   slidesPerViewIs,
 }) => {
+  /************************************* DOM ************************************************** */
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y, Scrollbar, Autoplay]}
@@ -50,13 +51,11 @@ const CardSlider = ({
           spaceBetween: 20,
         },
       }}
-      // onSwiper={(swiper) => console.log("")}
-      // onSlideChange={() => console.log("")}
       className="swiper-container"
     >
       {data?.map((item) => (
         <SwiperSlide key={item.id} className="swiperSlide">
-          <SingleCard item={item}/>
+          <SingleCard item={item} />
         </SwiperSlide>
       ))}
     </Swiper>

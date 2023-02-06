@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
+// react router
 import { Link } from "react-router-dom";
+// redux
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../store/cartSlice";
-import StarIcon from "@mui/icons-material/Star";
+// framer motion
 import { motion } from "framer-motion";
+// icons
+import StarIcon from "@mui/icons-material/Star";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import EditIcon from "@mui/icons-material/Edit";
 //firebase
 import { dowunloadImage } from "../../Firebase/Store";
-import "./Card.css";
+// tost message
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// css file
+import "./Card.css";
 const Card = ({ item }) => {
   const dispatch = useDispatch();
   const { admin } = useSelector((store) => store.AuthSlice);
@@ -18,17 +24,17 @@ const Card = ({ item }) => {
   const [img2, setImg2] = useState(null);
 
   useEffect(() => {
-    const path ="products-images/";
+    const path = "products-images/";
     dowunloadImage(path + item.img).then((img) => {
       setImg1(img);
     });
     dowunloadImage(path + item.img2).then((img) => {
       setImg2(img);
     });
-  }, []);
+  }, [item.img, item.img2]);
 
   const addToCart = () => {
-    dispatch(addProduct({ ...item,previewImg:img1, itemCount: 1 }));
+    dispatch(addProduct({ ...item, previewImg: img1, itemCount: 1 }));
     toast.success("Item Added", {
       position: "top-right",
       autoClose: 1200,
@@ -56,7 +62,7 @@ const Card = ({ item }) => {
             alt=""
             className="transition-all duration-400 hover:scale-110 skeleton"
           />
-          {/*<img src={img2} alt="" className="hover:scale-105" />*/}
+          <img src={img2} alt="" className="hover:scale-105" />
         </div>
       </Link>
       <div className="cardFooter">

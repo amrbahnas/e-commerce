@@ -1,0 +1,66 @@
+.placeorder {
+  @apply grid grid-cols-5 gap-10 items-start bg-white my-10 p-4 md:p-10 rounded-md;
+}
+.left {
+  @apply col-span-5 md:col-span-3 bg-white;
+}
+
+.left .shipping {
+  @apply flex flex-col border-b pb-6;
+}
+
+.left .payment {
+  @apply flex justify-between items-center border-b py-6;
+}
+
+.left .payment img {
+  @apply h-10  object-cover hidden lg:block;
+}
+
+.left .title {
+  @apply flex items-center gap-2 text-amr text-base;
+}
+.left .title span {
+  @apply text-black;
+}
+
+.left .info {
+  @apply flex gap-2 text-gray-400 text-sm capitalize ml-8;
+}
+
+.left .order {
+  @apply flex flex-col  py-6;
+}
+
+.left .product table {
+  @apply block w-full mt-4 md:ml-8 max-h-72  overflow-y-scroll;
+}
+
+
+.left .product table th {
+  @apply text-gray-400 text-left ;
+}
+.left .product table td {
+  @apply py-6 border-b ;
+}
+
+.left .product table td img {
+  @apply w-20 h-20 inline-block mr-4;
+}
+
+.right {
+  @apply col-span-5 md:col-span-2 flex flex-col gap-4 bg-white;
+}
+.right > span {
+  @apply block w-fit text-2xl border-b-2;
+}
+.right ul li {
+  @apply flex justify-between items-center p-4 border-b-2;
+}
+.right button {
+  @apply w-full py-2 text-white  capitalize font-bold bg-amr rounded-md;
+}
+.right button:last-child {
+  background-color: #d5d5d5;
+  @apply w-full py-2 text-black  capitalize font-bold rounded-md;
+}

@@ -1,22 +1,23 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Card from "../Card/Card";
+// component
 import CardSlider from "../CardSlider/CardSlider";
 //fire base
 import { products } from "../../Firebase/index";
 import { onSnapshot, query, orderBy, where } from "firebase/firestore";
-
 // Import component styles
 import "./FeaturedProducts.css";
+/************************************* start ************************************************** */
 const FeaturedProducts = ({ title, type }) => {
   const [data, setData] = useState([]);
+  // fetch data
   useEffect(() => {
     const q = query(
       products,
       where("type", "==", type),
       orderBy("price", "asc")
     );
-    const fetchedData=[]
+    const fetchedData = [];
     onSnapshot(q, (snapshot) => {
       snapshot.docs.forEach((doc) => {
         fetchedData.push({ ...doc.data(), id: doc.id });
@@ -24,15 +25,13 @@ const FeaturedProducts = ({ title, type }) => {
       setData(fetchedData);
     });
   }, [type]);
-
+  /************************************* DOM ************************************************** */
   return (
     <div className="FeaturedProducts">
       <div className="theContainer">
-        <div className="sectionWrapper bg-white  rounded-md">
-          <div className="FeaturedProductsTop w-full">
-            <h2 className="p-6 capitalize font-bold text-3xl">
-              {title}
-            </h2>
+        <div className="bg-white rounded-md sectionWrapper">
+          <div className="w-full FeaturedProductsTop">
+            <h2 className="p-6 text-3xl font-bold capitalize">{title}</h2>
           </div>
           <div className="FeaturedProductsBottom">
             <CardSlider

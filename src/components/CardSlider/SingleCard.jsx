@@ -1,19 +1,28 @@
 import React,{useEffect,useState} from "react";
+// react router
 import { Link } from "react-router-dom";
+// redux
 import { useSelector } from "react-redux";
+// firebase
 import { dowunloadImage } from "../../Firebase/Store";
-
 //icon
 import EditIcon from "@mui/icons-material/Edit";
+
+/************************************* start ************************************************** */
 const SingleCard = ({ item }) => {
+  // get global state
   const { admin } = useSelector((store) => store.AuthSlice);
+  // state for carry the image of the card
   const [img1, setImg1] = useState(null);
+  // fetch the card image
   useEffect(() => {
     const path = "products-images/";
     dowunloadImage(path + item.img).then((img) => {
       setImg1(img);
     });
-  }, []);
+  }, [item.img]);
+  
+  /************************************* DOM ************************************************** */
   return (
     <>
       <Link

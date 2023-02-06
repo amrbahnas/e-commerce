@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 const Footer = () => {
+  /************************************* DOM ************************************************** */
   return (
     <div className="footer" id="footer">
       <div className="theContainer">
@@ -44,7 +45,7 @@ const Footer = () => {
         <div className="bottom">
           <div className="left">
             <h2>store</h2>
-            <p className=" text-center md:text-left">
+            <p className="text-center md:text-left">
               @copyright 2023 all rights reserved
             </p>
           </div>

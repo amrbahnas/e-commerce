@@ -1,0 +1,33 @@
+
+.inputSection {
+  @apply grid grid-cols-2 bg-white mt-10 rounded-md;
+}
+.inputSection .image {
+  @apply col-span-2 md:col-span-1 flex justify-center items-center;
+}
+.form {
+  @apply col-span-2 md:col-span-1  p-14 rounded-md;
+}
+.form > span:nth-child(1) {
+  @apply block text-2xl mb-4;
+}
+.form > span:nth-child(2) {
+  @apply block text-sm mb-2;
+}
+.form .input {
+  @apply flex items-center mb-4 capitalize;
+}
+.form .input label {
+  @apply ml-1 cursor-pointer;
+}
+.form .input input {
+  @apply  cursor-pointer w-4 h-4 border-amr;
+}
+
+.form button {
+  @apply w-24 text-white rounded-md bg-amr p-2;
+}
+.form button:nth-last-of-type(1) {
+  background-color: #d5d5d5;
+  @apply w-20 ml-4 text-black rounded-md p-2;
+}

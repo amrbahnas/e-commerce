@@ -1,8 +1,14 @@
 import React, { useState, useRef, useEffect} from "react";
+// icons
 import CloseIcon from "@mui/icons-material/Close";
-import styles from ".//ChangePassword.module.css";
+// firebase
 import { signIn } from "../../Firebase/Auth";
+// component
 import InputField from "./InputField";
+// style file
+import styles from "./ChangePassword.module.css";
+
+/************************************* start ************************************************** */
 const ChangePassword = ({
   setChangePasswordLayout,
   updateUserPassword,
@@ -49,7 +55,8 @@ const ChangePassword = ({
       document.removeEventListener("mousedown", handler);
     };
   });
-
+  
+  /************************************* DOM ************************************************** */
   return (
     <div className={`${styles.changePassword}`}>
       <div className={`theContainer  flex items-center justify-center`}>
@@ -57,8 +64,8 @@ const ChangePassword = ({
           <div className={`${styles.header}`}>
             <h2>Change password</h2>
             <CloseIcon
-              className=" cursor-pointer"
-              onClick={(e) => setChangePasswordLayout(false)}
+              className="cursor-pointer "
+              onClick={() => setChangePasswordLayout(false)}
             />
           </div>
           <InputField

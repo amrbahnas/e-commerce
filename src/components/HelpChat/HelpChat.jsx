@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 import CloseIcon from "@mui/icons-material/Close";
 import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
@@ -36,11 +36,11 @@ export const HelpChat = () => {
       <div className={`${styles.help}`}>
         {chat && (
           <div className={`${styles.chat}`}>
-            <div className="chatHeader bg-amr px-4 py-2 text-white flex items-center justify-between gap-1  ">
+            <div className="flex items-center justify-between gap-1 px-4 py-2 text-white chatHeader bg-amr ">
               <div>
                 <HeadsetMicIcon /> store
               </div>
-              <div className=" cursor-pointer" onClick={(e) => setChat(false)}>
+              <div className="cursor-pointer " onClick={(e) => setChat(false)}>
                 <CloseIcon />
               </div>
             </div>
@@ -50,26 +50,26 @@ export const HelpChat = () => {
                 onSubmit={(e) => submitHandler(e)}
               >
                 <div>
-                  <label htmlFor="email" className=" capitalize">
+                  <label htmlFor="email" className="capitalize ">
                     email
                   </label>
                   <input type="email" id="email" />
                 </div>
                 <div>
-                  <label htmlFor="subject" className=" capitalize">
+                  <label htmlFor="subject" className="capitalize ">
                     subject
                   </label>
                   <textarea name="subject" id="subject"></textarea>
                 </div>
                 {sendMSg && (
-                  <span className="text-green-500 flex items-center">
+                  <span className="flex items-center text-green-500">
                     {" "}
                     <CheckCircleIcon /> Message send successfuly
                   </span>
                 )}
                 <button
                   type="submit"
-                  className="bg-amr px-3 py-2 rounded-md text-white"
+                  className="px-3 py-2 text-white rounded-md bg-amr"
                 >
                   send mail
                 </button>
@@ -82,7 +82,7 @@ export const HelpChat = () => {
             <div className={`${styles.helpMessage}`}>
               <div
                 onClick={(e) => setMessage(false)}
-                className="closeIcon absolute top-0 -left-7 text-black flex justify-center items-center cursor-pointer w-6 h-6 rounded-full bg-img"
+                className="absolute top-0 flex items-center justify-center w-6 h-6 text-black rounded-full cursor-pointer closeIcon -left-7 bg-img"
               >
                 <CloseIcon />
               </div>
@@ -91,7 +91,7 @@ export const HelpChat = () => {
           )}
           <button
             onClick={(e) => ChatIconHandler()}
-            className=" bg-amr text-white rounded-md w-30 h-14 py-2 px-4 "
+            className="px-4 py-2 text-white rounded-md bg-amr w-30 h-14"
           >
             {chat ? <CloseIcon /> : <ChatIcon />}
           </button>

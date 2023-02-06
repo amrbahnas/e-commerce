@@ -140,7 +140,11 @@ const Cart = () => {
                 </div>
               </div>
               <div className={`${styles.checkout}`}>
-                <button>checkout</button>
+                <Link to="/checkout/shopingAddress">
+                <button>
+                checkout
+                </button>
+                </Link>
               </div>
               <span
                 className="block mt-4 text-sm text-red-600 capitalize cursor-pointer "

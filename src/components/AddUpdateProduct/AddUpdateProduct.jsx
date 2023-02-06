@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import styles from "./AddUpdateProduct.module.css";
 // icons
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import styles from "./AddUpdateProduct.module.css";
-import { addProduct, updataProduct, category } from "../../Firebase/index";
+// tost message
 import { toast } from "react-toastify";
 //fire base
 import { db } from "../../Firebase/index";
 import { onSnapshot, doc, query } from "firebase/firestore";
 import { uploadImage, deleteImage, dowunloadImage } from "../../Firebase/Store";
+import { addProduct, updataProduct, category } from "../../Firebase/index";
 /// end firebase
 // for generate random string
 import { v4 } from "uuid";
@@ -29,13 +30,13 @@ const AddUpdateProduct = () => {
   const [imgFile2, setImgFile2] = useState(null);
   const [previewImage1, setPreviewImage1] = useState(null);
   const [previewImage2, setPreviewImage2] = useState(null);
-
   // all categories we have
   const [categories, setCategories] = useState([]);
   // all subcategory in selected category
   const [subCategory, setSubCategory] = useState([]);
   // for check we at add or update product page
   const id = useParams().id;
+  
   //fetch product data from if (id)
   useEffect(() => {
     // target collection
@@ -63,7 +64,6 @@ const AddUpdateProduct = () => {
           setCurrentImgName1(data.img);
           setImgName2(data.img2);
           setCurrentImgName2(data.img2);
-
           setPrice(data.price);
           setProductCategory(data.category);
           // set subCategory state indepent on fetched categories (second used)
@@ -97,7 +97,8 @@ const AddUpdateProduct = () => {
       }
     });
   }, [id]);
-
+  
+  // new or not button
   const isNewHandler = (e) => {
     setIsNew(!!+e.target.value);
     e.target.classList.toggle("active");
@@ -112,7 +113,8 @@ const AddUpdateProduct = () => {
         categories?.filter((el) => el.title === value)[0]?.sub_category
     );
   };
-
+  
+  // preview image on screen
   const previewImg = (files, imgNum) => {
     const randomString = v4();
     if (files?.length > 0) {

@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { setLoginState } from "../../store/AuthSlice";
 //firebase
 import { signIn, logOut } from "../../Firebase/Auth";
-
+/************************************* start ************************************************** */
 const DeleteAccount = ({
   setDeleteAccountLayout,
   deleteUserAccount,
@@ -18,7 +18,7 @@ const DeleteAccount = ({
   const [confirm, setConfirm] = useState("");
   const [ispasswordNotCorrect, setIspasswordNotCorrect] = useState(false);
   const [isNotValid, setIsNotValid] = useState(false);
-
+  // on click delete
   const deleteHandler = () => {
     signIn(email, password)
       .then((res) => {
@@ -46,15 +46,14 @@ const DeleteAccount = ({
             });
         } else {
           setIsNotValid(true);
-        setIspasswordNotCorrect(false);
-
+          setIspasswordNotCorrect(false);
         }
       })
       .catch((err) => {
         setIspasswordNotCorrect(true);
       });
   };
-
+// close layout out onclick outside
   const layout = useRef();
   useEffect(() => {
     const handler = (e) => {
@@ -69,7 +68,8 @@ const DeleteAccount = ({
       document.removeEventListener("mousedown", handler);
     };
   });
-
+  
+  /************************************* DOM ************************************************** */
   return (
     <div className={`${styles.deleteAccount}`}>
       <div className={`theContainer  flex items-center justify-center`}>
@@ -77,7 +77,7 @@ const DeleteAccount = ({
           <div className={`${styles.header}`}>
             <span>Delete Account</span>
             <CloseIcon
-              className=" cursor-pointer"
+              className="cursor-pointer "
               onClick={(e) => setDeleteAccountLayout(false)}
             />
           </div>
