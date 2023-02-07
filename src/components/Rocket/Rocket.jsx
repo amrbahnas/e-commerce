@@ -67,7 +67,11 @@ const Rocket = () => {
         </div>
       )}
       {success && (
-        <div className="flex flex-col items-center justify-center gap-10 -mt-24 ">
+        <motion.div
+          className="flex flex-col items-center justify-center gap-10 -mt-24 "
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
           <SuccessCheck />
           <motion.span
             whileTap={{ scale: 0.9 }}
@@ -82,7 +86,7 @@ const Rocket = () => {
             <span>continue shopping</span>
             <span className="inline-block ml-2">{timerGoHome}</span>
           </button>
-        </div>
+        </motion.div>
       )}
     </div>
   );
