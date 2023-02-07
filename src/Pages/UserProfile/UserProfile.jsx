@@ -25,7 +25,7 @@ import ConfirmPassword from "../../components/ConfirmPassword/ConfirmPassword";
 const UserProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { email, userName, photoURL, userImage } = useSelector(
+  const { email, userName, photoURL, userImage, orders } = useSelector(
     (store) => store.userSlice
   );
   const { login } = useSelector((store) => store.AuthSlice);
@@ -120,7 +120,6 @@ const UserProfile = () => {
 
   const canselChangeEmail = () => {
     setUserEmail(email);
-
     setChangeEmailState(false);
   };
 
@@ -148,6 +147,38 @@ const UserProfile = () => {
                   Preview
                 </div>
               </div>
+            </div>
+            <div className={`${styles.ordersContainer}`}>
+              <span>my orders</span>
+              {orders.length > 0 ? (
+                <table>
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>price</th>
+                      <th>status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders?.map((order) => {
+                      return (
+                        <tr key={order.orderId}>
+                          <td>{order.orderId.slice(0, 5)}...</td>
+                          <td>{order.price}$</td>
+                          <td>{order.status}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              ) : (
+                <div className="relative flex flex-col items-center justify-center capitalize">
+                  <img src="/assets/cartEmpty.png" alt="" />
+                  <span className="absolute bottom-0 text-gray-500">
+                    no orders yet!
+                  </span>
+                </div>
+              )}
             </div>
           </div>
           <div
@@ -211,7 +242,7 @@ const UserProfile = () => {
                   {changeEmailState ? "Save Email" : "Change Email"}
                 </button>
                 {changeEmailState && (
-                  <button onClick={(e) => canselChangeEmail(e)}>Cancel</button>
+                  <button className={styles.emailCancel} onClick={(e) => canselChangeEmail(e)}>Cancel</button>
                 )}
                 <button onClick={(e) => enablePassword(e)}>
                   Change password

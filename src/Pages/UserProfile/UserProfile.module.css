@@ -1,120 +1,139 @@
-.left{
-    @apply flex flex-col items-center gap-3 justify-start p-8 bg-white relative
+.left {
+  @apply flex flex-col items-center gap-3 justify-start bg-white relative;
 }
 
-
 .imgContainer {
-    @apply relative
+  @apply relative px-8 pt-8;
 }
 
 .imgContainer::after {
-    bottom: 15px;
-    right: 27px;
-    width:15px;
-    height: 15px;
-    outline: 3px solid white;
-    /* z-index: 500; */
-    background-color: #44b700;
-    content: "";
-    position: absolute;
-    animation: jss400 1.2s infinite ease-in-out;
-    border-radius: 50%; 
+  bottom: 23px;
+  right: 50px;
+  width: 15px;
+  height: 15px;
+  outline: 3px solid white;
+  /* z-index: 500; */
+  background-color: #44b700;
+  content: "";
+  position: absolute;
+  animation: jss400 1.2s infinite ease-in-out;
+  border-radius: 50%;
 }
 
-.left .img {
-    @apply w-44 h-44 rounded-full p-1  relative overflow-hidden
+.left .imgContainer .img {
+  @apply w-44 h-44 rounded-full p-1  relative overflow-hidden;
 }
 
-
-.left .previewIcon {
-    background-color: rgba(0, 0, 0, 0.322);
-    @apply opacity-0 hover:opacity-100 w-full h-full text-white absolute bottom-0 flex items-center justify-center right-0
+.left .imgContainer .previewIcon {
+  background-color: rgba(0, 0, 0, 0.322);
+  @apply opacity-0 hover:opacity-100 w-full h-full text-white absolute bottom-0 flex items-center justify-center right-0;
 }
 
-.left .previewIcon  {
-@apply cursor-pointer
+.left .imgContainer .previewIcon {
+  @apply cursor-pointer;
 }
 
+.left .imgContainer button {
+  @apply bg-amr w-24 px-2 py-2 rounded-md text-white;
+}
 
+.left .ordersContainer {
+  @apply w-full p-4 rounded-md overflow-hidden;
+}
+.left .ordersContainer > span {
+  @apply block font-semibold text-lg capitalize py-2 border-b-4;
+}
 
-.left button {
-    @apply bg-amr w-24 px-2 py-2 rounded-md text-white
+.left .ordersContainer table {
+  @apply w-full text-center mt-4;
+}
+.left .ordersContainer table th {
+  @apply capitalize border-b-2 bg-amr text-white;
+}
+
+.left .ordersContainer table tr {
+  @apply capitalize cursor-pointer border-b-2 bg-slate-200 hover:bg-slate-300;
 }
 
 .right .box {
-    @apply bg-white p-8 rounded-md grid gap-10
+  @apply bg-white p-8 rounded-md grid gap-10;
 }
 
 .box .inputsContainer {
-    @apply flex flex-wrap gap-6
+  @apply flex flex-wrap gap-6;
 }
 
 .box lable {
-    @apply capitalize
+  @apply capitalize;
 }
 
 .box .title {
-    @apply mb-2 text-lg font-semibold
+  @apply mb-2 text-lg font-semibold;
 }
 
 .box .input {
-    @apply flex flex-col flex-1 gap-4
+  @apply flex flex-col flex-1 gap-4;
 }
 
-.box .inputsContainer input {
-    @apply bg-slate-300 rounded-md px-7 py-3 focus:outline-none
+.box input {
+  @apply rounded-md px-7 py-3 focus:outline-none;
 }
 
-/* Disabled state */
-.box .inputsContainer input:disabled {
-    cursor: not-allowed;
-    opacity: .6;
+/* inputs enabled state */
+.box input:enabled {
+  @apply opacity-100 border-2;
+}
+
+/* inputs Disabled state */
+.box input:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .box .buttons {
-    @apply flex flex-wrap gap-8 items-center
+  @apply flex flex-wrap gap-8 items-center;
 }
 
 .box .buttons button {
-    min-width: 120px;
+  width: 165px;
+}
+.box .buttons .emailCancel {
+  @apply bg-disableColor text-black w-fit;
 }
 
 .box button {
-    @apply bg-amr px-4 py-2 rounded-md text-white
+  @apply bg-amr px-4 py-2 rounded-md text-white;
 }
 
 .buttons span {
-    @apply text-red-600 underline text-sm cursor-pointer
+  @apply text-red-600 underline text-sm cursor-pointer;
 }
-
 
 .changePassword {
-    background-color: rgba(0, 0, 0, 0.368);
-    @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center
+  background-color: rgba(0, 0, 0, 0.368);
+  @apply absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center;
 }
 
-
 .changePassword .form {
-    @apply bg-white p-4 w-80
+  @apply bg-white p-4 w-80;
 }
 
 .changePassword .form .header {
-    @apply flex justify-between
+  @apply flex justify-between;
 }
 
 .changePassword .form .header h2 {
-    @apply font-semibold text-lg mb-5
+  @apply font-semibold text-lg mb-5;
 }
 
 .changePassword .form .input {
-    @apply flex flex-col gap-2 mb-4
+  @apply flex flex-col gap-2 mb-4;
 }
 
 .changePassword .form .input input {
-    @apply px-7 py-3 border
+  @apply px-7 py-3 border;
 }
 
 .changePassword .form button {
-    @apply px-7 py-3 border w-full mt-5
+  @apply px-7 py-3 border w-full mt-5;
 }
-

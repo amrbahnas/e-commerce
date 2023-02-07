@@ -7,6 +7,7 @@ const initialState = {
   userImage: "",
   userAddress: { location: "", city: "", postal: "", country: "" },
   paymentMethod: "",
+  orders: [],
 };
 
 export const userSlice = createSlice({
@@ -31,6 +32,9 @@ export const userSlice = createSlice({
     setUserPaymentMethods: (state, action) => {
       state.paymentMethod = action.payload;
     },
+    addUserOrders: (state, action) => {
+      state.orders.push(action.payload);
+    },
   },
 });
 
@@ -41,5 +45,6 @@ export const {
   setUserImage,
   setUserAddress,
   setUserPaymentMethods,
+  addUserOrders,
 } = userSlice.actions;
 export default userSlice.reducer;

@@ -10,7 +10,11 @@ import { motion } from "framer-motion";
 const Placeorder = () => {
   const navigate = useNavigate();
   const [rocket, setRocket] = useState(false);
+  // price
   const { data, totalPrice } = useSelector((store) => store.cartSlice);
+  const discount = totalPrice * 0.3;
+  const tax = totalPrice * 0.05;
+  const [finalPrice] = useState(totalPrice + tax  - discount); //
   const { userAddress, paymentMethod } = useSelector(
     (store) => store.userSlice
   );
@@ -48,11 +52,11 @@ const Placeorder = () => {
             <BorderAllIcon />
             <span>Order Items</span>
           </span>
+          <div className={`${styles.productsHead}`}>
+            <span>product</span>
+            <span>Price</span>
+          </div>
           <div className={`${styles.products}`}>
-            <div className={`${styles.head}`}>
-              <span>product</span>
-              <span>Price</span>
-            </div>
             {data.map((product) => (
               <div className={`${styles.product}`} key={product.id}>
                 <div className={`${styles.info}`}>
@@ -72,19 +76,19 @@ const Placeorder = () => {
         <ul>
           <li>
             <span>Items:</span>
-            <span>$222.60</span>
+            <span>{data.length}</span>
           </li>
           <li>
-            <span>Shipping:</span>
-            <span>$222.60</span>
+            <span>Tax:</span>
+            <span>${tax}</span>
           </li>
           <li>
-            <span>tax:</span>
-            <span>$222.60</span>
+            <span>discount:</span>
+            <span>$ -{discount}</span>
           </li>
           <li>
             <span>total:</span>
-            <span className="font-bold">${totalPrice}</span>
+            <span className="font-bold">${finalPrice}</span>
           </li>
         </ul>
         <motion.button
@@ -104,7 +108,11 @@ const Placeorder = () => {
         <button onClick={(e) => navigate(-1)}>back</button>
       </div>
       {rocket && (
-        <motion.div animate={{ opacity: 1 }} initial={{opacity:0}} className="relative z-50">
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          className="relative z-50"
+        >
           <Rocket />
         </motion.div>
       )}

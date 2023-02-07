@@ -34,16 +34,17 @@
 .left .order {
   @apply flex flex-col  py-6;
 }
+.left  .productsHead {
+  @apply  flex items-center justify-between text-gray-400 font-bold px-8 py-1 border-b;
+}
 
 .left .products {
-  @apply w-full  p-8 max-h-72  overflow-y-scroll;
-}
-.left .products .head {
-  @apply  flex items-center justify-between text-gray-400 font-bold;
+  @apply w-full  px-8 max-h-72  overflow-y-scroll;
 }
 
+
 .left .products .product {
-  @apply py-2 md:py-4 flex items-center border-b m-0 w-full;
+  @apply py-2 md:py-4 flex items-center border-b  w-full;
 }
 
 .left .products .product .info {
@@ -63,7 +64,7 @@
   @apply block w-fit text-2xl border-b-2;
 }
 .right ul li {
-  @apply flex justify-between items-center p-4 border-b-2;
+  @apply flex justify-between items-center p-4 border-b-2 capitalize;
 }
 .right button {
   @apply w-full py-2 text-white  capitalize font-bold bg-amr rounded-md;

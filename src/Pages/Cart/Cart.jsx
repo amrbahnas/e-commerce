@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { daleteProduct, resetCart } from "../../store/cartSlice";
@@ -9,9 +9,30 @@ import FeaturedProducts from "./../../components/FeaturedProducts/FeaturedProduc
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  //calc price
   const { data, totalPrice } = useSelector((store) => store.cartSlice);
+  const tax = totalPrice * 0.05;
+  const promoCode = 0.1 * totalPrice;
+  const discount = totalPrice * 0.2;
+  const [finalPrice, setFinalPrice] = useState(totalPrice + tax - discount);
+  const [usePromoCode, setUsePromoCode] = useState(false);
+  //
   const { login } = useSelector((store) => store.AuthSlice);
   const [cartEmpty, setCartEmpty] = useState(false);
+
+  // promocode
+  const promocodeInput = useRef();
+  const discountHandler = (e) => {
+    if (promocodeInput.current.value) {
+      promocodeInput.current.disabled=true;
+      setFinalPrice((prev) => prev - Math.ceil(prev * 0.2));
+      setUsePromoCode(true);
+      e.target.disabled = true;
+      e.target.style.backgroundColor = "#0000009e";
+    }
+  };
+
+  // delete product
   const deleteHandler = (id, price) => {
     const res = window.confirm("Are you sure you want to delete");
     if (res) {
@@ -111,10 +132,14 @@ const Cart = () => {
                   <input
                     type="text"
                     name="promoCode"
+                    ref={promocodeInput}
                     placeholder="promo code"
                     className="flex-1 p-2 border-2 rounded-md border-img focus:outline-none"
                   />
-                  <button className="w-24 p-2 text-white bg-black rounded-md ">
+                  <button
+                    className="w-24 p-2 text-white bg-black rounded-md "
+                    onClick={(e) => discountHandler(e)}
+                  >
                     submit
                   </button>
                 </div>
@@ -137,21 +162,23 @@ const Cart = () => {
                       <span>free shipping on orders $ 39+</span>
                       <span> -$18.97</span>
                     </li>
+                    {usePromoCode && (
+                      <li className=" text-green-500">
+                        <span>promo code</span>
+                        <span>$ -{promoCode}</span>
+                      </li>
+                    )}
                     <li>
-                      <span>shipping const</span>
-                      <span>19$</span>
+                      <span>estimated stales tax</span>
+                      <span>${tax}</span>
                     </li>
                     <li>
                       <span>shipping discount</span>
-                      <span>19$</span>
-                    </li>
-                    <li>
-                      <span>estimated stales tax</span>
-                      <span>19$</span>
+                      <span>$ -{discount}</span>
                     </li>
                     <li>
                       <span>estimated total</span>
-                      <span>{totalPrice}$</span>
+                      <span className="font-bold">$ {finalPrice}</span>
                     </li>
                   </ul>
                 </div>

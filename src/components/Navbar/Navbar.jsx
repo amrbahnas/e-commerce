@@ -129,11 +129,16 @@ const Navbar = () => {
                       exit={{ opacity: 0 }}
                       className="absolute flex flex-col items-center justify-center gap-4 p-4 bg-white border rounded-md shadow-md loginMenu w-fit top-10 -left-4"
                     >
-                      <div className="w-full p-2 text-center text-white capitalize bg-orange-400 border rounded-md cursor-pointer hover:scale-105 hover:shadow-md Register">
-                        <Link to="/profile">Profile</Link>
-                      </div>
-                      <div className="w-full p-2 text-center capitalize bg-white border rounded-md cursor-pointer login hover:scale-105">
-                        <span onClick={(e) => logOutHandler()}>logOut</span>
+                      <Link to="/profile">
+                        <div className="w-full p-2 text-center text-white capitalize bg-orange-400 border rounded-md cursor-pointer hover:scale-105 hover:shadow-md Register">
+                          Profile
+                        </div>
+                      </Link>
+                      <div
+                        className="w-full p-2 text-center capitalize bg-white border rounded-md cursor-pointer login hover:scale-105"
+                        onClick={(e) => logOutHandler()}
+                      >
+                        <span>logOut</span>
                       </div>
                     </motion.div>
                   )}

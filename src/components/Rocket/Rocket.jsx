@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Rocket.module.css";
 import SuccessCheck from "./../SuccessCheck/SuccessCheck";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetCart } from "../../store/cartSlice";
+import { addUserOrders } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import { v4 } from 'uuid';
 const Rocket = () => {
   const dispatch = useDispatch();
-
+  const {totalPrice}= useSelector(store=>store.cartSlice)
   const navigate = useNavigate();
   const [rocket, setRocket] = useState(true);
   const [success, setSuccess] = useState(false);
@@ -17,13 +18,16 @@ const Rocket = () => {
   useEffect(() => {
     const time = setTimeout(() => {
       setRocket(false);
-      setSuccess(true);
+      dispatch(
+        addUserOrders({ orderId: v4(), price: totalPrice, status: "success" })
+      );
       dispatch(resetCart());
+      setSuccess(true);
     }, 5000);
     return () => {
       clearTimeout(time);
     };
-  }, [dispatch]);
+  }, [dispatch, totalPrice]);
 
   useEffect(() => {
     if (timerGoHome > 0) {
@@ -79,13 +83,14 @@ const Rocket = () => {
           >
             Thank You For Shopping With Us
           </motion.span>
-          <button
+          <motion.button
+          whileTap={{scale:0.9}}
             onClick={(e) => navigate("/")}
             className="py-3 font-bold text-black capitalize rounded-md w-80 bg-disableColor"
           >
             <span>continue shopping</span>
             <span className="inline-block ml-2">{timerGoHome}</span>
-          </button>
+          </motion.button>
         </motion.div>
       )}
     </div>
