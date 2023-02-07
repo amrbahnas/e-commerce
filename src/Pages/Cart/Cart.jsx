@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { daleteProduct, resetCart } from "../../store/cartSlice";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Link } from "react-router-dom";
@@ -7,18 +8,31 @@ import styles from "./Cart.module.css";
 import FeaturedProducts from "./../../components/FeaturedProducts/FeaturedProducts";
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { data, totalPrice } = useSelector((store) => store.cartSlice);
   const { login } = useSelector((store) => store.AuthSlice);
+  const [cartEmpty, setCartEmpty] = useState(false);
   const deleteHandler = (id, price) => {
     const res = window.confirm("Are you sure you want to delete");
     if (res) {
       dispatch(daleteProduct({ id, price }));
     }
   };
+
+  const checkoutHandler = () => {
+    if (totalPrice === 0) {
+      setCartEmpty(true);
+    } else if (login && totalPrice > 0) {
+      navigate("/checkout/shopingAddress");
+    } else {
+      navigate("/user/login");
+    }
+  };
   const resetHandler = () => {
-    if(window.confirm("Are you sure ? you will lose all items")){
-      dispatch(resetCart());
-      
+    if (data.length > 0) {
+      if (window.confirm("Are you sure ? you will lose all items")) {
+        dispatch(resetCart());
+      }
     }
   };
 
@@ -48,7 +62,10 @@ const Cart = () => {
               className={`${styles.left} flex-1 md:p-2 flex flex-col  gap-3   overflow-y-scroll`}
             >
               {data.length === 0 ? (
-                <div className="text-center ">Empty</div>
+                <div className="flex flex-col items-center justify-center w-full p-2 mt-4 ">
+                  <span>Your cart is empty!</span>
+                  <img src="assets/cartEmpty.png" alt="" />
+                </div>
               ) : (
                 data?.map((item) => {
                   return (
@@ -139,15 +156,22 @@ const Cart = () => {
                   </ul>
                 </div>
               </div>
-              <div className={`${styles.checkout}`}>
-                <Link to="/checkout/shopingAddress">
-                <button>
-                checkout
-                </button>
-                </Link>
+              {cartEmpty && (
+                <div className="mb-2 text-red-500 ">
+                  Your Cart Is Empty.
+                  <span className="ml-1 text-black underline ">
+                    <Link to="/">Shopping now!</Link>
+                  </span>
+                </div>
+              )}
+              <div
+                className={`${styles.checkout}`}
+                onClick={(e) => checkoutHandler()}
+              >
+                <button>checkout</button>
               </div>
               <span
-                className="block mt-4 text-sm text-red-600 capitalize cursor-pointer "
+                className="block mt-4 text-sm text-red-600 capitalize cursor-pointer w-fit hover:underline "
                 onClick={resetHandler}
               >
                 reset cart

@@ -24,7 +24,7 @@
   @apply text-black;
 }
 
-.left .info {
+.left .shipping .info {
   @apply flex gap-2 text-gray-400 text-sm capitalize ml-8;
 }
 
@@ -32,20 +32,25 @@
   @apply flex flex-col  py-6;
 }
 
-.left .product table {
-  @apply block w-full mt-4 md:ml-8 max-h-72  overflow-y-scroll;
+.left .products {
+  @apply w-full  p-8 max-h-72  overflow-y-scroll;
+}
+.left .products .head {
+  @apply  flex items-center justify-between text-gray-400 font-bold;
 }
 
-
-.left .product table th {
-  @apply text-gray-400 text-left ;
-}
-.left .product table td {
-  @apply py-6 border-b ;
+.left .products .product {
+  @apply py-2 md:py-4 flex items-center border-b m-0 w-full;
 }
 
-.left .product table td img {
-  @apply w-20 h-20 inline-block mr-4;
+.left .products .product .info {
+  @apply flex-1 flex items-center justify-start text-gray-400 text-base;
+}
+.left .products .product .info img {
+  @apply w-16 h-16 mr-2;
+}
+.left .products .product .price {
+  @apply w-24 text-end;
 }
 
 .right {
@@ -60,7 +65,7 @@
 .right button {
   @apply w-full py-2 text-white  capitalize font-bold bg-amr rounded-md;
 }
-.right button:last-child {
+.right button:nth-last-of-type(1) {
   background-color: #d5d5d5;
   @apply w-full py-2 text-black  capitalize font-bold rounded-md;
 }

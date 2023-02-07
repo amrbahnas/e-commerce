@@ -1,17 +1,26 @@
 import { useState, useEffect } from "react";
 import styles from "./CheckOut.module.css";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, useNavigate, Outlet, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import CheckIcon from "@mui/icons-material/Check";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const CheckOut = () => {
+  const { login } = useSelector((store) => store.AuthSlice);
+  const navigate = useNavigate();
   const [payment, setPayment] = useState(false);
   const [paymentAccept, setPaymentAccept] = useState(false);
   const [adressAccept, setAdressAccept] = useState(false);
   const [placeorder, setPlaceorder] = useState(false);
-  const [placeorderAccept, setPlaceorderAccept] = useState(false);
+  const [placeorderAccept] = useState(false);
   const [lineWidth, setLineWidth] = useState("0%");
 
   const pathname = useLocation().pathname.split("/")[2];
+  useEffect(() => {
+    if (!login) {
+      navigate("/");
+    }
+  }, [login, navigate]);
+
   useEffect(() => {
     if (pathname === "payment") {
       setPayment(true);
@@ -43,9 +52,7 @@ const CheckOut = () => {
             <span>
               <ArrowForwardIosIcon fontSize="small" />
             </span>
-            <span>
-              <Link to="">{pathname}</Link>
-            </span>
+            <span>{pathname}</span>
           </div>
           <div className={`${styles.stepsSection}`}>
             <div className={`${styles.step}`}>

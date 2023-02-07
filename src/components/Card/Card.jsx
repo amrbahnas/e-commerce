@@ -36,7 +36,7 @@ const Card = ({ item }) => {
   const addToCart = () => {
     dispatch(addProduct({ ...item, previewImg: img1, itemCount: 1 }));
     toast.success("Item Added", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1200,
       hideProgressBar: true,
       closeOnClick: true,

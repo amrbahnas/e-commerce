@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PaymentIcon from "@mui/icons-material/Payment";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
 import styles from "./Placeorder.module.css";
 import { useSelector } from "react-redux";
+import Rocket from "./../Rocket/Rocket";
+import { motion } from "framer-motion";
 const Placeorder = () => {
-  const { data, totalPrice } = useSelector((store) => store.cartSlice);
-  console.log(data);
   const navigate = useNavigate();
+  const [rocket, setRocket] = useState(false);
+  const { data, totalPrice } = useSelector((store) => store.cartSlice);
+  const { userAddress, paymentMethod } = useSelector(
+    (store) => store.userSlice
+  );
+  const submitHandler = () => {
+    setRocket((prev) => !prev);
+  };
   return (
     <div className={`${styles.placeorder}`}>
       <div className={`${styles.left}`}>
@@ -17,9 +25,10 @@ const Placeorder = () => {
             <LocationOnIcon /> <span>shipping</span>
           </span>
           <div className={`${styles.info}`}>
-            <span>test</span>
-            <span>test</span>
-            <span>test</span>
+            <span>{userAddress.location}</span>
+            <span>{userAddress.city}</span>
+            <span>{userAddress.postal}</span>
+            <span>{userAddress.country}</span>
           </div>
         </div>
         <div className={`${styles.payment}`}>
@@ -29,7 +38,7 @@ const Placeorder = () => {
               <span>Payment Method</span>
             </span>
             <div className={`${styles.info}`}>
-              <span>PayPal</span>
+              <span>{paymentMethod}</span>
             </div>
           </div>
           <img src="/assets/payment.png" alt="" />
@@ -39,28 +48,22 @@ const Placeorder = () => {
             <BorderAllIcon />
             <span>Order Items</span>
           </span>
-          <div className={`${styles.product}`}>
-            <table>
-              <thead>
-                <tr>
-                  <th>products</th>
-                  <th>price</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((product) => (
-                  <tr key={product.id}>
-                    <td>
-                      <img src={product.previewImg} alt="" className="" />
-                      <span>{product.title}</span>
-                    </td>
-                    <td>
-                      {product.itemCount} x {product.price}$
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className={`${styles.products}`}>
+            <div className={`${styles.head}`}>
+              <span>product</span>
+              <span>Price</span>
+            </div>
+            {data.map((product) => (
+              <div className={`${styles.product}`} key={product.id}>
+                <div className={`${styles.info}`}>
+                  <img src={product.previewImg} alt="" className="" />
+                  <span>{product.title.substring(0, 20)} ...</span>
+                </div>
+                <div className={`${styles.price}`}>
+                  {product.itemCount} x {product.price}$
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -81,12 +84,30 @@ const Placeorder = () => {
           </li>
           <li>
             <span>total:</span>
-            <span>${totalPrice}</span>
+            <span className="font-bold">${totalPrice}</span>
           </li>
         </ul>
-        <button>place order</button>
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          onClick={(e) => submitHandler()}
+        >
+          {rocket ? (
+            <img
+              src="/assets/Spin.svg"
+              alt=""
+              className="w-6 m-auto transparent"
+            />
+          ) : (
+            "place order"
+          )}
+        </motion.button>
         <button onClick={(e) => navigate(-1)}>back</button>
       </div>
+      {rocket && (
+        <motion.div animate={{ opacity: 1 }} initial={{opacity:0}} className="relative z-50">
+          <Rocket />
+        </motion.div>
+      )}
     </div>
   );
 };

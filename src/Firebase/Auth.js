@@ -87,6 +87,7 @@ export const updateUserPassword = (Newpassword) => {
     .then((res) => {
       toast.success("password Updated successfully ", {
         autoClose: 3000,
+        position: "bottom-right",
         hideProgressBar: false,
         hideProgressBar: true,
         closeOnClick: true,

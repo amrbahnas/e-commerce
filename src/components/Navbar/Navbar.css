@@ -8,7 +8,7 @@
 
 .navbar ul li {
   position: relative;
-  /* @apply hover:text-white */
+  @apply capitalize;
 }
 .navbar ul li:hover::after {
   width: 100%;

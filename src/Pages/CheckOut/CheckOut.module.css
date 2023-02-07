@@ -12,7 +12,7 @@
 
 .miniNav span:nth-child(1) {
   color: #9b9b9b;
-  @apply hover:underline;
+  @apply hover:underline cursor-pointer;
 }
 .miniNav span:nth-child(2) {
   color: #9b9b9b;
@@ -20,7 +20,7 @@
   font-weight: bold;
 }
 .miniNav span:nth-child(3) {
-  @apply hover:underline;
+  @apply hover:underline cursor-pointer;
 }
 
 .stepsSection {
@@ -32,7 +32,7 @@
   content: "";
   width: 100%;
   height: 26px;
-  background-color: #9b9b9b;
+  background-color: #d5d5d5;
   z-index: -1;
   top: 14px;
   @apply rounded-md overflow-hidden

@@ -13,7 +13,7 @@ module.exports = {
         addProductInputBorder: "#494969",
         iconColor: "#7b79ff",
         addPhotoText: "#a5a5ba",
-        disableColor: "#9b9b9b",
+        disableColor: "#d5d5d5",
       },
     },
   },

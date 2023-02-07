@@ -36,7 +36,7 @@ const AddUpdateProduct = () => {
   const [subCategory, setSubCategory] = useState([]);
   // for check we at add or update product page
   const id = useParams().id;
-  
+
   //fetch product data from if (id)
   useEffect(() => {
     // target collection
@@ -97,7 +97,7 @@ const AddUpdateProduct = () => {
       }
     });
   }, [id]);
-  
+
   // new or not button
   const isNewHandler = (e) => {
     setIsNew(!!+e.target.value);
@@ -113,7 +113,7 @@ const AddUpdateProduct = () => {
         categories?.filter((el) => el.title === value)[0]?.sub_category
     );
   };
-  
+
   // preview image on screen
   const previewImg = (files, imgNum) => {
     const randomString = v4();
@@ -166,7 +166,7 @@ const AddUpdateProduct = () => {
         });
       }
       toast.success("Product updated", {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 1200,
         hideProgressBar: true,
         closeOnClick: true,
@@ -182,7 +182,7 @@ const AddUpdateProduct = () => {
       uploadImage(imgFile1, path1);
       uploadImage(imgFile2, path2);
       toast.success("Product Added", {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 1200,
         hideProgressBar: true,
         closeOnClick: true,

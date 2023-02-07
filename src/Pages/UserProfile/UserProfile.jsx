@@ -62,6 +62,7 @@ const UserProfile = () => {
           e.target.innerText = "UPDATE INFO";
           //message
           toast.success("Name Updated successfully ", {
+            position: "bottom-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -71,6 +72,7 @@ const UserProfile = () => {
         })
         .catch((err) => {
           toast.error(err.message, {
+            position: "bottom-right",
             autoClose: false,
             closeOnClick: true,
             theme: "colored",
@@ -97,6 +99,7 @@ const UserProfile = () => {
           emailObject.current.disabled = true;
           e.target.innerText = "Change Email";
           toast.success("Email Updated successfully ", {
+            position: "bottom-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,

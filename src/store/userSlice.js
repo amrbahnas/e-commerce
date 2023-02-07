@@ -5,6 +5,8 @@ const initialState = {
   email: "",
   photoURL: "",
   userImage: "",
+  userAddress: { location: "", city: "", postal: "", country: "" },
+  paymentMethod: "",
 };
 
 export const userSlice = createSlice({
@@ -23,9 +25,21 @@ export const userSlice = createSlice({
     setUserImage: (state, action) => {
       state.userImage = action.payload;
     },
+    setUserAddress: (state, action) => {
+      state.userAddress = action.payload;
+    },
+    setUserPaymentMethods: (state, action) => {
+      state.paymentMethod = action.payload;
+    },
   },
 });
 
-export const { setTheUserName, setTheEmail,setPhotoURL, setUserImage } =
-  userSlice.actions;
+export const {
+  setTheUserName,
+  setTheEmail,
+  setPhotoURL,
+  setUserImage,
+  setUserAddress,
+  setUserPaymentMethods,
+} = userSlice.actions;
 export default userSlice.reducer;

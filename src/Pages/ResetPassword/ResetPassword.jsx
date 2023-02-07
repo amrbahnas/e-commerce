@@ -12,7 +12,7 @@ const ResetPassword = () => {
       .then(() => {
         // Password reset email sent!
         toast.success("Password reset email sent! Check Your Email Box", {
-          position: "top-right",
+          position: "bottom-right",
           autoClose: 1200,
           hideProgressBar: true,
           closeOnClick: true,
@@ -27,7 +27,7 @@ const ResetPassword = () => {
       })
       .catch((error) => {
         toast.error(error.message, {
-          position: "top-right",
+          position: "bottom-right",
           autoClose: 1200,
           hideProgressBar: true,
           closeOnClick: true,

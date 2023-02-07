@@ -92,7 +92,7 @@ const Login = () => {
         setCheckPass(false);
         //message for successful login
         toast.success("login", {
-          position: "top-right",
+          position: "bottom-right",
           autoClose: 1200,
           hideProgressBar: true,
           closeOnClick: true,
