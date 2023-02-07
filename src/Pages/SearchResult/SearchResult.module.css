@@ -1,0 +1,14 @@
+.SearchResult {
+  @apply mt-24 min-h-screen;
+}
+
+.wrapper {
+  @apply flex justify-center items-start p-8 h-full gap-1;
+}
+
+.control {
+  /* @apply  w-fit p-1; */
+}
+.result {
+  @apply flex-1;
+}

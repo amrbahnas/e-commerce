@@ -1,0 +1,41 @@
+
+.products-left {
+    @apply w-56 p-4 md:p-2 fixed -left-56 z-50 md:z-10 mr-2 bg-white shadow-md md:shadow-none md:sticky top-0 md:top-24 h-full transition-all duration-500 rounded-md
+}
+
+.hidden-products-left {
+    @apply left-0 
+}
+
+.products-left-control {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border: 1px solid #eee;
+    top: 30%;
+    right: -30px;
+    cursor: pointer;
+    @apply md:hidden shadow-md
+}
+.products-left-control2 {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    cursor: pointer;
+    @apply md:hidden 
+}
+
+.products-left .left-setion {
+    @apply mb-10
+}
+
+.products-left .left-setion h2 {
+    @apply capitalize text-lg mb-2
+}
+
+.products-left .left-setion .item {
+    @apply flex gap-1 items-center justify-start cursor-pointer
+}

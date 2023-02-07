@@ -11,39 +11,54 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     let q = "";
-    if (subCat.length > 0 && sort) {
-      q = query(
-        products,
-        where("category", "==", catId),
-        where("price", "<=", +priceRange),
-        where("sub_category", "in", subCat),  
-        orderBy("price", sort)
-      );
+    if (subCat) {
+      if (subCat.length > 0 && sort) {
+        q = query(
+          products,
+          where("category", "==", catId),
+          where("price", "<=", +priceRange),
+          where("sub_category", "in", subCat),
+          orderBy("price", sort)
+        );
+      } else if (sort) {
+        q = query(
+          products,
+          where("category", "==", catId),
+          where("price", "<=", +priceRange),
+          orderBy("price", sort)
+        );
+      } else if (subCat.length > 0) {
+        q = query(
+          products,
+          where("category", "==", catId),
+          where("price", "<=", +priceRange),
+          where("sub_category", "in", subCat)
+        );
+      } else {
+        q = query(
+          products,
+          where("category", "==", catId),
+          where("price", "<=", +priceRange)
+        );
+      }
     } else if (sort) {
       q = query(
         products,
-        where("category", "==", catId),
         where("price", "<=", +priceRange),
+        where("sub_category", "==", catId),
         orderBy("price", sort)
-      );
-    } else if (subCat.length > 0) {
-      q = query(
-        products,
-        where("category", "==", catId),
-        where("price", "<=", +priceRange),
-        where("sub_category", "in", subCat)
       );
     } else {
       q = query(
         products,
-        where("category", "==", catId),
-        where("price", "<=", +priceRange)
+        where("price", "<=", +priceRange),
+        where("sub_category", "==", catId)
       );
     }
-    const fetchedData =[]
+    const fetchedData = [];
     onSnapshot(q, (snapshot) => {
       snapshot.docs.forEach((doc) => {
-        fetchedData.push({ ...doc.data(), id: doc.id });;
+        fetchedData.push({ ...doc.data(), id: doc.id });
       });
       setPosts(fetchedData);
     });
@@ -52,14 +67,13 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
   }, [subCat, sort, catId, priceRange]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(15);
+  const [postsPerPage] = useState(10);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div
-    >
+    <div>
       <div
         className={`${styles.items} flex flex-wrap  items-center  justify-center gap-10`}
       >

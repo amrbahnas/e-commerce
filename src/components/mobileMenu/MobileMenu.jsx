@@ -17,7 +17,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
   const [optionsControl, setOptionsControl] = useState(false);
   const { login, admin } = useSelector((store) => store.AuthSlice);
   const { userName, userImage } = useSelector((store) => store.userSlice);
-
+  const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     const handler = (e) => {
       //if the element which clicked not in the menu then
@@ -45,8 +45,16 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
       <div className={styles.menu} ref={menu}>
         <div className={styles.menuWrapper}>
           <div className={styles.search}>
-            <input type="search" name="" id="" />
-            <SearchOutlinedIcon className="cursor-pointer" />
+            <input
+              type="search"
+              name=""
+              id=""
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <Link to={"search/" + searchValue}>
+              <SearchOutlinedIcon className="cursor-pointer" />
+            </Link>
           </div>
           <ul className={styles.topMenu}>
             {admin && (

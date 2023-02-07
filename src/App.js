@@ -27,6 +27,7 @@ import CheckOut from "./Pages/CheckOut/CheckOut";
 import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
 import Payment from "./components/Payment/Payment";
 import Placeorder from './components/Placeorder/Placeorder';
+import SearchResult from "./Pages/SearchResult/SearchResult";
 
 /////////////Home page///////////////////
 const Layout = () => {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <Product />,
+      },
+      {
+        path: "/search/:value",
+        element: <SearchResult/>,
       },
       {
         path: "/cart",

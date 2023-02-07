@@ -27,6 +27,7 @@ const Navbar = () => {
   const { userName, userImage } = useSelector((store) => store.userSlice);
   const [loginMenuControl, setLoginMenuControl] = useState(false);
   const [controlMobileMenu, setcontrolMobileMenu] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   // logout function
   const logOutHandler = () => {
     dispatch(setLoginState(false));
@@ -88,8 +89,14 @@ const Navbar = () => {
               id=""
               className="searchBarInput"
               placeholder="Search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
             />
-            <SearchOutlinedIcon className="absolute cursor-pointer right-1" />
+            <span className="absolute cursor-pointer right-1">
+              <Link to={"search/" + searchValue}>
+                <SearchOutlinedIcon />
+              </Link>
+            </span>
           </div>
           <div className="navRight">
             <ul className="ul-item">
