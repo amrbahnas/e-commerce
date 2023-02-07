@@ -12,7 +12,6 @@ const ShippingAddress = () => {
   const [country, setCountry] = useState("");
 
   const  {userAddress}  = useSelector((store) => store.userSlice);
-  console.log(userAddress)
   useEffect(() => {
     setLocation(userAddress.location);
     setCity(userAddress.city);

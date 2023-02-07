@@ -16,8 +16,11 @@
 .left .payment img {
   @apply h-10  object-cover hidden lg:block;
 }
+.left .payment .info span {
+  @apply ml-8 text-gray-400;
+}
 
-.left .title {
+.left  .title {
   @apply flex items-center gap-2 text-amr text-base;
 }
 .left .title span {
