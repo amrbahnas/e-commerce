@@ -46,6 +46,7 @@ const ShippingAddress = () => {
             id="address"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            required
           />
         </div>
         <div className={`${styles.input}`}>
@@ -55,6 +56,7 @@ const ShippingAddress = () => {
             id="city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
+            required
           />
         </div>
         <div className={`${styles.input}`}>
@@ -64,6 +66,7 @@ const ShippingAddress = () => {
             id="Postal Code"
             value={postal}
             onChange={(e) => setPostal(e.target.value)}
+            required
           />
         </div>
         <div className={`${styles.input}`}>
@@ -73,6 +76,7 @@ const ShippingAddress = () => {
             id="Country"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
+            required
           />
         </div>
         <button>Next Step</button>
