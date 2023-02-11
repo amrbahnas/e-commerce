@@ -11,7 +11,7 @@ import "swiper/css/scrollbar";
 // style file
 import "./CardSlider.css";
 // component
-import SingleCard from "./SingleCard";
+import SingleCard from "./SingleSlider/SingleCard";
 
 /************************************* start ************************************************** */
 const CardSlider = ({

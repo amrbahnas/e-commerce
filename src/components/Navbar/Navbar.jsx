@@ -52,7 +52,7 @@ const Navbar = () => {
   });
 
   return (
-    <div className="fixed top-0 z-50 w-full bg-white shadow-md storeHeader">
+    <div className="fixed top-0 z-40 w-full bg-white shadow-md storeHeader">
       <div className="theContainer">
         <div className="justify-between navbar">
           <div className="navLeft">

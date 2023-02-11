@@ -163,7 +163,7 @@ const UserProfile = () => {
                     {orders?.map((order) => {
                       return (
                         <tr key={order.orderId}>
-                          <td>{order.orderId.slice(0, 5)}...</td>
+                          <td>{order.orderId?.slice(0, 5)}...</td>
                           <td>{order.price}$</td>
                           <td>{order.status}</td>
                         </tr>

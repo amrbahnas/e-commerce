@@ -35,6 +35,9 @@ export const userSlice = createSlice({
     addUserOrders: (state, action) => {
       state.orders.push(action.payload);
     },
+    resetUserOrders: (state) => {
+      state.orders=[];
+    },
   },
 });
 
@@ -46,5 +49,6 @@ export const {
   setUserAddress,
   setUserPaymentMethods,
   addUserOrders,
+  resetUserOrders,
 } = userSlice.actions;
 export default userSlice.reducer;

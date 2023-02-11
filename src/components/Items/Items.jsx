@@ -45,14 +45,14 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
       q = query(
         products,
         where("price", "<=", +priceRange),
-        where("sub_category", "==", catId),
+        where("sub_category", "==", catId.toLowerCase()),
         orderBy("price", sort)
       );
     } else {
       q = query(
         products,
         where("price", "<=", +priceRange),
-        where("sub_category", "==", catId)
+        where("sub_category", "==", catId.toLowerCase())
       );
     }
     const fetchedData = [];

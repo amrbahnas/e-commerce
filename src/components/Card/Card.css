@@ -12,7 +12,7 @@
     padding: 10px;
 }
 
-.card:hover .addToCard {
+.card:hover .conrolsButton {
     display: flex
 }
 
@@ -80,12 +80,18 @@
     font-size: 6px;
 }
 
+.conrolsButton {
+    @apply hidden absolute gap-4 items-center justify-center rounded-full cursor-pointer z-30  bottom-2 right-4
 
+}
 .addToCard {
-    @apply hidden absolute w-10 h-10 bg-slate-300 items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2 bottom-4 right-6
+    @apply   w-10 h-10 bg-slate-300 flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2
 }
 
+.previewProduct {
+    @apply  w-10 h-10 bg-slate-300 flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110
 
+}
 .editProduct {
     @apply absolute w-10 h-10 bg-slate-300 items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2 top-4 right-6
 }

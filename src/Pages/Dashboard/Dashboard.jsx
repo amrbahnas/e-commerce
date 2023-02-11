@@ -23,7 +23,7 @@ const Dashboard = () => {
         </div>
       </div>
       <Link to={-1} className={styles.goBACK}>
-        <ArrowBackIosIcon />
+        <ArrowBackIosIcon fontSize="large" />
       </Link>
       <ToastContainer />
     </div>

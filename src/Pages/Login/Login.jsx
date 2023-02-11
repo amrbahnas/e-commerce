@@ -18,6 +18,7 @@ import {
   setTheUserName,
   setPhotoURL,
   setUserImage,
+  resetUserOrders,
 } from "../../store/userSlice.js";
 
 const Login = () => {
@@ -68,6 +69,7 @@ const Login = () => {
         }
 
         //store ALL user info to global store
+        dispatch(resetUserOrders());
         dispatch(setLoginState(true));
         dispatch(setTheEmail(res.user.email));
         dispatch(setTheUserName(res.user.displayName));

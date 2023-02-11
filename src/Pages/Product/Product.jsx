@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../store/cartSlice";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckIcon from "@mui/icons-material/Check";
 import Loading from "../../components/Loading/Loading";
 //fire base
@@ -13,8 +14,7 @@ import { db } from "../../Firebase/index";
 import { onSnapshot, doc } from "firebase/firestore";
 /// end firebase
 import { toast } from "react-toastify";
-import { motion } from 'framer-motion';
-
+import { motion } from "framer-motion";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -62,8 +62,13 @@ const Product = () => {
 
   return (
     <div className="mt-24 theContainer ">
+      <Link to={-1}>
+        <span className="mb-4 fixed  bg-amr text-white rounded-full shadow-md hover:scale-105 top-1/3 left-24 w-10 h-10 hidden md:flex items-center justify-center">
+          <ArrowBackIcon fontSize="large" />
+        </span>
+      </Link>
       <div className="p-4 bg-white rounded-md sectionWrapper">
-        <div className="flex flex-col h-auto product md:h-screen md:flex-row ">
+        <div className="flex flex-col h-auto product md:h-screen md:flex-row mt-8 ">
           <div className="flex flex-1 product-left">
             <div className="flex flex-col gap-4 px-4 cursor-pointer imgList basis-1/4">
               <img

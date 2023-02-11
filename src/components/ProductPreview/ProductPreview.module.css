@@ -1,0 +1,30 @@
+.productPreview {
+  background-color: rgba(0, 0, 0, 0.368);
+  @apply fixed z-50 top-0 bottom-0 left-0 right-0 flex items-center justify-center ;
+}
+.wrapper {
+  @apply flex flex-col md:flex-row w-3/4   p-4 rounded-md bg-white -mt-8 relative;
+}
+.wrapper .image {
+  min-height: 50%;
+  @apply flex-1 rounded-md overflow-hidden border shadow-md;
+}
+.wrapper .image img {
+  @apply w-full h-full;
+}
+.wrapper .info {
+  @apply flex-1  flex flex-col  gap-6 mt-6 p-6;
+}
+.wrapper .info span:first-child {
+  @apply block mb-6 text-2xl font-bold text-gray-700 hover:text-gray-800  capitalize underline w-full cursor-pointer;
+}
+.wrapper .info span:nth-child(2) {
+  @apply text-gray-500 text-sm;
+}
+.wrapper .info span:nth-child(3) {
+  @apply text-3xl font-bold;
+}
+
+.wrapper > span{
+  @apply absolute top-2 right-6 border p-2 cursor-pointer hover:scale-105
+}

@@ -1,7 +1,10 @@
 .swiperSlide {
   @apply flex items-center justify-center rounded-md;
+  
 }
-
+.swiper-container {
+  position: relative;
+}
 .swiper-container .swiper-button-next,
 .swiper-container .swiper-button-prev {
   background-color: rgba(0, 0, 0, 0.7);
