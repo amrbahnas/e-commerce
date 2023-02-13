@@ -1,5 +1,5 @@
 .left {
-  @apply flex flex-col items-center gap-3 justify-start bg-white relative;
+  @apply flex flex-col rounded-md items-center gap-3 justify-start bg-white relative dark:bg-darkCard ;
 }
 
 .imgContainer {
@@ -54,9 +54,9 @@
 .left .ordersContainer table tr {
   @apply capitalize cursor-pointer border-b-2 bg-slate-200 hover:bg-slate-300;
 }
-
+/*******/
 .right .box {
-  @apply bg-white p-8 rounded-md grid gap-10;
+  @apply bg-white dark:bg-darkCard p-8 rounded-md grid gap-10 ;
 }
 
 .box .inputsContainer {

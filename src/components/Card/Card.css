@@ -10,6 +10,7 @@
     overflow: hidden;
     background-color: white;
     padding: 10px;
+    @apply dark:bg-darkBody
 }
 
 .card:hover .conrolsButton {
@@ -85,13 +86,13 @@
 
 }
 .addToCard {
-    @apply   w-10 h-10 bg-slate-300 flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2
+    @apply   w-10 h-10 bg-slate-300 dark:bg-darkCard flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2
 }
 
 .previewProduct {
-    @apply  w-10 h-10 bg-slate-300 flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110
+    @apply  w-10 h-10 bg-slate-300 dark:bg-darkCard flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110
 
 }
 .editProduct {
-    @apply absolute w-10 h-10 bg-slate-300 items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2 top-4 right-6
+    @apply absolute w-10 h-10 bg-slate-300 dark:bg-darkCard items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2 top-4 right-6
 }

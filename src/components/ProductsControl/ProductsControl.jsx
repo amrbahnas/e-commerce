@@ -29,7 +29,7 @@ const ProductsControl = ({
                     />
                     <label
                       htmlFor={item}
-                      className="inline-block text-gray-800 capitalize cursor-pointer form-check-label"
+                      className="inline-block text-gray-800 capitalize cursor-pointer dark:text-darkPText form-check-label"
                     >
                       {item}
                     </label>

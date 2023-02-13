@@ -53,7 +53,7 @@
 }
 
 .searchBarInput {
-  @apply border p-2 flex-1 focus:outline-none rounded-md;
+  @apply border p-2 flex-1 focus:outline-none rounded-md bg-transparent;
 }
 
 .showSearchBar {

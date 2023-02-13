@@ -1,5 +1,5 @@
 .singleCard {
-  @apply relative w-full p-4  rounded-md shadow-md   hover:shadow-lg;
+  @apply relative w-full p-4  rounded-md shadow-md   hover:shadow-lg dark:bg-darkBody;
 }
 .singleCard:hover .conrolsButton {
   display: flex;
@@ -15,5 +15,5 @@
   @apply hidden absolute gap-4 items-center justify-center rounded-full cursor-pointer z-30  bottom-2 right-4;
 }
 .singleCard .conrolsButton .button {
-  @apply w-10 h-10 bg-slate-300 flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2;
+  @apply w-10 h-10 bg-slate-300 flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2 dark:bg-darkCard; 
 }

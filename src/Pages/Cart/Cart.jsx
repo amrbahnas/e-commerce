@@ -61,7 +61,7 @@ const Cart = () => {
     <div className={`${styles.cart} mt-24 `}>
       <div className="theContainer ">
         <div
-          className={`${styles.wrapper}  md:p-3 bg-white rounded-md  capitalize`}
+          className={`${styles.wrapper}  md:p-3 bg-white dark:bg-darkCard  rounded-md  capitalize`}
         >
           <div
             className={`${styles.header} flex justify-between gap-2 p-2 border-b-4 border-img`}
@@ -134,7 +134,7 @@ const Cart = () => {
                     name="promoCode"
                     ref={promocodeInput}
                     placeholder="promo code"
-                    className="flex-1 p-2 border-2 rounded-md border-img focus:outline-none"
+                    className="flex-1 p-2 bg-transparent border-2 rounded-md border-img focus:outline-none"
                   />
                   <button
                     className="w-24 p-2 text-white bg-black rounded-md "
@@ -174,11 +174,13 @@ const Cart = () => {
                     </li>
                     <li>
                       <span>shipping discount</span>
-                      <span>$ -{Math.ceil( discount)}</span>
+                      <span>$ -{Math.ceil(discount)}</span>
                     </li>
                     <li>
                       <span>estimated total</span>
-                      <span className="font-bold">$ {Math.ceil(finalPrice)}</span>
+                      <span className="font-bold">
+                        $ {Math.ceil(finalPrice)}
+                      </span>
                     </li>
                   </ul>
                 </div>

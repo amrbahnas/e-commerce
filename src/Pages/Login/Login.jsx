@@ -232,7 +232,7 @@ const Login = () => {
                           // checked
                         />
                         <label
-                          className="inline-block text-gray-800 cursor-pointer form-check-label"
+                          className="inline-block text-gray-800 cursor-pointer dark:text-darkPText form-check-label"
                           htmlFor="rememberCheck"
                         >
                           Remember me
@@ -295,12 +295,12 @@ const Login = () => {
                       Continue with Twitter
                     </a>
                   </form>
-                  <p className="pt-1 mt-2 mb-0 text-sm font-semibold">
+                  <p className="pt-1 mt-2 mb-0 text-sm font-semibold dark:text-darkSText">
                     Don't have an account?
                     <Link
                       to="/user/Register"
                       href="#!"
-                      className="text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700 hover:underline"
+                      className="text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700 hover:underline dark:text-darkPText"
                     >
                       Register
                     </Link>

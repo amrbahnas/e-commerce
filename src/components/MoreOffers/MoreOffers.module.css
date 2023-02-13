@@ -3,23 +3,23 @@
 }
 
 .wrapper {
-    @apply grid grid-cols-4 lg:grid-cols-3 gap-6 md:gap-3
+    @apply grid grid-cols-4 lg:grid-cols-3 gap-6 md:gap-3 bg-transparent
 }
 
 .wrapper .title span {
-    @apply font-bold capitalize text-lg
+    @apply font-bold capitalize text-lg  dark:text-darkPText 
 }
-
+/*******/
 .wrapper .largeBox{
-    @apply bg-white col-span-4  md:col-span-2 lg:col-span-1  rounded-md flex flex-col gap-3 p-2
+    @apply  bg-white col-span-4  md:col-span-2 lg:col-span-1  rounded-md flex flex-col gap-3 p-2 dark:bg-darkCard 
 }
 
 .wrapper .largeBox .boxs{
-    @apply bg-white grid grid-cols-2 rounded-md gap-3
+    @apply  grid grid-cols-2 rounded-md gap-3  bg-transparent
 }
 
 .wrapper .largeBox .box{
-    @apply  rounded-md  cursor-pointer col-span-1 hover:scale-105
+    @apply  rounded-md  cursor-pointer col-span-1 hover:scale-105 bg-transparent
 }
 
 .wrapper .largeBox .box .img {
@@ -38,16 +38,16 @@
 .wrapper .largeBox .box .footer span:last-child{
     @apply  text-xs capitalize font-normal
 }
-
+/********/
 .wrapper .largeLargeBox{
-    @apply bg-white hidden lg:col-span-1 p-2 lg:flex flex-col  rounded-md gap-3
+    @apply bg-white dark:bg-darkCard hidden lg:col-span-1 p-2 lg:flex flex-col  rounded-md gap-3 ;
 }
 
 .wrapper .largeLargeBox .boxs{
-    @apply flex flex-col gap-3 cursor-pointer
+    @apply flex flex-col gap-3 cursor-pointer bg-transparent
 }
 .wrapper .largeLargeBox .img{
-    @apply flex-1 h-1/2 hover:scale-105
+    @apply flex-1 h-1/2 hover:scale-105 bg-transparent
 }
 .wrapper .largeLargeBox .img img{
     @apply w-full h-full object-cover

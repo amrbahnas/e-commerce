@@ -61,7 +61,7 @@ const Products = () => {
   return (
     <div className="mt-24 products">
       <div className="theContainer">
-        <div className="flex justify-center p-4  bg-white rounded-md sectionWrapper">
+        <div className="flex justify-center p-4 bg-white rounded-md dark:bg-darkCard sectionWrapper">
           <ProductsControl
             data={data}
             categoryHandler={categoryHandler}

@@ -19,6 +19,7 @@ import { Link, useNavigate, NavLink } from "react-router-dom";
 import "./Navbar.css";
 // component
 import MobileMenu from "../mobileMenu/MobileMenu";
+import NightMode from "./../NightMode/NightMode";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const Navbar = () => {
   });
 
   return (
-    <div className="fixed top-0 z-40 w-full bg-white shadow-md storeHeader">
+    <div className="fixed top-0 z-40 w-full bg-white shadow-md storeHeader dark:bg-darkNav">
       <div className="theContainer">
         <div className="justify-between navbar">
           <div className="navLeft">
@@ -134,15 +135,15 @@ const Navbar = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="absolute flex flex-col items-center justify-center gap-4 p-4 bg-white border rounded-md shadow-md loginMenu w-fit top-10 -left-4"
+                      className="absolute flex flex-col items-center justify-center gap-4 p-4 bg-white border rounded-md shadow-md loginMenu w-fit top-10 -left-4 dark:bg-darkCard"
                     >
                       <Link to="/profile">
-                        <div className="w-full p-2 text-center text-white capitalize bg-orange-400 border rounded-md cursor-pointer hover:scale-105 hover:shadow-md Register">
+                        <div className="w-full p-2 text-center text-white capitalize bg-orange-400 border rounded-md cursor-pointer hover:scale-105 hover:shadow-md Register dark:border-none dark:px-3">
                           Profile
                         </div>
                       </Link>
                       <div
-                        className="w-full p-2 text-center capitalize bg-white border rounded-md cursor-pointer login hover:scale-105"
+                        className="w-full p-2 text-center capitalize bg-white border rounded-md cursor-pointer login hover:scale-105 dark:bg-transparent"
                         onClick={(e) => logOutHandler()}
                       >
                         <span>logOut</span>
@@ -151,18 +152,17 @@ const Navbar = () => {
                   )}
                 </AnimatePresence>
               </li>
-              {admin ? (
+              {admin && (
                 <li>
                   <NavLink to="/admin" className="flex items-center">
                     <DashboardIcon />
                     Dashboard
                   </NavLink>
                 </li>
-              ) : (
-                <li>
-                  <FavoriteBorderOutlinedIcon className="cursor-pointer hover:text-red-600" />
-                </li>
               )}
+              <li>
+                <NightMode />
+              </li>
             </ul>
             <div className="flex gap-10 navRight ">
               <Link to="/cart">

@@ -190,7 +190,7 @@ const Register = () => {
                         id="Subscribe"
                       />
                       <label
-                        className="inline-block text-gray-800 form-check-label"
+                        className="inline-block text-gray-800 dark:text-darkPText form-check-label"
                         htmlFor="Subscribe"
                       >
                         Subscribe to our newsletter
@@ -198,17 +198,17 @@ const Register = () => {
                     </div>
                     <button
                       type="submit"
-                      className="w-full py-3 text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md  px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                      className="w-full py-3 text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
                     >
                       Sign up
                     </button>
                   </form>
-                  <p className="pt-1 mt-2 mb-0 text-sm font-semibold">
+                  <p className="pt-1 mt-2 mb-0 text-sm font-semibold dark:text-darkSText">
                     have an account?
                     <Link
                       to="/user/login"
                       href="#!"
-                      className="text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700 hover:underline"
+                      className="text-red-600 transition duration-200 ease-in-out dark:text-darkPText hover:text-red-700 focus:text-red-700 hover:underline"
                     >
                       Login
                     </Link>

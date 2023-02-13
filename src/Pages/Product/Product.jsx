@@ -67,7 +67,7 @@ const Product = () => {
           <ArrowBackIcon fontSize="large" />
         </span>
       </Link>
-      <div className="p-4 bg-white rounded-md sectionWrapper">
+      <div className="p-4 bg-white rounded-md dark:bg-darkCard sectionWrapper">
         <div className="flex flex-col h-auto mt-8 product md:h-screen md:flex-row ">
           <div className="flex flex-1 product-left">
             <div className="flex flex-col gap-4 px-4 cursor-pointer imgList basis-1/4">

@@ -1,6 +1,6 @@
 
 .products-left {
-    @apply w-56 p-4 md:p-2 fixed -left-56 z-40 md:z-10 mr-2 bg-white shadow-md md:shadow-none md:sticky top-0 md:top-24 h-full transition-all duration-500 rounded-md
+    @apply w-56 p-4 md:p-2 fixed -left-56 z-40 md:z-10 mr-2 bg-white dark:bg-darkCard  shadow-md md:shadow-none md:sticky top-0 md:top-24 h-full transition-all duration-500 rounded-md
 }
 
 .hidden-products-left {

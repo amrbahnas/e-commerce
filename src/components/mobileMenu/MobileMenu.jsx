@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoginState, setAdminState } from "../../store/AuthSlice";
 //firebase
 import { logOut } from "../../Firebase/Auth";
+import NightMode from '../NightMode/NightMode';
 const MobileMenu = ({ setcontrolMobileMenu }) => {
   const dispatch = useDispatch();
   // target cart element
@@ -44,6 +45,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
     <div className={`${styles.layout} lg:hidden`}>
       <div className={styles.menu} ref={menu}>
         <div className={styles.menuWrapper}>
+        <NightMode/>
           <div className={styles.search}>
             <input
               type="search"
@@ -70,11 +72,11 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
               className={styles.userProfile}
             >
               {login ? (
-                <div className=" w-8 h-8 rounded-full overflow-hidden mr-1">
+                <div className="w-8 h-8 mr-1 overflow-hidden rounded-full ">
                   <img
                     src={userImage}
                     alt=""
-                    className=" w-full h-full object-cover"
+                    className="object-cover w-full h-full "
                   />
                 </div>
               ) : (
@@ -82,7 +84,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
               )}
 
               {login ? (
-                <span className=" cursor-pointer">
+                <span className="cursor-pointer ">
                   {userName}
                   {admin && " (Admin)"}
                   {optionsControl ? <ExpandMoreIcon /> : <ChevronRightIcon />}
@@ -130,7 +132,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
               </Link>
             </li>
           </ul>
-          <div className="section text-center mt-3 text-xl capitalize">
+          <div className="mt-3 text-xl text-center capitalize section">
             sections
           </div>
           <ul className={styles.topMenu}>

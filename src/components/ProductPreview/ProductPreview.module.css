@@ -3,7 +3,7 @@
   @apply fixed z-50 top-0 bottom-0 left-0 right-0 flex items-center justify-center ;
 }
 .wrapper {
-  @apply flex flex-col md:flex-row w-3/4   p-4 rounded-md bg-white -mt-8 relative;
+  @apply flex flex-col md:flex-row w-3/4   p-4 rounded-md bg-white dark:bg-darkCard  -mt-8 relative;
 }
 .wrapper .image {
   min-height: 50%;

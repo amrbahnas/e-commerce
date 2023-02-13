@@ -29,7 +29,7 @@ const FeaturedProducts = ({ title, type }) => {
   return (
     <div className="FeaturedProducts">
       <div className="theContainer">
-        <div className="bg-white rounded-md sectionWrapper">
+        <div className="bg-white rounded-md sectionWrapper dark:bg-darkCard">
           <div className="w-full FeaturedProductsTop">
             <h2 className="p-6 text-3xl font-bold capitalize">{title}</h2>
           </div>
