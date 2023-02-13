@@ -6,23 +6,24 @@ import styles from "./ShippingAddress.module.css";
 const ShippingAddress = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [location, setLocation] = useState("");
-  const [city, setCity] = useState("");
-  const [postal, setPostal] = useState("");
-  const [country, setCountry] = useState("");
+  const [userLocation, setUserLocation] = useState("");
+  const [userCity, setUserCity] = useState("");
+  const [userPostal, setUserPostal] = useState("");
+  const [userCountry, setUserCountry] = useState("");
 
-  const  {userAddress}  = useSelector((store) => store.userSlice);
+  const { location, city, postal, country } = useSelector(
+    (store) => store.userSlice.userAddress
+  );
+
   useEffect(() => {
-    setLocation(userAddress.location);
-    setCity(userAddress.city);
-    setPostal(userAddress.postal);
-    setCountry(userAddress.country);
-  }, [
-    userAddress.location,
-    userAddress.city,
-    userAddress.postal,
-    userAddress.country,
-  ]);
+    console.log(location);
+    if (location) {
+      setUserLocation(location);
+      setUserCity(city);
+      setUserPostal(postal);
+      setUserCountry(country);
+    }
+  }, [location, city, postal, country]);
   const submitHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -43,8 +44,8 @@ const ShippingAddress = () => {
           <input
             type="text"
             id="address"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            value={userLocation}
+            onChange={(e) => setUserLocation(e.target.value)}
             required
           />
         </div>
@@ -53,8 +54,8 @@ const ShippingAddress = () => {
           <input
             type="text"
             id="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            value={userCity}
+            onChange={(e) => setUserCity(e.target.value)}
             required
           />
         </div>
@@ -63,8 +64,8 @@ const ShippingAddress = () => {
           <input
             type="text"
             id="Postal Code"
-            value={postal}
-            onChange={(e) => setPostal(e.target.value)}
+            value={userPostal}
+            onChange={(e) => setUserPostal(e.target.value)}
             required
           />
         </div>
@@ -73,8 +74,8 @@ const ShippingAddress = () => {
           <input
             type="text"
             id="Country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            value={userCountry}
+            onChange={(e) => setUserCountry(e.target.value)}
             required
           />
         </div>

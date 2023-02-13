@@ -41,7 +41,7 @@ const Product = () => {
         setImg2(img);
       });
     });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     window.scroll({
@@ -63,12 +63,12 @@ const Product = () => {
   return (
     <div className="mt-24 theContainer ">
       <Link to={-1}>
-        <span className="mb-4 fixed  bg-amr text-white rounded-full shadow-md hover:scale-105 top-1/3 left-24 w-10 h-10 hidden md:flex items-center justify-center">
+        <span className="fixed items-center justify-center hidden w-10 h-10 mb-4 text-white rounded-full shadow-md bg-amr hover:scale-105 top-1/3 left-24 md:flex">
           <ArrowBackIcon fontSize="large" />
         </span>
       </Link>
       <div className="p-4 bg-white rounded-md sectionWrapper">
-        <div className="flex flex-col h-auto product md:h-screen md:flex-row mt-8 ">
+        <div className="flex flex-col h-auto mt-8 product md:h-screen md:flex-row ">
           <div className="flex flex-1 product-left">
             <div className="flex flex-col gap-4 px-4 cursor-pointer imgList basis-1/4">
               <img

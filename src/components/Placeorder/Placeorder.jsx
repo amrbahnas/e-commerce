@@ -80,15 +80,15 @@ const Placeorder = () => {
           </li>
           <li>
             <span>Tax:</span>
-            <span>${tax}</span>
+            <span>${Math.ceil(tax)}</span>
           </li>
           <li>
             <span>discount:</span>
-            <span>$ -{discount}</span>
+            <span>$ -{Math.ceil(discount)}</span>
           </li>
           <li>
             <span>total:</span>
-            <span className="font-bold">${finalPrice}</span>
+            <span className="font-bold">${Math.ceil(finalPrice)}</span>
           </li>
         </ul>
         <motion.button

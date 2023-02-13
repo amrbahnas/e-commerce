@@ -26,10 +26,12 @@ const ProductPreview = ({ item, img1, setPreviewProduct }) => {
         </div>
         <div className={`${styles.info}`}>
           <Link to={"/product/" + item.id}>
-            <span className="title">{item.title}</span>
+            <span className={`${styles.title}`}>{item.title}</span>
           </Link>
-          <span className="description">{item.des}</span>
-          <span className="price">{item.price}$</span>
+          <span className={`${styles.des}`}>{item.des}</span>
+          <Link to={"/product/" + item.id}>
+            <span className={`${styles.details}`}>More Details</span>
+          </Link>
         </div>
         <span onClick={(e) => setPreviewProduct(false)}>
           <CloseIcon />

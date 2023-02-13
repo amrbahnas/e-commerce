@@ -163,22 +163,22 @@ const Cart = () => {
                       <span> -$18.97</span>
                     </li>
                     {usePromoCode && (
-                      <li className=" text-green-500">
+                      <li className="text-green-500 ">
                         <span>promo code</span>
-                        <span>$ -{promoCode}</span>
+                        <span>$ -{Math.ceil(promoCode)}</span>
                       </li>
                     )}
                     <li>
                       <span>estimated stales tax</span>
-                      <span>${tax}</span>
+                      <span>${Math.ceil(tax)}</span>
                     </li>
                     <li>
                       <span>shipping discount</span>
-                      <span>$ -{discount}</span>
+                      <span>$ -{Math.ceil( discount)}</span>
                     </li>
                     <li>
                       <span>estimated total</span>
-                      <span className="font-bold">$ {finalPrice}</span>
+                      <span className="font-bold">$ {Math.ceil(finalPrice)}</span>
                     </li>
                   </ul>
                 </div>

@@ -20,6 +20,14 @@ const CheckOut = () => {
       navigate("/");
     }
   }, [login, navigate]);
+  
+    useEffect(() => {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    },[]);
 
   useEffect(() => {
     if (pathname === "payment") {

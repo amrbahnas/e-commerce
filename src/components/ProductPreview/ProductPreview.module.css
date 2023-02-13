@@ -15,16 +15,16 @@
 .wrapper .info {
   @apply flex-1  flex flex-col  gap-6 mt-6 p-6;
 }
-.wrapper .info span:first-child {
-  @apply block mb-6 text-2xl font-bold text-gray-700 hover:text-gray-800  capitalize underline w-full cursor-pointer;
+.wrapper .info .title {
+  @apply  mb-6 text-xl font-bold text-gray-700 hover:text-gray-800  capitalize cursor-pointer w-full ;
 }
-.wrapper .info span:nth-child(2) {
+.wrapper .info .des {
   @apply text-gray-500 text-sm;
 }
-.wrapper .info span:nth-child(3) {
-  @apply text-3xl font-bold;
+.wrapper .info .details {
+  @apply block w-fit hover:scale-105  px-2 py-3 rounded-md bg-amr text-white font-bold capitalize;
 }
 
-.wrapper > span{
-  @apply absolute top-2 right-6 border p-2 cursor-pointer hover:scale-105
-}
+  .wrapper > span{
+    @apply absolute top-2 right-6 border p-2 cursor-pointer hover:scale-105
+  }

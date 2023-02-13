@@ -9,6 +9,14 @@ import Pagination from "./../Pagination/Pagination";
 /// end firebase
 const Items = ({ subCat, sort, catId, priceRange }) => {
   const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const [currentPosts, setCurrentPosts] = useState([]);
+  useEffect(() => {
+    setCurrentPosts(posts.slice(indexOfFirstPost, indexOfLastPost));
+  }, [indexOfLastPost, indexOfFirstPost, posts]);
   useEffect(() => {
     let q = "";
     if (subCat) {
@@ -65,12 +73,6 @@ const Items = ({ subCat, sort, catId, priceRange }) => {
 
     setCurrentPage(1);
   }, [subCat, sort, catId, priceRange]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div>
