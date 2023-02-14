@@ -11,7 +11,7 @@
 }
 /*******/
 .wrapper .largeBox{
-    @apply  bg-white col-span-4  md:col-span-2 lg:col-span-1  rounded-md flex flex-col gap-3 p-2 dark:bg-darkCard 
+    @apply   col-span-4  md:col-span-2 lg:col-span-1  rounded-md flex flex-col gap-3 p-2  
 }
 
 .wrapper .largeBox .boxs{
@@ -40,7 +40,7 @@
 }
 /********/
 .wrapper .largeLargeBox{
-    @apply bg-white dark:bg-darkCard hidden lg:col-span-1 p-2 lg:flex flex-col  rounded-md gap-3 ;
+    @apply   hidden lg:col-span-1 p-2 lg:flex flex-col  rounded-md gap-3 ;
 }
 
 .wrapper .largeLargeBox .boxs{

@@ -40,7 +40,7 @@ const FeaturedProducts = ({ title, type }) => {
               ScrollbarIs={false}
               NavigationIs={true}
               autoplayIs={false}
-              spaceBetweenIs={1}
+              spaceBetweenIs={0}
               slidesPerViewIs={5}
             />
           </div>

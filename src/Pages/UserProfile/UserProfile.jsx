@@ -131,7 +131,9 @@ const UserProfile = () => {
     <div className={`${styles.userProfile} mt-24`}>
       <div className="theContainer">
         <div className={`${styles.wrapper} grid grid-cols-4 gap-3`}>
-          <div className={`${styles.left} col-span-4 lg:col-span-1`}>
+          <div
+            className={`${styles.left} col-span-4 lg:col-span-1  dark:bg-darkCard`}
+          >
             <div className={`${styles.imgContainer}`}>
               <div className={`${styles.img}`}>
                 <img
@@ -184,7 +186,7 @@ const UserProfile = () => {
           <div
             className={`${styles.right} col-span-4 lg:col-span-3 flex  flex-col gap-4 rounded-md`}
           >
-            <div className={`${styles.box}`}>
+            <div className={`${styles.box} bg-white dark:bg-darkCard`}>
               <span className={`${styles.title}`}>General Info</span>
               <div className={`${styles.inputsContainer}`}>
                 <div className={`${styles.input}`}>
@@ -213,7 +215,7 @@ const UserProfile = () => {
               <button onClick={(e) => enableInputes(e)}>UPDATE INFO</button>
             </div>
 
-            <div className={`${styles.box}`}>
+            <div className={`${styles.box} bg-white  dark:bg-darkCard`}>
               <span className={`${styles.title}`}>Security</span>
               <div className={`${styles.inputsContainer}`}>
                 <div className={`${styles.input}`}>
@@ -242,7 +244,12 @@ const UserProfile = () => {
                   {changeEmailState ? "Save Email" : "Change Email"}
                 </button>
                 {changeEmailState && (
-                  <button className={styles.emailCancel} onClick={(e) => canselChangeEmail(e)}>Cancel</button>
+                  <button
+                    className={styles.emailCancel}
+                    onClick={(e) => canselChangeEmail(e)}
+                  >
+                    Cancel
+                  </button>
                 )}
                 <button onClick={(e) => enablePassword(e)}>
                   Change password

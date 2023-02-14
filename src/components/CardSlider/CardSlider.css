@@ -1,5 +1,5 @@
 .swiperSlide {
-  @apply flex items-center justify-center rounded-md;
+  @apply flex items-center justify-center rounded-md p-2;
   
 }
 .swiper-container {

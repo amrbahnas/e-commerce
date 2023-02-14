@@ -36,14 +36,17 @@ const ShippingAddress = () => {
     navigate("/checkout/payment");
   };
   return (
-    <div className={`${styles.inputSection}`}>
+    <div
+      className={`${styles.inputSection} dark:bg-darkCard bg-white `}
+    >
       <form className={`${styles.form}`} onSubmit={(e) => submitHandler(e)}>
         <span>Shipping Address:</span>
         <div className={`${styles.input}`}>
           <label htmlFor="address">address</label>
           <input
-            type="text"
+            type="text"     
             id="address"
+className="bg-gray-100 dark:bg-darkBody "
             value={userLocation}
             onChange={(e) => setUserLocation(e.target.value)}
             required
@@ -54,6 +57,7 @@ const ShippingAddress = () => {
           <input
             type="text"
             id="city"
+className="bg-gray-100 dark:bg-darkBody "
             value={userCity}
             onChange={(e) => setUserCity(e.target.value)}
             required
@@ -64,6 +68,7 @@ const ShippingAddress = () => {
           <input
             type="text"
             id="Postal Code"
+className="bg-gray-100 dark:bg-darkBody "
             value={userPostal}
             onChange={(e) => setUserPostal(e.target.value)}
             required
@@ -74,6 +79,7 @@ const ShippingAddress = () => {
           <input
             type="text"
             id="Country"
+            className="bg-gray-100 dark:bg-darkBody "
             value={userCountry}
             onChange={(e) => setUserCountry(e.target.value)}
             required

@@ -4,8 +4,7 @@
 }
 
 .photoPreview .wrapper{
-    color: #404553;
-    @apply bg-white p-6 rounded-md mt-28 w-full md:w-3/4 lg:w-3/5  
+    @apply  p-6 rounded-md mt-28 w-full md:w-3/4 lg:w-3/5  
 }
 
 .photoPreview .wrapper .header{

@@ -43,14 +43,16 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
   };
   return (
     <div className={`${styles.layout} lg:hidden`}>
-      <div className={styles.menu} ref={menu}>
+      <div className={`${styles.menu}  dark:bg-darkCard`} ref={menu}>
         <div className={styles.menuWrapper}>
-        <NightMode/>
+          <NightMode />
           <div className={styles.search}>
             <input
               type="search"
               name=""
               id=""
+              placeholder="search..."
+              className=" dark:text-black"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />

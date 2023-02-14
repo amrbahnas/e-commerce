@@ -85,7 +85,7 @@ const CheckOut = () => {
               </span>
               <span
                 className={`${styles.stepTitle} ${
-                  payment ? "text-black" : "text-disableColor"
+                  !payment&&  "text-disableColor"
                 } `}
               >
                 Payment Method
@@ -101,7 +101,7 @@ const CheckOut = () => {
               </span>
               <span
                 className={`${styles.stepTitle}
-              ${placeorder ? "text-black" : "text-disableColor"}
+              ${!placeorder &&"text-disableColor"}
                `}
               >
                 Place Order

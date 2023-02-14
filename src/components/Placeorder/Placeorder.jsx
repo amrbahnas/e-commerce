@@ -22,8 +22,8 @@ const Placeorder = () => {
     setRocket((prev) => !prev);
   };
   return (
-    <div className={`${styles.placeorder}`}>
-      <div className={`${styles.left}`}>
+    <div className={`${styles.placeorder} dark:bg-darkCard bg-white `}>
+      <div className={`${styles.left} dark:bg-darkCard bg-white`}>
         <div className={`${styles.shipping}`}>
           <span className={styles.title}>
             <LocationOnIcon /> <span>shipping</span>
@@ -71,7 +71,7 @@ const Placeorder = () => {
           </div>
         </div>
       </div>
-      <div className={`${styles.right}`}>
+      <div className={`${styles.right} dark:bg-darkCard bg-white`}>
         <span className={styles.title}>Order Summary</span>
         <ul>
           <li>

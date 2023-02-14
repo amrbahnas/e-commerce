@@ -73,7 +73,10 @@ const DeleteAccount = ({
   return (
     <div className={`${styles.deleteAccount}`}>
       <div className={`theContainer  flex items-center justify-center`}>
-        <div className={`${styles.form}`} ref={layout}>
+        <div
+          className={`${styles.form} dark:bg-darkCard bg-white dark:text-darkSText text-gray-800`}
+          ref={layout}
+        >
           <div className={`${styles.header}`}>
             <span>Delete Account</span>
             <CloseIcon
@@ -97,7 +100,9 @@ const DeleteAccount = ({
               autoFoc
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={ispasswordNotCorrect ? "border-red-600" : ""}
+              className={`${
+                ispasswordNotCorrect ? "border-red-600" : ""
+              } bg-gray-100 dark:bg-darkBody`}
             />
           </div>
           <div className={`${styles.input}`}>
@@ -113,7 +118,9 @@ const DeleteAccount = ({
               id="confirm"
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
-              className={isNotValid ? "border-red-600" : ""}
+              className={`${
+                isNotValid ? "border-red-600" : ""
+              } bg-gray-100 dark:bg-darkBody`}
             />
           </div>
           <button onClick={(e) => deleteHandler()}>Delete Account</button>

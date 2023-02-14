@@ -45,7 +45,10 @@ const ConfirmPassword = ({
   return (
     <div className={`${styles.confirmPassword}`}>
       <div className="flex items-center justify-center theContainer">
-        <div className={`${styles.wrapper}`} ref={layout}>
+        <div
+          className={`${styles.wrapper} dark:bg-darkCard bg-white dark:text-darkSText text-gray-800`}
+          ref={layout}
+        >
           <div className={`${styles.header}`}>
             <CloseIcon
               className="cursor-pointer "
@@ -62,7 +65,9 @@ const ConfirmPassword = ({
               autoFocus
               value={passwordEntered}
               onChange={(e) => setPasswordEntered(e.target.value)}
-              className={isNotValid ? "border-red-600" : ""}
+              className={`${
+                isNotValid ? "border-red-600" : ""
+              } bg-gray-100 dark:bg-darkBody`}
             />
           </div>
           <button onClick={(e) => confirmHandler()}>Cofirm</button>

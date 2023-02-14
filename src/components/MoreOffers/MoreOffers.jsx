@@ -21,7 +21,7 @@ const MoreOffers = () => {
     <div className={`${styles.MoreOffers}`}>
       <div className="theContainer">
         <div className={`${styles.wrapper}`}>
-          <div className={`${styles.largeBox}`}>
+          <div className={`${styles.largeBox} dark:bg-darkCard bg-white`}>
             <div className={`${styles.title}`}>
               <span>More reason to shop</span>
             </div>
@@ -44,7 +44,7 @@ const MoreOffers = () => {
               />
             </div>
           </div>
-          <div className={`${styles.largeBox}`}>
+          <div className={`${styles.largeBox} dark:bg-darkCard bg-white`}>
             <div className={`${styles.title}`}>
               <span>Mega deals of the day</span>
             </div>
@@ -67,7 +67,7 @@ const MoreOffers = () => {
               />
             </div>
           </div>
-          <div className={`${styles.largeLargeBox}`}>
+          <div className={`${styles.largeLargeBox} bg-white dark:bg-darkCard`}>
             <div className={`${styles.title}`}>
               <span>in focus</span>
             </div>

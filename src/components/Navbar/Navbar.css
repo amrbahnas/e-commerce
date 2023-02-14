@@ -8,27 +8,14 @@
 
 .navbar ul li {
   position: relative;
-  @apply capitalize;
-}
-.navbar ul li:hover::after {
-  width: 100%;
-  padding: 10px;
-}
-
-.navbar ul li::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0;
-  height: 100%;
-  background: #f0f0f0;
-  z-index: -1;
-  @apply transition-all duration-300 ease-linear  rounded-md;
+  @apply capitalize ;
 }
 
 .navLeft {
-  @apply flex gap-2 items-center;
+  @apply flex gap-2 items-center ;
+}
+.navLeft ul li  {
+  @apply text-gray-600 hover:text-black dark:text-darkSText dark:hover:text-darkPText ;
 }
 
 .searchBar {

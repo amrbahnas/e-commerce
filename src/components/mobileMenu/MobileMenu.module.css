@@ -20,10 +20,7 @@
   opacity: 1;
   overflow-y: scroll;
   background-color: rgba(255, 255, 255, 0.878);
-  /* background: rgba(255, 255, 255, 0.5);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.25); */
+  @apply dark:bg-darkCard ;
 }
 
 .menuWrapper {
@@ -64,6 +61,6 @@
 
 .search input {
   flex: 1;
-  padding: 5px;
-  @apply focus:outline-none rounded;
+  padding: 8px;
+  @apply focus:outline-none rounded border bg-slate-300;
 }

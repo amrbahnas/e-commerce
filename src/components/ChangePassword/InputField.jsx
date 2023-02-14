@@ -47,7 +47,9 @@ const InputField = ({
           value={inputValue}
           onChange={(e) => onChangeFunc(e.target.value)}
           onFocus={(e) => setShowIcon(true)}
-          className={warnState ? "border-red-600" : ""}
+          className={`${
+            warnState ? "border-red-600" : ""
+          } bg-gray-200 dark:bg-darkBody`}
           ref={InputRef}
         />
       </div>

@@ -60,7 +60,10 @@ const ChangePassword = ({
   return (
     <div className={`${styles.changePassword}`}>
       <div className={`theContainer  flex items-center justify-center`}>
-        <div className={`${styles.form}`} ref={layout}>
+        <div
+          className={`${styles.form} dark:bg-darkCard bg-white dark:text-darkSText text-gray-800`}
+          ref={layout}
+        >
           <div className={`${styles.header}`}>
             <h2>Change password</h2>
             <CloseIcon

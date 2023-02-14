@@ -1,6 +1,6 @@
 
 .inputSection {
-  @apply grid grid-cols-2 bg-white dark:bg-darkCard  mt-10;
+  @apply grid grid-cols-2   mt-10;
 }
 .inputSection .image {
   @apply col-span-2 md:col-span-1 flex justify-center items-center;

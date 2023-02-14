@@ -99,12 +99,15 @@ const ProfilePhotoPreview = ({
   return (
     <div className={`${styles.photoPreview}`}>
       <div className={`theContainer  flex items-center justify-center`}>
-        <div className={`${styles.wrapper}`} ref={layout}>
+        <div
+          className={`${styles.wrapper} dark:bg-darkCard bg-white dark:text-darkSText text-gray-800`}
+          ref={layout}
+        >
           <div className={`${styles.header}`}>
             <span>Profile photo</span>
             <ClearIcon
               onClick={(e) => closeLayOut()}
-              className=" cursor-pointer"
+              className="cursor-pointer "
             />
           </div>
           <div className={`${styles.img}`}>

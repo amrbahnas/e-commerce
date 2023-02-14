@@ -19,7 +19,9 @@ const Payment = () => {
     navigate("/checkout/placeorder");
   };
   return (
-    <div className={`${styles.inputSection}`}>
+    <div
+      className={`${styles.inputSection} dark:bg-darkCard bg-white`}
+    >
       <form className={`${styles.form}`} onSubmit={(e) => submitHandler(e)}>
         <span>Payment Methods</span>
         <span>Select method:</span>

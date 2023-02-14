@@ -1,5 +1,5 @@
 .placeorder {
-  @apply grid grid-cols-5 gap-10 items-start bg-white my-10 p-4 md:p-10 rounded-md;
+  @apply grid grid-cols-5 gap-10 items-start  my-10 p-4 md:p-10 rounded-md;
 }
 .left {
   @apply col-span-5 md:col-span-3 bg-white;
@@ -21,10 +21,10 @@
 }
 
 .left  .title {
-  @apply flex items-center gap-2 text-amr text-base;
+  @apply flex items-center gap-2  text-base;
 }
-.left .title span {
-  @apply text-black;
+.left  .title *:not(span) {
+  @apply  text-amr;
 }
 
 .left .shipping .info {

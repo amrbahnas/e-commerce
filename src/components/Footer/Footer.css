@@ -1,7 +1,6 @@
 .footer {
   background-color: #252525;
-
-  @apply mt-20 pt-10 text-white;
+  @apply mt-20 pt-10 text-white dark:bg-darkCard;
 }
 
 .top {

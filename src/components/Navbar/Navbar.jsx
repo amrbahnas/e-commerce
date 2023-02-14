@@ -123,11 +123,13 @@ const Navbar = () => {
                   ) : (
                     <PersonOutlineOutlinedIcon />
                   )}
-                  {login && admin
-                    ? userName + " (Admin)"
-                    : login
-                    ? userName
-                    : "Login"}
+                  <span className="text-gray-600 hover:text-black dark:text-darkSText dark:hover:text-darkPText">
+                    {login && admin
+                      ? userName + " (Admin)"
+                      : login
+                      ? userName
+                      : "Login"}
+                  </span>
                 </div>
                 <AnimatePresence>
                   {loginMenuControl && (
@@ -156,7 +158,9 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/admin" className="flex items-center">
                     <DashboardIcon />
-                    Dashboard
+                    <span className="text-gray-600 hover:text-black dark:text-darkSText dark:hover:text-darkPText">
+                      Dashboard
+                    </span>
                   </NavLink>
                 </li>
               )}

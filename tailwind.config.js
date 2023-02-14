@@ -4,6 +4,8 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      backgroundColor: ["dark"],
+      textColor: ["dark"],
       colors: {
         amr: "#1e90ff",
         img: "#f0f0f0",
@@ -20,6 +22,7 @@ module.exports = {
         darkCard: "#192734",
         darkPText: "#ffffff",
         darkSText: "#8899A6",
+        darkMenu: "#9b9b9b",
       },
     },
   },
