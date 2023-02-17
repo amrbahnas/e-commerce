@@ -19,9 +19,7 @@ const Payment = () => {
     navigate("/checkout/placeorder");
   };
   return (
-    <div
-      className={`${styles.inputSection} dark:bg-darkCard bg-white`}
-    >
+    <div className={`${styles.inputSection} dark:bg-darkCard bg-white`}>
       <form className={`${styles.form}`} onSubmit={(e) => submitHandler(e)}>
         <span>Payment Methods</span>
         <span>Select method:</span>
@@ -49,13 +47,15 @@ const Payment = () => {
           />
           <label htmlFor="Stripe">Stripe</label>
         </div>
-        <button type="submit">Next Step</button>
-        <button type="button" onClick={(e) => navigate(-1)}>
-          Back
-        </button>
+        <div className={`${styles.BTNGroup}`}>
+          <button type="submit">Next Step</button>
+          <button type="button" onClick={(e) => navigate(-1)}>
+            Back
+          </button>
+        </div>
       </form>
       <div className={`${styles.image}`}>
-        <img src="/assets/svg/delivery.svg" alt="" />
+        <img src="/assets/svg/payment.svg" alt="" />
       </div>
     </div>
   );

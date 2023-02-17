@@ -156,9 +156,9 @@ const UserProfile = () => {
                 <table>
                   <thead>
                     <tr>
-                      <th>id</th>
-                      <th>price</th>
-                      <th>status</th>
+                      <th className="bg-amr dark:bg-darkBody">id</th>
+                      <th className="bg-amr dark:bg-darkBody">price</th>
+                      <th className="bg-amr dark:bg-darkBody">status</th>
                     </tr>
                   </thead>
                   <tbody>

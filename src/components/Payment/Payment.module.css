@@ -6,7 +6,7 @@
   @apply col-span-2 md:col-span-1 flex justify-center items-center;
 }
 .form {
-  @apply col-span-2 md:col-span-1  p-14 rounded-md;
+  @apply col-span-2 md:col-span-1  p-14 rounded-md flex flex-col justify-center;
 }
 .form > span:nth-child(1) {
   @apply block text-2xl mb-4;
@@ -30,4 +30,11 @@
 .form button:nth-last-of-type(1) {
   background-color: #d5d5d5;
   @apply w-20 ml-4 text-black rounded-md p-2;
+}
+
+.image  {
+  @apply p-4
+}
+.image img {
+  @apply h-80
 }

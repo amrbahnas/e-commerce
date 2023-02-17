@@ -48,11 +48,11 @@
   @apply w-full text-center mt-4;
 }
 .left .ordersContainer table th {
-  @apply capitalize border-b-2 bg-amr text-white;
+  @apply capitalize border-b-2  ;
 }
 
 .left .ordersContainer table tr {
-  @apply capitalize cursor-pointer border-b-2 bg-slate-200 hover:bg-slate-300;
+  @apply capitalize  border-b-2 ;
 }
 /*******/
 .right .box {
@@ -76,12 +76,12 @@
 }
 
 .box input {
-  @apply rounded-md px-7 py-3 focus:outline-none;
+  @apply rounded-md px-7 py-3 focus:outline-none bg-transparent border-2;
 }
 
 /* inputs enabled state */
 .box input:enabled {
-  @apply opacity-100 border-2;
+  @apply opacity-100 ;
 }
 
 /* inputs Disabled state */

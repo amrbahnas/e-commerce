@@ -46,6 +46,15 @@
 .showSearchBar {
   display: block;
 }
+.showSearchBar input:-webkit-autofill,
+.showSearchBar input:-webkit-autofill:hover,
+.showSearchBar input:-webkit-autofill:focus
+ {
+  border: 1px solid #494969;
+  -webkit-text-fill-color: transparent;
+  transition: transparent 5000s ease-in-out 0s;
+}
+
 .storeHeader .profileImage {
   @apply relative;
 }
