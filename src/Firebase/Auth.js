@@ -7,11 +7,13 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
-  onAuthStateChanged,
   updateProfile,
   updateEmail,
   updatePassword,
   deleteUser,
+  signInWithPopup,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
 } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -89,7 +91,6 @@ export const updateUserPassword = (Newpassword) => {
         autoClose: 3000,
         position: "bottom-right",
         hideProgressBar: false,
-        hideProgressBar: true,
         closeOnClick: true,
         theme: "colored",
       });
@@ -108,5 +109,32 @@ export const updateUserPassword = (Newpassword) => {
 export const deleteUserAccount = () => {
   const user = getAuth().currentUser;
   const result = deleteUser(user);
+  return result;
+};
+
+/********* new features ******* */
+
+// facebook Login
+
+export const facebookLogin = () => {
+  const provider = new FacebookAuthProvider();
+  provider.addScope("user_birthday");
+  auth.languageCode = "it";
+  provider.setCustomParameters({
+    display: "popup",
+  });
+  const result = signInWithPopup(auth, provider);
+  return result;
+};
+
+// google Login
+export const googleLogin = () => {
+  const provider = new GoogleAuthProvider();
+  provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
+  auth.languageCode = "it";
+  provider.setCustomParameters({
+    login_hint: "user@example.com",
+  });
+  const result = signInWithPopup(auth, provider);
   return result;
 };
