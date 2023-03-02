@@ -93,7 +93,7 @@ const Navbar = () => {
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />
-            <span className="absolute cursor-pointer right-1">
+            <span className="absolute cursor-pointer right-1 dark:text-gray-500">
               <Link to={"search/" + searchValue}>
                 <SearchOutlinedIcon />
               </Link>

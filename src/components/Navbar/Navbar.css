@@ -51,7 +51,7 @@
 .showSearchBar input:-webkit-autofill:focus
  {
   border: 1px solid #494969;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent !important;
   transition: transparent 5000s ease-in-out 0s;
 }
 

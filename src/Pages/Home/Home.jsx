@@ -22,28 +22,25 @@ const Home = () => {
     "assets/landing/5.gif",
   ];
   const categoriesSliderImages = [
-    "assets/landingCategories/1.avif",
-    "assets/landingCategories/2.avif",
-    "assets/landingCategories/3.avif",
-    "assets/landingCategories/4.avif",
-    "assets/landingCategories/5.avif",
-    "assets/landingCategories/6.avif",
-    "assets/landingCategories/7.avif",
-    "assets/landingCategories/8.avif",
-    "assets/landingCategories/9.avif",
-    "assets/landingCategories/10.avif",
+    "assets/landingCategories/1.png",
+    "assets/landingCategories/2.png",
+    "assets/landingCategories/3.png",
+    "assets/landingCategories/4.png",
+    "assets/landingCategories/5.png",
+    "assets/landingCategories/6.png",
+
   ];
 
   return (
-    <div className="home ">
+    <div className="home">
       <LandingPage />
       <div className="my-8 theContainer">
         <LandingSlider
           images={categoriesSliderImages}
-          SPV1={4}
-          SPV2={6}
-          SPV3={8}
-          SPV4={10}
+          SPV1={2}
+          SPV2={4}
+          SPV3={4}
+          SPV4={6}
           autoplay={false}
         />
       </div>
