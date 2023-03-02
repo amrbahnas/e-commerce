@@ -64,9 +64,9 @@ const SingleCard = ({ item }) => {
           </span>
         </div>
         <div className="conrolsButton">
-          <div className="button" onClick={(e) => setPreviewProduct(true)}>
+          {/* <div className="button" onClick={(e) => setPreviewProduct(true)}>
             <PreviewIcon />
-          </div>
+          </div> */}
           <div className="button" onClick={addToCart}>
             <AddShoppingCartIcon />
           </div>

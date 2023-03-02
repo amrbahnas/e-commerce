@@ -12,7 +12,7 @@
 }
 
 .singleCard .conrolsButton {
-  @apply hidden absolute gap-4 items-center justify-center rounded-full cursor-pointer z-30  bottom-2 right-4;
+  @apply hidden absolute gap-4 items-center justify-center rounded-full cursor-pointer z-30  bottom-4 right-6;
 }
 .singleCard .conrolsButton .button {
   @apply w-10 h-10 bg-slate-300 flex items-center justify-center rounded-full cursor-pointer z-30 hover:scale-110 p-2 dark:bg-darkCard; 

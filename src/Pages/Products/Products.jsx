@@ -51,6 +51,7 @@ const Products = () => {
 
   const categoryHandler = (e) => {
     const value = e.target.value;
+    console.log(value);
     const isChecked = e.target.checked;
     setSelectedSubCat(
       isChecked
