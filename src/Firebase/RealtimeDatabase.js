@@ -1,16 +1,48 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+  child,
+  push,
+  update,
+  remove,
+} from "firebase/database";
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
-  // ...
-  // The value of `databaseURL` depends on the location of the database
-  databaseURL: "https://store-52177-default-rtdb.firebaseio.com",
+  databaseURL:
+    " https://store-52177-default-rtdb.europe-west1.firebasedatabase.app",
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig, "otherApp");
 
-// Initialize Realtime Database and get a reference to the service
-const database = getDatabase(app);
+const db = getDatabase(app);
+
+// create database
+export const createNewUserDataBase = (userId) => {
+  const reference = ref(db, "users/" + userId);
+  set(reference, {
+    orders: ""
+  });
+};
+
+// get user data by id
+export const getUserData = (userId) => {
+  const res = []
+  const starCountRef = ref(db, "users/" + userId);
+  onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    res.push(data);
+  });
+  return res[0];
+};
+
+// update user data
+export function upDateUserOrders(id, data) {
+  const newPostKey = push(child(ref(db), "orders")).key;
+  const updates = {};
+  updates["/users/" + id + "/orders/" + newPostKey] = data;
+  return update(ref(db), updates);
+}

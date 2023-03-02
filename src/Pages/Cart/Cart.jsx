@@ -56,7 +56,33 @@ const Cart = () => {
       }
     }
   };
-
+const SingleProduct = ({ item }) => {
+  return (
+    <div
+      className="flex items-center justify-center w-full gap-4 p-2 border-2 item border-img"
+      key={item.id}
+    >
+      <img src={item.previewImg} alt="" className="w-6 basis-1/6" />
+      <div className="flex-1 info">
+        <Link to={"/product/" + item.id}>
+          <h3 className="mb-3 text-gray-700 underline capitalize cursor-pointer decoration-1 underline-offset-4 dark:text-darkSText">
+            {item.title}
+          </h3>
+        </Link>
+        <p className="text-gray-500">{item.des?.substring(0, 50)}</p>
+        <span className="price text-sky-700 text-md">
+          {item.itemCount} x ${item.price}
+        </span>
+      </div>
+      <div
+        className="text-center text-red-600 cursor-pointer delete basis-1/6 hover:scale-105"
+        onClick={(e) => deleteHandler(item.id, item.price)}
+      >
+        <DeleteOutlineIcon />
+      </div>
+    </div>
+  );
+};
   return (
     <div className={`${styles.cart} mt-24 `}>
       <div className="theContainer ">
@@ -90,35 +116,7 @@ const Cart = () => {
               ) : (
                 data?.map((item) => {
                   return (
-                    <div
-                      className="flex items-center justify-center w-full gap-4 p-2 border-2 item border-img"
-                      key={item.id}
-                    >
-                      <img
-                        src={item.previewImg}
-                        alt=""
-                        className="w-6 basis-1/6"
-                      />
-                      <div className="flex-1 info">
-                        <Link to={"/product/" + item.id}>
-                          <h3 className="mb-3 text-gray-700 underline capitalize cursor-pointer decoration-1 underline-offset-4">
-                            {item.title}
-                          </h3>
-                        </Link>
-                        <p className="text-gray-500">
-                          {item.des?.substring(0, 50)}
-                        </p>
-                        <span className="price text-sky-700 text-md">
-                          {item.itemCount} x ${item.price}
-                        </span>
-                      </div>
-                      <div
-                        className="text-center text-red-600 cursor-pointer delete basis-1/6 hover:scale-105"
-                        onClick={(e) => deleteHandler(item.id, item.price)}
-                      >
-                        <DeleteOutlineIcon />
-                      </div>
-                    </div>
+                   <SingleProduct item={item} key={item} />
                   );
                 })
               )}
@@ -215,3 +213,5 @@ const Cart = () => {
 };
 
 export default Cart;
+
+

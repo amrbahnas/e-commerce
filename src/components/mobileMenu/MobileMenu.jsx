@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,useNavigate } from "react-router-dom";
 import styles from "./MobileMenu.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginState, setAdminState } from "../../store/AuthSlice";
@@ -12,6 +12,7 @@ import { setLoginState, setAdminState } from "../../store/AuthSlice";
 import { logOut } from "../../Firebase/Auth";
 import NightMode from '../NightMode/NightMode';
 const MobileMenu = ({ setcontrolMobileMenu }) => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   // target cart element
   const menu = useRef();
@@ -39,6 +40,7 @@ const MobileMenu = ({ setcontrolMobileMenu }) => {
   const logOutHandler = () => {
     dispatch(setLoginState(false));
     dispatch(setAdminState(false));
+    navigate("/")
     logOut();
   };
   return (

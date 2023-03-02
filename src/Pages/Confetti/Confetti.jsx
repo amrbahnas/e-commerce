@@ -29,7 +29,7 @@ const Confetti = () => {
           </span>{" "}
           <br />
           <button
-            onClick={(e) => navigate("/user/login", { replace: true })}
+            onClick={(e) => navigate("/", { replace: true })}
             className="w-2/4 px-4 py-3 mt-10 text-white rounded-md bg-amr"
           >
             Login

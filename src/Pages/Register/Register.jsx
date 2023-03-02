@@ -1,14 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //icon
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useSelector } from "react-redux";
+// redux
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setTheUserId,
+  setTheEmail,
+  setTheUserName,
+  setUserImage,
+  setUserOrders,
+} from "../../store/userSlice.js";
+import { setLoginState } from "../../store/AuthSlice.js";
+
+// firebase
 import { signup, signupUserName } from "../../Firebase/Auth";
+import { createNewUserDataBase } from "../../Firebase/RealtimeDatabase";
+import { dowunloadImage } from "../../Firebase/Store.js";
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -21,7 +35,7 @@ const Register = () => {
     if (login) {
       navigate("/");
     }
-  }, [login]);
+  }, [login, navigate]);
 
   /// control eye icon
   const [showHiddenPassword, setShowHiddenPassword] = useState(false);
@@ -40,7 +54,22 @@ const Register = () => {
     e.preventDefault();
     signup(email, password)
       .then((user) => {
+        // create realtime db
+        createNewUserDataBase(user.user.uid);
+        // update user first,last name becuse at first it empty string
         signupUserName(user.user, { displayName: firstName + " " + lastName });
+        //store ALL user info to global store
+        dispatch(setLoginState(true));
+        dispatch(setTheUserId(user.user.uid));
+        dispatch(setTheEmail(user.user.email));
+        dispatch(setTheUserName(firstName + " " + lastName));
+        dowunloadImage("users-profiles-images/default-user-image.png").then(
+          (img) => {
+            dispatch(setUserImage(img));
+          }
+        );
+        dispatch(setUserOrders([]));
+
         setCheckEmail(false);
         setCheckPass(false);
         // nave to success  page
@@ -59,6 +88,11 @@ const Register = () => {
   };
   return (
     <div className="h-screen loginPage">
+      <div className="nav h-18 p-4 flex items-center w-full bg-white shadow-md font-bold  dark:bg-darkNav cu">
+        <span onClick={() => navigate("/")} className=" cursor-pointer">
+          Home Page
+        </span>
+      </div>
       <div className="theContainer">
         <div className="flex items-center justify-center h-screen loginPage">
           <section className="h-screen">

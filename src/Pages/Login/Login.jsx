@@ -10,14 +10,17 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 // firebase
 import { signIn, facebookLogin, googleLogin } from "../../Firebase/Auth";
 import { dowunloadImage } from "../../Firebase/Store.js";
+import { getUserData } from "../../Firebase/RealtimeDatabase";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginState, setAdminState } from "../../store/AuthSlice.js";
 import {
+  setTheUserId,
   setTheEmail,
   setTheUserName,
   setPhotoURL,
   setUserImage,
+  setUserOrders,
   resetUserOrders,
 } from "../../store/userSlice.js";
 
@@ -39,6 +42,8 @@ const Login = () => {
     if (login) {
       navigate("/");
     }
+    // writeUserData("aqaqaqaq");
+    // upDateUserData("aqaqaqaq");
   }, [login, navigate]);
   /// control eye icon
   const [showHiddenPassword, setShowHiddenPassword] = useState(false);
@@ -58,6 +63,7 @@ const Login = () => {
     //start login function
     signIn(email, password)
       .then((res) => {
+        console.log(res);
         ///// login success /////
         // if user is admin
         if (res.user.email === "admin@store.com") {
@@ -69,10 +75,16 @@ const Login = () => {
         }
 
         //store ALL user info to global store
-        dispatch(resetUserOrders());
         dispatch(setLoginState(true));
+        dispatch(setTheUserId(res.user.uid));
         dispatch(setTheEmail(res.user.email));
         dispatch(setTheUserName(res.user.displayName));
+        // get the user realtime database [orders]
+        const  {orders}  = getUserData(res.user.uid);
+        // console.log(cart);
+        // convert return object to array
+        const arrOfOrders = Object.values(orders);
+        dispatch(setUserOrders(arrOfOrders));
         // get and store personal user img
         const url = res.user.photoURL;
         if (url) {
@@ -145,6 +157,7 @@ const Login = () => {
         const { displayName, email, photoUrl } = result.user.reloadUserInfo;
         console.log("🚀 ~ file: Login.jsx:146 ~ .then ~ photoUrl", photoUrl);
         dispatch(resetUserOrders());
+        dispatch(resetUserOrders(result.user.uid));
         dispatch(setTheEmail(email));
         dispatch(setTheUserName(displayName));
         if (!photoUrl.includes("facebook")) {
@@ -178,8 +191,8 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         const { displayName, email, photoUrl } = result.user.reloadUserInfo;
-        console.log("🚀 ~ file: Login.jsx:146 ~ .then ~ photoUrl", photoUrl);
-        dispatch(resetUserOrders());
+        dispatch(resetUserOrders(result.user.uid));
+        dispatch(setTheUserId(email));
         dispatch(setTheEmail(email));
         dispatch(setTheUserName(displayName));
         if (!photoUrl.includes("google")) {
@@ -201,6 +214,11 @@ const Login = () => {
   };
   return (
     <div className="h-screen loginPage">
+      <div className="nav h-18 p-4 flex items-center w-full bg-white shadow-md font-bold  dark:bg-darkNav cu">
+        <span onClick={() => navigate("/")} className=" cursor-pointer">
+          Home Page
+        </span>
+      </div>
       <div className="theContainer">
         <div className="flex items-center justify-center h-screen loginPage">
           <section className="h-screen">
@@ -301,7 +319,7 @@ const Login = () => {
                         </label>
                       </div>
                       <span className="text-blue-600 transition duration-200 ease-in-out cursor-pointer hover:text-blue-700 hover:underline focus:text-blue-700 active:text-blue-800">
-                        <Link to="/resetpassword">Forgot password?</Link>
+                        <Link to="/user/resetpassword">Forgot password?</Link>
                       </span>
                     </div>
 
@@ -352,7 +370,7 @@ const Login = () => {
                         height="48"
                         viewBox="0 0 48 48"
                         className="w-4 h-4 mr-2"
-                        >
+                      >
                         <path
                           fill="#FFC107"
                           d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"

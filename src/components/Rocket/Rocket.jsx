@@ -4,12 +4,14 @@ import SuccessCheck from "./../SuccessCheck/SuccessCheck";
 import { useDispatch, useSelector } from "react-redux";
 import { resetCart } from "../../store/cartSlice";
 import { addUserOrders } from "../../store/userSlice";
+import { upDateUserOrders } from "./../..//Firebase/RealtimeDatabase.js";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { v4 } from 'uuid';
+import { v4 } from "uuid";
 const Rocket = () => {
   const dispatch = useDispatch();
-  const {totalPrice}= useSelector(store=>store.cartSlice)
+  const { totalPrice } = useSelector((store) => store.cartSlice);
+  const { id } = useSelector((store) => store.userSlice);
   const navigate = useNavigate();
   const [rocket, setRocket] = useState(true);
   const [success, setSuccess] = useState(false);
@@ -18,16 +20,16 @@ const Rocket = () => {
   useEffect(() => {
     const time = setTimeout(() => {
       setRocket(false);
-      dispatch(
-        addUserOrders({ orderId: v4(), price: totalPrice, status: "success" })
-      );
+      const orderData = { orderId: v4(), price: totalPrice, status: "success" };
+      dispatch(addUserOrders(orderData));
+      upDateUserOrders(id,orderData);
       dispatch(resetCart());
       setSuccess(true);
     }, 5000);
     return () => {
       clearTimeout(time);
     };
-  }, [dispatch, totalPrice]);
+  }, [dispatch, totalPrice,id]);
 
   useEffect(() => {
     if (timerGoHome > 0) {
@@ -84,7 +86,7 @@ const Rocket = () => {
             Thank You For Shopping With Us
           </motion.span>
           <motion.button
-          whileTap={{scale:0.9}}
+            whileTap={{ scale: 0.9 }}
             onClick={(e) => navigate("/")}
             className="py-3 font-bold text-black capitalize rounded-md w-80 bg-disableColor"
           >

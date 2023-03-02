@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  id:"",
   userName: "",
   email: "",
   photoURL: "",
@@ -8,12 +9,16 @@ const initialState = {
   userAddress: { location: "", city: "", postal: "", country: "" },
   paymentMethod: "",
   orders: [],
+  
 };
 
 export const userSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    setTheUserId: (state, action) => {
+      state.id = action.payload;
+    },
     setTheUserName: (state, action) => {
       state.userName = action.payload;
     },
@@ -32,6 +37,9 @@ export const userSlice = createSlice({
     setUserPaymentMethods: (state, action) => {
       state.paymentMethod = action.payload;
     },
+    setUserOrders: (state, action) => {
+      state.orders=action.payload;
+    },
     addUserOrders: (state, action) => {
       state.orders.push(action.payload);
     },
@@ -42,6 +50,7 @@ export const userSlice = createSlice({
 });
 
 export const {
+  setTheUserId,
   setTheUserName,
   setTheEmail,
   setPhotoURL,
@@ -49,6 +58,7 @@ export const {
   setUserAddress,
   setUserPaymentMethods,
   addUserOrders,
+  setUserOrders,
   resetUserOrders,
 } = userSlice.actions;
 export default userSlice.reducer;

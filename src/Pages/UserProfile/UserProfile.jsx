@@ -156,9 +156,15 @@ const UserProfile = () => {
                 <table>
                   <thead>
                     <tr>
-                      <th className="bg-amr dark:bg-darkBody">id</th>
-                      <th className="bg-amr dark:bg-darkBody">price</th>
-                      <th className="bg-amr dark:bg-darkBody">status</th>
+                      <th className="bg-amr dark:bg-darkBody text-white ">
+                        id
+                      </th>
+                      <th className="bg-amr dark:bg-darkBody text-white">
+                        price
+                      </th>
+                      <th className="bg-amr dark:bg-darkBody text-white">
+                        status
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
